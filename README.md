@@ -37,4 +37,3 @@ At the moment, I have used a COCO model(VGG_300_300_coco.h5 -> http://jderobot.o
 
 [![Smart-Traffic-Sensor With Keras. First Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-11-19%2022-35-38.png)](https://www.youtube.com/watch?v=0MeZSVHg-3M)
 
-<iframe src="https://www.youtube.com/watch?v=0MeZSVHg-3M" width="420" height="315" frameborder="0" allowfullscreen> </iframe> 
