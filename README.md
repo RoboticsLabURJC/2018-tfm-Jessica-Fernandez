@@ -8,3 +8,20 @@ To start I downloaded the component Object Detector (https://github.com/JdeRobot
 I'm labelling some traffic images for creating a database. For this, I use labelImg(https://github.com/tzutalin/labelImg).
 
 ![labelImg](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-11-03%2014-29-36.png)
+
+## Week 3
+I have been integrating keras in smart-traffic-sensor. For this, I have to embeded Python code in C++. You can find information in the following links: https://docs.python.org/2/extending/embedding.html , https://realmike.org/blog/2012/07/05/supercharging-c-code-with-embedded-python/ , https://www.codeproject.com/Articles/11805/Embedding-Python-in-C-C-Part-I. You can see a basic example in the next code:
+```ruby
+#include <stdio.h>
+#include <python3.5/Python.h>
+
+int main()
+{
+	PyObject* pInt;
+	Py_Initialize();
+	PyRun_SimpleString("print('Hello World from Embedded Python!!!')");
+	Py_Finalize();
+	printf("\nPress any key to exit...\n");
+}
+```
+
