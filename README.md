@@ -10,7 +10,7 @@ I'm labelling some traffic images for creating a database. For this, I use label
 ![labelImg](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-11-03%2014-29-36.png)
 
 ## Week 3
-I have been integrating keras in smart-traffic-sensor. For this, I have to embeded Python code in C++. You can find information in the following links: https://docs.python.org/2/extending/embedding.html , https://realmike.org/blog/2012/07/05/supercharging-c-code-with-embedded-python/ , https://www.codeproject.com/Articles/11805/Embedding-Python-in-C-C-Part-I. You can see a basic example in the next code:
+I have been integrating keras in smart-traffic-sensor. For this, I have to embeded Python code in C++. You can find information in the following links: https://docs.python.org/2/extending/embedding.html , https://realmike.org/blog/2012/07/05/supercharging-c-code-with-embedded-python/ , https://www.codeproject.com/Articles/11805/Embedding-Python-in-C-C-Part-I. You can see a basic example in the next code (hello_python.cpp):
 ```ruby
 #include <stdio.h>
 #include <python3.5/Python.h>
@@ -24,4 +24,12 @@ int main()
 	printf("\nPress any key to exit...\n");
 }
 ```
-
+You have to compile in the following way: 
+```ruby
+gcc hello_python.cpp -o hello_python -L/usr/lib/python2.7/config/ -lpython2.7
+```
+The result is:
+```ruby
+Hello World from Embedded Python!!!
+Press any key to exit...
+```
