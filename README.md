@@ -33,3 +33,5 @@ The result is:
 Hello World from Embedded Python!!!
 Press any key to exit...
 ```
+At the moment, I have used a COCO model(VGG_300_300_coco.h5 -> http://jderobot.org/store/deeplearning-networks/Keras/) for keras in a traffic video. At the moment I have used a coconut model for keras in a traffic video. Although I still have some conflict with the part of tensorflow already integrated, because in the part of keras some tensorflow function is also used and I am getting some problems by leaving both parts enabled. In the next video, you can see an example:
+![Keras example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/simplescreenrecorder-2018-11-19_20.57.30.mp4)
