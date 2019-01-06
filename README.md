@@ -56,3 +56,8 @@ I tried the ssd300 with 1000 steps per epochs, 120 epochs and SGD. I used the pa
 I tried the ssd7 with 1000 steps per epochs, 20 epochs and Adam. I used the parameters, which are in the ssd7 example and I get the next result:
 
 [![Smart-Traffic-Sensor With SSD7 Keras. Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras3.png)](https://www.youtube.com/watch?v=71yQjBs76Vo&feature=youtu.be)
+
+### 4º Test
+I tried the ssd300 with 1000 steps per epochs, 20 epochs and Adam. In this case the steps parameter is None, the offsets parameter is None and I used the coco scales.
+
+[![Smart-Traffic-Sensor With SSD300 Keras.Third Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras4.png)](https://www.youtube.com/watch?v=zGyK0PKNP7I&feature=youtu.be)
