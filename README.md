@@ -67,3 +67,7 @@ I tried the ssd300 with 1000 steps per epochs, 120 epochs and Adam. In this case
 
 [![Smart-Traffic-Sensor With SSD300 Keras.Four Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras5.png)](https://www.youtube.com/watch?v=-tzJgebQSmw&feature=youtu.be)
 
+## Smart-traffic-sensor Keras
+I tested my keras model ( the 5º test) on the smart-traffic-sensor.Below you can see a video:
+
+[![Smart-Traffic-Sensor Keras](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/smart_traffic_sensor_keras.png)](https://www.youtube.com/watch?v=pa6c3zmug8w&feature=youtu.be)
