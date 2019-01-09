@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/docker/Jessi/smart-traffic-sensor/src/progeo.c
+progeo.h
+/home/docker/Jessi/smart-traffic-sensor/src/progeo.h
+math.h
+-
+stdio.h
+-
+gsl/gsl_matrix.h
+-
+gsl/gsl_permutation.h
+-
+gsl/gsl_linalg.h
+-
+gsl/gsl_multifit.h
+-
+stdlib.h
+-
+errno.h
+-
+
+/home/docker/Jessi/smart-traffic-sensor/src/progeo.h
+
