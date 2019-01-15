@@ -79,5 +79,10 @@ Darknet (https://pjreddie.com/darknet/) is an open source neural network framewo
   git clone https://github.com/JdeRobot/darknet
   cd darknet
   mkdir build && cd build
-
-```
+For GPU users:
+  cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DUSE_GPU=ON ..
+For CPU users:
+  cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DUSE_GPU=OFF ..
+  
+  make -j4
+  sudo make -j4 install
