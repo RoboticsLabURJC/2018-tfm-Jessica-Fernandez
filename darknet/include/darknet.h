@@ -79,7 +79,7 @@ typedef enum {
     NETWORK,
     XNOR,
     REGION,
-    YOLO,
+    YOLO_LAYER,
     REORG,
     UPSAMPLE,
     BLANK

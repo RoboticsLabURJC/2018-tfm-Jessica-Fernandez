@@ -49,7 +49,7 @@ LAYER_TYPE string_to_layer_type(char * type)
     if (strcmp(type, "[cost]")==0) return COST;
     if (strcmp(type, "[detection]")==0) return DETECTION;
     if (strcmp(type, "[region]")==0) return REGION;
-    if (strcmp(type, "[yolo]")==0) return YOLO;
+    if (strcmp(type, "[yolo]")==0) return YOLO_LAYER;
     if (strcmp(type, "[local]")==0) return LOCAL;
     if (strcmp(type, "[conv]")==0
             || strcmp(type, "[convolutional]")==0) return CONVOLUTIONAL;
@@ -756,7 +756,7 @@ network parse_network_cfg(char *filename)
             l = parse_cost(options, params);
         }else if(lt == REGION){
             l = parse_region(options, params);
-	}else if(lt == YOLO){
+	}else if(lt == YOLO_LAYER){
             l = parse_yolo(options, params);
         }else if(lt == DETECTION){
             l = parse_detection(options, params);

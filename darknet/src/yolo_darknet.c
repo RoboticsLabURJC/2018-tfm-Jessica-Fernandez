@@ -14,7 +14,7 @@ layer make_yolo_layer(int batch, int w, int h, int n, int total, int *mask, int 
 {
     int i;
     layer l = {0};
-    l.type = YOLO;
+    l.type = YOLO_LAYER;
 
     l.n = n;
     l.total = total;
