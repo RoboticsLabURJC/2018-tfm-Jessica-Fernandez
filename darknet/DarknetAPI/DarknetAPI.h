@@ -9,7 +9,6 @@
 #include "parser.h"
 #include "detection_layer.h"
 #include "utils.h"
-#include "yolo.h"
 #include <DarknetAPI/DarknetDetection.h>
 
 #include <vector>
