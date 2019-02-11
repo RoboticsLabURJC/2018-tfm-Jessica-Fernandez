@@ -118,7 +118,7 @@ Here are the steps to follow to train a model with your dataset:
   <object-class> <x> <y> <width> <height>
 ```
 Where x, y, width, and height are relative to the image's width and height. In my case I have xml label files because I used labelImg and I saved in this format.To generate these file(.txt) we will run the voc_label.py script in Darknet's scripts/ directory.
-To execute this script you need a annotations folder (folder with xml labels)and a .txt with the annotations names file (annotations_file.txt). 
+To execute this script you need a annotations folder (folder with xml labels), a .txt with the annotations names file (annotations_file.txt) and an output folder. 
 
 Next it shows that it should contain the annotations_file.txt:
 
@@ -134,4 +134,9 @@ Next it shows that it should contain the annotations_file.txt:
 ```
 You have to have the next files in the directory darknet/scripts:
 
+![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/directory.png)
 
+Now you can generate the .txt files (you get this files in output folder):
+```ruby
+   python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out output/
+```
