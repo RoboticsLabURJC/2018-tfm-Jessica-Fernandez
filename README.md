@@ -91,3 +91,47 @@ For CPU users:
 For Darknet you need a weights file, a config file and a label file. In my case I tried yolov2-tiny.weights, yolov2-tiny.cfg ([Tiny YOLO](https://pjreddie.com/darknet/yolo/)) and  [COCO ClassNames File](https://raw.githubusercontent.com/wiki/JdeRobot/dl-DetectionSuite/coco.names). I did a test with this neuronal network in smart-traffic-sensor:
 
 [![Smart-Traffic-Sensor Darknet integration](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet_integration.png)](https://www.youtube.com/watch?v=j7X3t8OMXaE&feature=youtu.be)
+
+
+## Darknet
+To train a model with my dataset I use ([Darknet](https://github.com/pjreddie/darknet)). I adapted it so I could install it on my computer and use DarknetApi on smart-traffic-sensor. I have this adaptation in https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez
+
+If you have to use OpenCV, Cuda and GPU, you have to edit the Makefile:
+
+```ruby
+  GPU=0
+  CUDNN=0
+  OPENCV=0
+```
+
+To train you can execute make for generating the executable.
+
+```ruby
+  cd darknet
+  make -j4
+```
+Here are the steps to follow to train a model with your dataset:
+
+1- We need to generate the label files that Darknet uses. Darknet wants a .txt file for each image with a line for each ground truth object in the image that looks like:
+
+```ruby
+  <object-class> <x> <y> <width> <height>
+```
+Where x, y, width, and height are relative to the image's width and height. In my case I have xml label files because I used labelImg and I saved in this format.To generate these file(.txt) we will run the voc_label.py script in Darknet's scripts/ directory.
+To execute this script you need a annotations folder (folder with xml labels)and a .txt with the annotations names file (annotations_file.txt). 
+
+Next it shows that it should contain the annotations_file.txt:
+
+```ruby
+0006-00000001.xml
+0006-00000002.xml
+0006-00000003.xml
+0006-00000005.xml
+0006-00000006.xml
+0006-00000007.xml
+0006-00000008.xml
+...
+```
+You have to have the next files in the directory darknet/scripts:
+
+
