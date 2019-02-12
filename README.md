@@ -93,7 +93,7 @@ For Darknet you need a weights file, a config file and a label file. In my case 
 [![Smart-Traffic-Sensor Darknet integration](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet_integration.png)](https://www.youtube.com/watch?v=j7X3t8OMXaE&feature=youtu.be)
 
 
-## Darknet
+## Darknet Training
 To train a model with my dataset I use ([Darknet](https://github.com/pjreddie/darknet)). I adapted it so I could install it on my computer and use DarknetApi on smart-traffic-sensor. I have this adaptation in https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez
 
 If you have to use OpenCV, Cuda and GPU, you have to edit the Makefile:
@@ -196,3 +196,10 @@ Region Avg IOU: 0.798363, Class: 0.893232, Obj: 0.700808, No Obj: 0.004567, Avg 
 * 0.060730 avg - average loss (error) - the lower, the better
 
 When you see that average loss 0.xxxxxx avg no longer decreases at many iterations then you should stop training.
+
+## Darknet - Smart-traffic-sensor
+
+I try my trained Darknet model with smart-traffic-sensor and I get the next result:
+
+[![Smart-Traffic-Sensor Darknet integration](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet.png)](https://www.youtube.com/watch?v=BBAZv2HKhWM)
+
