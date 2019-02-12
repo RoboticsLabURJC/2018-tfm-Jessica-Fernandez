@@ -191,3 +191,8 @@ Region Avg IOU: 0.798363, Class: 0.893232, Obj: 0.700808, No Obj: 0.004567, Avg 
 
 9002: 0.211667, 0.060730 avg, 0.001000 rate, 3.868000 seconds, 576128 images Loaded: 0.000000 seconds
 ```
+
+· 9002 - iteration number (number of batch)
+· 0.060730 avg - average loss (error) - the lower, the better
+
+When you see that average loss 0.xxxxxx avg no longer decreases at many iterations then you should stop training.
