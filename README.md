@@ -177,3 +177,17 @@ My voc.names is the next:
 ```
 
 4- For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the darknet53 model. You can just download the weights for the convolutional layers [here (76 MB)](https://pjreddie.com/media/files/darknet53.conv.74).
+
+5- Now we can train! Run the command:
+
+```ruby
+./darknet detector train cfg/voc.data cfg/yolov3-voc.cfg darknet53.conv.74
+```
+
+During training, you will see varying indicators of error, and you should stop when no longer decreases 0.XXXXXXX avg:
+
+```ruby
+    Region Avg IOU: 0.798363, Class: 0.893232, Obj: 0.700808, No Obj: 0.004567, Avg Recall: 1.000000, count: 8 Region Avg IOU: 0.800677, Class: 0.892181, Obj: 0.701590, No Obj: 0.004574, Avg Recall: 1.000000, count: 8
+
+    9002: 0.211667, 0.060730 avg, 0.001000 rate, 3.868000 seconds, 576128 images Loaded: 0.000000 seconds
+```
