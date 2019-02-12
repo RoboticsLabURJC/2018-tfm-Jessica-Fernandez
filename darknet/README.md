@@ -7,7 +7,7 @@ For more information see the [Darknet project website](http://pjreddie.com/darkn
 
 For questions or issues please use the [Google Group](https://groups.google.com/forum/#!forum/darknet).
 
-# Darknet Installation in the compputer#
+# Darknet Installation in the computer
 I have used Darknet (https://github.com/pjreddie/darknet) and I have adapted it so that we can use it in Jderobot with DarknetApi. You can install it following the instructions below:
 
 ```ruby
