@@ -148,7 +148,7 @@ void test_cifar(char *filename, char *weightfile)
 
 void extract_cifar()
 {
-char *labels[] = {"airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"};
+char *labels[] = {"None","motorcycle","car","van","bus","truck","small-truck","tank-truck"};
     int i;
     data train = load_all_cifar10();
     data test = load_cifar10_data("data/cifar/cifar-10-batches-bin/test_batch.bin");

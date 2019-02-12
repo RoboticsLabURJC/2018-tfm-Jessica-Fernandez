@@ -11,8 +11,8 @@
 //image voc_labels[6];
 
 
-char *voc_names2[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
-image voc_labels[20];
+char *voc_names2[] = {"None","motorcycle","car","van","bus","truck","small-truck","tank-truck"};
+image voc_labels[8];
 
 
 

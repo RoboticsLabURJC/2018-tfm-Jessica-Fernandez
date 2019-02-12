@@ -1,6 +1,6 @@
 #include "darknet.h"
 
-char *voc_names[] = {"aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"};
+char *voc_names[] = {"None","motorcycle","car","van","bus","truck","small-truck","tank-truck"};
 
 void train_yolo(char *cfgfile, char *weightfile)
 {
