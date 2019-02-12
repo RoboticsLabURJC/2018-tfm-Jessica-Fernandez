@@ -161,4 +161,17 @@ In my case I have these files in scripts folder.
    names = /home/docker/Jessi/Darknet_training/darknet/data/voc.names
    backup = /home/docker/Jessi/Darknet_training/darknet/backup
 ```
-voc.names is a file where the names of the classes that we want to train are indicated. backup is a folder where all the results will be saved.
+voc.names is a file where the names of the classes that we want to train are indicated. backup is a folder where all the results will be saved. The weights file are saved very 100 iterations during the first 1000 iterations and then every 1000 iterations.  If you need change this you have to edit the line 138 of examples/detector.c (if(i%1000==0 || (i < 1000 && i%100 == 0))).
+
+My voc.names is the next:
+
+```ruby
+   None
+   motorcycle
+   car
+   van
+   bus
+   truck
+   small-truck
+   tank-truck
+```
