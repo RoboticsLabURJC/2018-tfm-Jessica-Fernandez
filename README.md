@@ -140,3 +140,25 @@ Now you can generate the .txt files (you get this files in output folder):
 ```ruby
    python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out output/
 ```
+2- Darknet needs one text file with all of the images you want to train on and other with all of the images you want to test. Below is an example of what you should put in both files:
+
+```ruby
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000055.jpg
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000056.jpg
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000057.jpg
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000058.jpg
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000059.jpg
+   /home/docker/Jessi/Darknet_training/darknet/data/images/0081-00000060.jpg
+```
+In my case I have these files in scripts folder.
+
+3- We have to change the cfg/voc.data config file to point to your data:
+
+```ruby
+   classes= 8
+   train  = /home/docker/Jessi/Darknet_training/darknet/scripts/train.txt
+   valid  = /home/docker/Jessi/Darknet_training/darknet/scripts/test.txt
+   names = /home/docker/Jessi/Darknet_training/darknet/data/voc.names
+   backup = /home/docker/Jessi/Darknet_training/darknet/backup
+```
+voc.names is a file where the names of the classes that we want to train are indicated. backup is a folder where all the results will be saved.
