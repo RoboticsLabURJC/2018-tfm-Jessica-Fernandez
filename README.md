@@ -179,9 +179,20 @@ My voc.names is the next:
 4- For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the darknet53 model. You can just download the weights for the convolutional layers [here (76 MB)](https://pjreddie.com/media/files/darknet53.conv.74).
 
 5- You have to edit the .cfg file. In my case I used yolov3-voc.cfg. You must modify the following:
-*
+ * change line batch to [`batch=64`](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L6)
+  * change line subdivisions to [`subdivisions=16`](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L7)
+  * change line `classes=8` to your number of objects in each of 3 `[yolo]`-layers:
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L611
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L695
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L779
+  * change [`filters=39`] to filters=(classes + 5)x3 in the 3 `[convolutional]` before each `[yolo]` layer
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L605
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L689
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L773
 
-5- Now we can train! Run the command:
+  So if `classes=1` then should be `filters=18`. If `classes=2` then write `filters=21`.
+
+6- Now we can train! Run the command:
 
 ```ruby
 ./darknet detector train cfg/voc.data cfg/yolov3-voc.cfg darknet53.conv.74
