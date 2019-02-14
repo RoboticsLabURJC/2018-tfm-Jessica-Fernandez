@@ -178,6 +178,9 @@ My voc.names is the next:
 
 4- For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the darknet53 model. You can just download the weights for the convolutional layers [here (76 MB)](https://pjreddie.com/media/files/darknet53.conv.74).
 
+5- You have to edit the .cfg file. In my case I used yolov3-voc.cfg. You must modify the following:
+*
+
 5- Now we can train! Run the command:
 
 ```ruby
