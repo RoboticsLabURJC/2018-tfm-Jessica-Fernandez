@@ -1,0 +1,6 @@
+classes= 8
+train  = /home/docker/Jessi/Darknet_training/darknet/scripts/train.txt
+valid  = /home/docker/Jessi/Darknet_training/darknet/scripts/test.txt
+names = /home/docker/Jessi/Darknet_training/darknet/data/voc.names
+backup = /home/docker/Jessi/Darknet_training/darknet/backup
+
