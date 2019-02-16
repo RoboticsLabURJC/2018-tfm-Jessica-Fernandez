@@ -1,7 +1,7 @@
 # 2018-tfm-Jessica-Fernandez
 ## Darknet - Smart-traffic-sensor
 
-I try my trained Darknet model with smart-traffic-sensor and I get the next result:
+I tried my trained Darknet model with smart-traffic-sensor and I got the next result:
 
 [![Smart-Traffic-Sensor Darknet integration1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet.png)](https://www.youtube.com/watch?v=BBAZv2HKhWM)
 
