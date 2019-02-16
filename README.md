@@ -35,7 +35,7 @@ Here are the steps to follow to train a model with your dataset:
   <object-class> <x> <y> <width> <height>
 ```
 Where x, y, width, and height are relative to the image's width and height. In my case I have xml label files because I used labelImg and I saved in this format.To generate these file(.txt) we will run the voc_label.py script in Darknet's scripts/ directory.
-To execute this script you need a annotations folder (folder with xml labels), a .txt with the annotations names file (annotations_file.txt) and an output folder. 
+To execute this script you need an annotations folder (folder with xml labels), a .txt with the annotations names file (annotations_file.txt) and an output folder. 
 
 Next it shows that it should contain the annotations_file.txt:
 
@@ -55,8 +55,10 @@ You have to have the next files in the directory darknet/scripts:
 
 Now you can generate the .txt files (you get this files in output folder):
 ```ruby
-   python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out output/
+   python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out labels/
 ```
+You have to copy the labels folder in the darknet/data folder. In the arknet/folder you should have the images and labels folders.
+
 2- Darknet needs one text file with all of the images you want to train on and other with all of the images you want to test. Below is an example of what you should put in both files:
 
 ```ruby
@@ -108,6 +110,15 @@ My voc.names is the next:
       * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L773
 
   So if `classes=1` then should be `filters=18`. If `classes=2` then write `filters=21`.
+  * you need to calculate the anchors. For it,  you have to execute gen_anchor.py:
+  ```ruby
+  python gen_anchor.py -filelist train.txt -output_dir anchors -num_clusters 9
+  ```
+  You will get the anchors.txt in the anchors folder.With it, you have to change line 
+  `anchors` in each of 3 `[yolo]`-layers:
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L610
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L694
+      * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L778
 
 6- Now we can train! Run the command:
 
