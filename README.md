@@ -111,11 +111,11 @@ My voc.names is the next:
 
   So if `classes=1` then should be `filters=18`. If `classes=2` then write `filters=21`.
   * you need to calculate the anchors. For it,  you have to execute gen_anchor.py:
-  ```ruby
-  python gen_anchor.py -filelist train.txt -output_dir anchors -num_clusters 9
-  ```
-  You will get the anchors.txt in the anchors folder.With it, you have to change line 
-  `anchors` in each of 3 `[yolo]`-layers:
+      ```ruby
+  	 python gen_anchor.py -filelist train.txt -output_dir anchors -num_clusters 9
+      ```
+      You will get the anchors.txt in the anchors folder.With it, you have to change line `anchors` in each of 3 `[yolo]`
+      layers:
       * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L610
       * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L694
       * https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/darknet/cfg/yolov3-voc.cfg#L778
