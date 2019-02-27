@@ -1,4 +1,9 @@
 # 2018-tfm-Jessica-Fernandez
+## Tensorflow model in Smart-traffic-sensor
+I tried my tensorflow model in the smart-traffic-sensor and I get the next result:
+
+[![Smart-Traffic-Sensor Tensorflow](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/tensorflow_model.png)](https://www.youtube.com/watch?v=-QbA6TPE2ds&feature=youtu.be)
+
 ## Tensorflow Training
 I have trained a tensorflow model with my own database. The steps to train are indicated below:
 1. Download tensorflow models:
