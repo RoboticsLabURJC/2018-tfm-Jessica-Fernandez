@@ -1,4 +1,13 @@
 # 2018-tfm-Jessica-Fernandez
+## Autoevaluator- Dl-detectionSuite
+I used dl-detectionsuite to compare the different model that I have. 
+
+| Network    |  mAP(Overall)(IOU=0.5:0.95) | mAR(Overall)(IOU=0.5:0.95) |
+| Keras      |           0.459113	   |          0.502304          |
+| Yolo       |           0.502507	   |          0.580324          |
+| Tensorflow |           0.308906	   |          0.360332          |
+ 	 
+
 ## Tensorflow model in Smart-traffic-sensor
 I tried my tensorflow model in the smart-traffic-sensor and I get the next result:
 
