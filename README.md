@@ -1,6 +1,6 @@
 # 2018-tfm-Jessica-Fernandez
-## Autoevaluator- Dl-detectionSuite
-I used dl-detectionsuite to compare the different model that I have. 
+## Autoevaluator- dl-DetectionSuite
+I used ([dl-DetectionSuite](https://github.com/JdeRobot/dl-DetectionSuite)) to compare the different model that I have. 
 
 | Network    |  mAP(Overall)(IOU=0.5:0.95) | mAR(Overall)(IOU=0.5:0.95) |
 | -----------| --------------------------- | -------------------------- |
