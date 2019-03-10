@@ -1,0 +1,38 @@
+<annotation>
+	<folder>0104</folder>
+	<filename>0104-00000031.jpg</filename>
+	<path>/home/vanejessi/vehicle dataset/GRAM-RTMv4/images/M-30/0104/0104-00000031.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>800</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>298</xmin>
+			<ymin>132</ymin>
+			<xmax>338</xmax>
+			<ymax>160</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>252</xmin>
+			<ymin>197</ymin>
+			<xmax>314</xmax>
+			<ymax>235</ymax>
+		</bndbox>
+	</object>
+</annotation>
