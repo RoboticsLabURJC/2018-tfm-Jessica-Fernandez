@@ -7,6 +7,16 @@ Below you can see the result:
 
 [![Tracking by detection1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Tracking_by_detection1.png)](https://www.youtube.com/watch?v=ReM2HAbOo-s)
 
+I have measured the detection + tracking times for the different methods, obtaining the following:
+
+|        Network        |  Tracking + Detection Time (ms) | 
+| --------------------- | ------------------------------- |
+|          Keras        |                45               |        
+|          Yolo         |                48	          |        
+|       Tensorflow      |                20	          |    
+|           KLT         |                5	          | 
+
+
 ## Tracking by detection
 In smart-traffic-sensor I have implemented the tracking by detection using the detections of the deep learning and KLT(Kanade Lukas Tomasi) algorithm. For this I consider the following:
 * All the image is for detection and tracking.
