@@ -9,7 +9,7 @@ Below you can see the result:
 
 I have measured the detection + tracking times for the different methods, obtaining the following:
 
-|        Network        |  Tracking + Detection Time (ms) | 
+|         Method        |  Tracking + Detection Time (ms) | 
 | --------------------- | ------------------------------- |
 |          Keras        |                45               |        
 |          Yolo         |                48	          |        
