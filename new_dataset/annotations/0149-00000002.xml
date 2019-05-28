@@ -1,0 +1,58 @@
+<annotation>
+<folder>JPEGImages</folder>
+<filename>6001.jpg</filename>
+<source>
+</source>
+<owner>
+	<name>Flickr-uno</name>
+</owner>
+<size>
+	<width>800</width>
+	<height>480</height>
+	<depth>2</depth>
+</size>
+<object>
+	<name>car</name><ID>209</ID>
+	<truncated>0</truncated>
+	<occluded>0</occluded>
+	<bndbox>
+		<xmin>387</xmin>
+		<ymin>49</ymin>
+		<xmax>401</xmax>
+		<ymax>60</ymax>
+	</bndbox>
+</object>
+<object>
+	<name>motorbike</name><ID>210</ID>
+	<truncated>0</truncated>
+	<occluded>0</occluded>
+	<bndbox>
+		<xmin>391</xmin>
+		<ymin>96</ymin>
+		<xmax>404</xmax>
+		<ymax>117</ymax>
+	</bndbox>
+</object>
+<object>
+	<name>car</name><ID>211</ID>
+	<truncated>0</truncated>
+	<occluded>0</occluded>
+	<bndbox>
+		<xmin>433</xmin>
+		<ymin>111</ymin>
+		<xmax>464</xmax>
+		<ymax>133</ymax>
+	</bndbox>
+</object>
+<object>
+	<name>motorbike</name><ID>212</ID>
+	<truncated>0</truncated>
+	<occluded>0</occluded>
+	<bndbox>
+		<xmin>243</xmin>
+		<ymin>178</ymin>
+		<xmax>270</xmax>
+		<ymax>215</ymax>
+	</bndbox>
+</object>
+</annotation>
