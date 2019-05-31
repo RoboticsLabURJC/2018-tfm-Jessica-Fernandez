@@ -1,4 +1,13 @@
 # 2018-tfm-Jessica-Fernandez
+## Smart-traffic-sensor Evaluation 
+I used ([dl-DetectionSuite](https://github.com/JdeRobot/dl-DetectionSuite)) to evaluate smart-traffic-sensor. I have compared the deep learning smart-traffic-sensor and the klt smart-traffic-sensor. I only considered the results for an IOU of 0.5 . And I got the next results:
+
+|        Network        |  mAP(Overall)(IOU=0.5) | mAR(Overall)(IOU=0.5:0.95) | 
+| --------------------- | ---------------------- | -------------------------- | 
+|     Deep Learning     |         0.90878	 |          0.914015          |    
+|          KLT          |         0.404088	 |          0.544972          |     
+
+
 ## Tracking by detection 1
 It has been added that the boxes appear in the vehicles. Also I changed some things:
 * If I have lost a blob with the detection during five sequences followed I consider that this blob is a wrong blob.
