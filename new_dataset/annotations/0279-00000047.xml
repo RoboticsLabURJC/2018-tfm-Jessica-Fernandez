@@ -1,0 +1,38 @@
+<annotation>
+	<folder>images_hd0279</folder>
+	<filename>0279-00000047.jpg</filename>
+	<path>/home/vanejessi/vehicle dataset/Dataset/GRAM-RTMv4/Images/images_hd0279/0279-00000047.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1200</width>
+		<height>720</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>518</xmin>
+			<ymin>400</ymin>
+			<xmax>606</xmax>
+			<ymax>484</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>676</xmin>
+			<ymin>112</ymin>
+			<xmax>697</xmax>
+			<ymax>137</ymax>
+		</bndbox>
+	</object>
+</annotation>
