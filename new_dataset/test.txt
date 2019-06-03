@@ -1055,7 +1055,7 @@
 /home/docker/Jessi/darknet/data/images/0103-00000090.jpg  
 /home/docker/Jessi/darknet/data/images/0103-00000091.jpg  
 /home/docker/Jessi/darknet/data/images/0103-00000092.jpg  
-/home/docker/Jessi/darknet/data/images/0103-00000093.jpg  0106-00000086.jpg  
+/home/docker/Jessi/darknet/data/images/0103-00000093.jpg
 /home/docker/Jessi/darknet/data/images/0106-00000087.jpg  
 /home/docker/Jessi/darknet/data/images/0106-00000088.jpg  
 /home/docker/Jessi/darknet/data/images/0106-00000089.jpg  
