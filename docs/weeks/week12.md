@@ -10,4 +10,4 @@ For this reason I have put tensorflow in python. Because if in the future tensor
 
 In the next video you can see tensorflow in smart-traffic-sensor:
 
-[![Smart-Traffic-Sensor Tensorflow1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/tensorflow_smart_traffic_sensor.png)](https://www.youtube.com/watch?v=AyDBIZC3P2A&feature=youtu.be)
+[![Smart-Traffic-Sensor Tensorflow1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/tensorflow_smart_traffic_sensor.png)](https://www.youtube.com/watch?v=AyDBIZC3P2A&feature=youtu.be)

@@ -9,7 +9,7 @@ It has been added that the boxes appear in the vehicles. Also I changed some thi
 
 Below you can see the result:
 
-[![Tracking by detection1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Tracking_by_detection1.png)](https://www.youtube.com/watch?v=ReM2HAbOo-s)
+[![Tracking by detection1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Tracking_by_detection1.png)](https://www.youtube.com/watch?v=ReM2HAbOo-s)
 
 I have measured the detection + tracking times for the different methods, obtaining the following:
 

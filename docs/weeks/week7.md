@@ -4,7 +4,7 @@ layout: default
 # Darknet Training
 
 
-To train a model with my dataset I use ([Darknet](https://github.com/pjreddie/darknet)). I adapted it so I could install it on my computer and use DarknetApi on smart-traffic-sensor. I have this adaptation in https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez
+To train a model with my dataset I use ([Darknet](https://github.com/pjreddie/darknet)). I adapted it so I could install it on my computer and use DarknetApi on smart-traffic-sensor. I have this adaptation in [https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez]
 
 If you have to use OpenCV, Cuda and GPU, you have to edit the Makefile:
 
@@ -44,7 +44,7 @@ Next it shows that it should contain the annotations_file.txt:
 ```
 You have to have the next files in the directory darknet/scripts:
 
-![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/directory.png)
+![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/directory.png)
 
 Now you can generate the .txt files (you get this files in output folder):
 ```ruby
