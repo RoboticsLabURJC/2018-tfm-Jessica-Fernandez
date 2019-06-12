@@ -50,7 +50,7 @@ Now you can generate the .txt files (you get this files in output folder):
 ```ruby
    python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out labels/
 ```
-You have to copy the labels folder in the darknet/data folder. In the arknet/folder you should have the images and labels folders.
+You have to copy the labels folder in the darknet/data folder. In the darknet/folder you should have the images and labels folders.
 
 2- Darknet needs one text file with all of the images you want to train on and other with all of the images you want to test. Below is an example of what you should put in both files:
 
