@@ -14,7 +14,7 @@ It has been added that the boxes appear in the vehicles. Also I changed some thi
 
 Below you can see the result:
 
-[![Tracking by detection1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Tracking_by_detection1.png)](https://www.youtube.com/watch?v=ReM2HAbOo-s)
+[![Tracking by detection1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Tracking_by_detection1.png)](https://www.youtube.com/watch?v=ReM2HAbOo-s)
 
 I have measured the detection + tracking times for the different methods, obtaining the following:
 
@@ -35,7 +35,7 @@ In smart-traffic-sensor I have implemented the tracking by detection using the d
 
 Below you can see a video of its operation:
 
-[![Tracking by detection](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Tracking_by_detection.png)](https://www.youtube.com/watch?v=RVkaHOFigd4)
+[![Tracking by detection](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Tracking_by_detection.png)](https://www.youtube.com/watch?v=RVkaHOFigd4)
 
 
 ## Autoevaluator- dl-DetectionSuite. Test 1
@@ -56,7 +56,7 @@ For this reason I have put tensorflow in python. Because if in the future tensor
 
 In the next video you can see tensorflow in smart-traffic-sensor:
 
-[![Smart-Traffic-Sensor Tensorflow1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/tensorflow_smart_traffic_sensor.png)](https://www.youtube.com/watch?v=AyDBIZC3P2A&feature=youtu.be)
+[![Smart-Traffic-Sensor Tensorflow1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/tensorflow_smart_traffic_sensor.png)](https://www.youtube.com/watch?v=AyDBIZC3P2A&feature=youtu.be)
 
 ## Autoevaluator- dl-DetectionSuite
 I used ([dl-DetectionSuite](https://github.com/JdeRobot/dl-DetectionSuite)) to compare the different model that I have.To use dl-DetectionSuite you have to install it as explained on it github. In particular you should use Tools/Autoevaluator. First, you need a images folder, a annotations folder and a .yml file:
@@ -116,7 +116,7 @@ I have compared my three model (Keras, Yolo and Tensorflow) and I got:
 ## Tensorflow model in Smart-traffic-sensor
 I tried my tensorflow model in the smart-traffic-sensor and I got the next result:
 
-[![Smart-Traffic-Sensor Tensorflow](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/tensorflow_model.png)](https://www.youtube.com/watch?v=-QbA6TPE2ds&feature=youtu.be)
+[![Smart-Traffic-Sensor Tensorflow](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/tensorflow_model.png)](https://www.youtube.com/watch?v=-QbA6TPE2ds&feature=youtu.be)
 
 ## Tensorflow Training
 I have trained a tensorflow model with my own database. The steps to train are indicated below:
@@ -242,11 +242,11 @@ python ../export_inference_graph.py --input_type image_tensor --pipeline_config_
 
 I tried my trained Darknet model with smart-traffic-sensor and I got the next result:
 
-[![Smart-Traffic-Sensor Darknet integration1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet.png)](https://www.youtube.com/watch?v=BBAZv2HKhWM)
+[![Smart-Traffic-Sensor Darknet integration1](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Darknet.png)](https://www.youtube.com/watch?v=BBAZv2HKhWM)
 
 After this, I adapted to vehicle model of smart-traffic-sensor.You can see the result in the following video:
 
-[![Smart-Traffic-Sensor Darknet](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet_smart-traffic-sensor.png)](https://www.youtube.com/watch?v=6bPlBcT80W4)
+[![Smart-Traffic-Sensor Darknet](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Darknet_smart-traffic-sensor.png)](https://www.youtube.com/watch?v=6bPlBcT80W4)
 
 
 ## Darknet Training
@@ -290,13 +290,13 @@ Next it shows that it should contain the annotations_file.txt:
 ```
 You have to have the next files in the directory darknet/scripts:
 
-![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/directory.png)
+![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/directory.png)
 
 Now you can generate the .txt files (you get this files in output folder):
 ```ruby
    python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out labels/
 ```
-You have to copy the labels folder in the darknet/data folder. In the arknet/folder you should have the images and labels folders.
+You have to copy the labels folder in the darknet/data folder. In the darknet/folder you should have the images and labels folders.
 
 2- Darknet needs one text file with all of the images you want to train on and other with all of the images you want to test. Below is an example of what you should put in both files:
 
@@ -396,12 +396,12 @@ For CPU users:
 
 For Darknet you need a weights file, a config file and a label file. In my case I tried yolov2-tiny.weights, yolov2-tiny.cfg ([Tiny YOLO](https://pjreddie.com/darknet/yolo/)) and  [COCO ClassNames File](https://raw.githubusercontent.com/wiki/JdeRobot/dl-DetectionSuite/coco.names). I did a test with this neuronal network in smart-traffic-sensor:
 
-[![Smart-Traffic-Sensor Darknet integration](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Darknet_integration.png)](https://www.youtube.com/watch?v=j7X3t8OMXaE&feature=youtu.be)
+[![Smart-Traffic-Sensor Darknet integration](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Darknet_integration.png)](https://www.youtube.com/watch?v=j7X3t8OMXaE&feature=youtu.be)
 
 ## Smart-traffic-sensor Keras
 I tested my keras model ( the 5º test) on the smart-traffic-sensor.Below you can see a video:
 
-[![Smart-Traffic-Sensor Keras](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/smart_traffic_sensor_keras.png)](https://www.youtube.com/watch?v=pa6c3zmug8w&feature=youtu.be)
+[![Smart-Traffic-Sensor Keras](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/smart_traffic_sensor_keras.png)](https://www.youtube.com/watch?v=pa6c3zmug8w&feature=youtu.be)
 
 
 ## Neuronal Network with Keras
@@ -411,27 +411,27 @@ I have been looking for neuronal networks with keras for objects detection. Curr
 ### 1º Test
 I tried the ssd300 with 1000 steps per epochs, 70 epochs and adam. I used the parameters, which are in the ssd300 example and I get the next result:
 
-[![Smart-Traffic-Sensor With SSD300 Keras. First Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras1.png)](https://www.youtube.com/watch?v=qZrhYQ3WXGc&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD300 Keras. First Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras1.png)](https://www.youtube.com/watch?v=qZrhYQ3WXGc&feature=youtu.be)
 
 ### 2º Test
 I tried the ssd300 with 1000 steps per epochs, 120 epochs and SGD. I used the parameters, which are in the ssd300 example and I get the next result:
 
-[![Smart-Traffic-Sensor With SSD300 Keras. Second Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras2.png)](https://www.youtube.com/watch?v=nEIczwMrbWc&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD300 Keras. Second Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras2.png)](https://www.youtube.com/watch?v=nEIczwMrbWc&feature=youtu.be)
 
 ### 3º Test
 I tried the ssd7 with 1000 steps per epochs, 20 epochs and Adam. I used the parameters, which are in the ssd7 example and I get the next result:
 
-[![Smart-Traffic-Sensor With SSD7 Keras. Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras3.png)](https://www.youtube.com/watch?v=71yQjBs76Vo&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD7 Keras. Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras3.png)](https://www.youtube.com/watch?v=71yQjBs76Vo&feature=youtu.be)
 
 ### 4º Test
 I tried the ssd300 with 1000 steps per epochs, 70 epochs and Adam. In this case the steps parameter is None, the offsets parameter is None and I used the coco scales.
 
-[![Smart-Traffic-Sensor With SSD300 Keras.Third Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras4.png)](https://www.youtube.com/watch?v=zGyK0PKNP7I&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD300 Keras.Third Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras4.png)](https://www.youtube.com/watch?v=zGyK0PKNP7I&feature=youtu.be)
 
 ### 5º Test
 I tried the ssd300 with 1000 steps per epochs, 120 epochs and Adam. In this case the steps parameter is None, the offsets parameter is None and I used the coco scales.
 
-[![Smart-Traffic-Sensor With SSD300 Keras.Four Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/keras5.png)](https://www.youtube.com/watch?v=-tzJgebQSmw&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD300 Keras.Four Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras5.png)](https://www.youtube.com/watch?v=-tzJgebQSmw&feature=youtu.be)
 
 
 ## Week 3
@@ -460,17 +460,17 @@ Press any key to exit...
 ```
 At the moment, I have used a COCO model(VGG_300_300_coco.h5 -> http://jderobot.org/store/deeplearning-networks/Keras/) for keras in a traffic video. At the moment I have used a coconut model for keras in a traffic video. Although I still have some conflict with the part of tensorflow already integrated, because in the part of keras some tensorflow function is also used and I am getting some problems by leaving both parts enabled. In the next video, you can see an example:
 
-[![Smart-Traffic-Sensor With Keras. First Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-11-19%2022-35-38.png)](https://www.youtube.com/watch?v=0MeZSVHg-3M)
+[![Smart-Traffic-Sensor With Keras. First Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Captura%20de%20pantalla%20de%202018-11-19%2022-35-38.png)](https://www.youtube.com/watch?v=0MeZSVHg-3M)
 
 ## Week 2
 I'm labelling some traffic images for creating a database. For this, I use [labelImg](https://github.com/tzutalin/labelImg).
 
-![labelImg](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-11-03%2014-29-36.png)
+![labelImg](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Captura%20de%20pantalla%20de%202018-11-03%2014-29-36.png)
 
 ## Week 1
 To start I downloaded the component [Object Detector](https://github.com/JdeRobot/dl-objectdetector). In this component, you can upload the model of your neural network and the captured image of a webcam or video to test how your neural network works. In mi case I used a ssdlite_mobilenet_v2_coco_2018_05_29.pb model and a traffic video. In the next image you can see an example:
 
-![Object_detector](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/Captura%20de%20pantalla%20de%202018-10-12%2018-26-54.png)
+![Object_detector](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Captura%20de%20pantalla%20de%202018-10-12%2018-26-54.png)
 
 [1]: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 [2]: https://github.com/tensorflow/models/blob/master/research/object_detection/samples/configs/ssd_mobilenet_v2_coco.config
