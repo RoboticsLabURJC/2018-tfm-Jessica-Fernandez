@@ -28,6 +28,6 @@ I tried the ssd300 with 1000 steps per epochs, 70 epochs and Adam. In this case 
 ## 5º Test
 I tried the ssd300 with 1000 steps per epochs, 120 epochs and Adam. In this case the steps parameter is None, the offsets parameter is None and I used the coco scales.
 
-[![Smart-Traffic-Sensor With SSD300 Keras.Four Example](https://roboticsurjc-students.github.io/2018-tfm-Jessica-Fernandez/images/keras5.png)](https://www.youtube.com/watch?v=-tzJgebQSmw&feature=youtu.be)## Neuronal Network with Keras
+[![Smart-Traffic-Sensor With SSD300 Keras.Four Example](https://roboticsurjc-students.github.io/2018-tfm-Jessica-Fernandez/images/keras5.png)](https://www.youtube.com/watch?v=-tzJgebQSmw&feature=youtu.be)
 
 
