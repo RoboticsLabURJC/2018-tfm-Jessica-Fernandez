@@ -296,7 +296,7 @@ Now you can generate the .txt files (you get this files in output folder):
 ```ruby
    python voc_label.py -xml annotations/ -xml_files annotations_file.txt -out labels/
 ```
-You have to copy the labels folder in the darknet/data folder. In the arknet/folder you should have the images and labels folders.
+You have to copy the labels folder in the darknet/data folder. In the darknet/folder you should have the images and labels folders.
 
 2- Darknet needs one text file with all of the images you want to train on and other with all of the images you want to test. Below is an example of what you should put in both files:
 
@@ -416,7 +416,7 @@ I tried the ssd300 with 1000 steps per epochs, 70 epochs and adam. I used the pa
 ### 2º Test
 I tried the ssd300 with 1000 steps per epochs, 120 epochs and SGD. I used the parameters, which are in the ssd300 example and I get the next result:
 
-[![Smart-Traffic-Sensor With SSD300 Keras. Second Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras12png)](https://www.youtube.com/watch?v=nEIczwMrbWc&feature=youtu.be)
+[![Smart-Traffic-Sensor With SSD300 Keras. Second Example](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/keras2.png)](https://www.youtube.com/watch?v=nEIczwMrbWc&feature=youtu.be)
 
 ### 3º Test
 I tried the ssd7 with 1000 steps per epochs, 20 epochs and Adam. I used the parameters, which are in the ssd7 example and I get the next result:
