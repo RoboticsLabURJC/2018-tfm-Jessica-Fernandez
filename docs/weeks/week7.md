@@ -44,7 +44,7 @@ Next it shows that it should contain the annotations_file.txt:
 ```
 You have to have the next files in the directory darknet/scripts:
 
-![Directory](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/directory.png)
+![Directory](https://roboticsurjc-students.github.io/2018-tfm-Jessica-Fernandez/images/directory.png)
 
 Now you can generate the .txt files (you get this files in output folder):
 ```ruby

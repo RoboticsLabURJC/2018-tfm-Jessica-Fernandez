@@ -12,4 +12,4 @@ In smart-traffic-sensor I have implemented the tracking by detection using the d
 
 Below you can see a video of its operation:
 
-[![Tracking by detection](https://github.com/RoboticsURJC-students/2018-tfm-Jessica-Fernandez/blob/master/docs/images/Tracking_by_detection.png)](https://www.youtube.com/watch?v=RVkaHOFigd4)
+[![Tracking by detection](https://roboticsurjc-students.github.io/2018-tfm-Jessica-Fernandez/images/Tracking_by_detection.png)](https://www.youtube.com/watch?v=RVkaHOFigd4)
