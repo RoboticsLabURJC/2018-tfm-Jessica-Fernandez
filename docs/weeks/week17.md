@@ -8,6 +8,6 @@ I trained the darknet network with good images( good qualityand good weather con
 
 |           Images              |  mAP(Overall)(IOU=0.5) | mAR(Overall)(IOU=0.5) | Total images | Total samples| 
 | ----------------------------- | ---------------------- | --------------------- | ------------ | ------------ |
-|     Good images               |         0.819614       |          0.853816     |      389     |     1657     |
-| Bad weather conditions        |         0.913124	 |          0.933543     |       71     |      287     |
-| Bad weather conditions + Good |         0.821231	 |          0.856561     |      460     |     1944     |
+|     Good images               |         0.920018       |          0.949379     |      389     |     1657     |
+| Bad weather conditions        |         0.89859	 |          0.937896     |       71     |      287     |
+| Bad weather conditions + Good |         0.917103	 |          0.948178     |      460     |     1944     |
