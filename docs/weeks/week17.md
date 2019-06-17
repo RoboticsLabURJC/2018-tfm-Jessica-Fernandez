@@ -4,7 +4,7 @@ layout: default
 # Result Darknet network with good images 
 
 
-I trained the darknet network with good images( good qualityand good weather conditions) . Then I used dl-detectionSuite for evaluating this network with good images and with bad weather conditions images. And I got the next results:
+I trained the darknet network with good images( good quality and good weather conditions) . Then I used dl-detectionSuite for evaluating this network with good images and with bad weather conditions images. And I got the next results:
 
 |           Images              |  mAP(Overall)(IOU=0.5) | mAR(Overall)(IOU=0.5) | Total images | Total samples| 
 | ----------------------------- | ---------------------- | --------------------- | ------------ | ------------ |

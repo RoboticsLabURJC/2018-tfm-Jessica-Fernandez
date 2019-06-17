@@ -3,6 +3,7 @@ layout: default
 ---
 # Jessica Fernández's TFM student
 
+* [Result Darknet network with good images and bad weather images](weeks/week18.md)
 * [Result Darknet network with good images](weeks/week17.md)
 * [Smart-traffic-sensor Evaluation](weeks/week16.md)
 * [Tracking by detection 1](weeks/week15.md)
