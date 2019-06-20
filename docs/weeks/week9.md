@@ -123,3 +123,6 @@ python ../export_inference_graph.py --input_type image_tensor --pipeline_config_
   where XXX are digits corresponding to the checkpoint to be used.
 
   Finally, this generates a new directory **mymodl** where the **.pb** plus other model data are saved.
+
+[1]: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
+[2]: https://github.com/tensorflow/models/blob/master/research/object_detection/samples/configs/ssd_mobilenet_v2_coco.config
