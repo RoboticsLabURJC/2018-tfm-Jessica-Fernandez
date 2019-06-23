@@ -6,21 +6,21 @@
 		<database>Unknown</database>
 	</source>
 	<size>
-		<width>376</width>
-		<height>266</height>
+		<width>800</width>
+		<height>480</height>
 		<depth>3</depth>
 	</size>
 	<segmented>0</segmented>
 	<object>
 		<name>car</name>
 		<pose>Unspecified</pose>
-		<truncated>1</truncated>
+		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>1</xmin>
-			<ymin>228</ymin>
-			<xmax>42</xmax>
-			<ymax>265</ymax>
+			<xmin>2</xmin>
+			<ymin>411</ymin>
+			<xmax>89</xmax>
+			<ymax>478</ymax>
 		</bndbox>
 	</object>
 	<object>
@@ -29,10 +29,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>210</xmin>
-			<ymin>98</ymin>
-			<xmax>230</xmax>
-			<ymax>126</ymax>
+			<xmin>448</xmin>
+			<ymin>179</ymin>
+			<xmax>489</xmax>
+			<ymax>222</ymax>
 		</bndbox>
 	</object>
 </annotation>
