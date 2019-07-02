@@ -281,9 +281,58 @@ Lili Huang and M. Barth~\cite{real_time_vehicle} plantean un algoritmo para llev
 El seguimiento basado en características, tal y como su nombre indica se centra en seguir los objetos en función a las características que se crean oportunas. Cada autor hace uso de unas características. Entre estas características tenemos puntos característicos como esquinas, el perímetro del objeto, sus dimensiones, etc. Si lo comparamos con el seguimiento basado en regiones podemos ver que es más robusto, pues en el caso de las regiones trataban de seguir el objeto en función del color o la textura, lo cual es muy suceptible ante el cambio de iluminación. Entre las técnicas más empleadas en este ámbito podemos encontrar \acrfull{sift}(D.G. Lowe~\cite{article_sift}), \acrfull{klt} (J. Shi and C. Tomasi~\cite{article_klt}). Otra ténica muy empelada en la literatura es \acrshort{hog}(Dalal and Bill Triggs~\cite{hog_paper}), la cual en muchas ocasiones ha sido combinada con \acrshort{svm}, tal y como se ha comentado en la seccion anterior, Zezhi Chen and Tim Ellis~\cite{multi_shape_descriptor} ya hicieron uso de ambos métodos.
 
 
-Finalmente el seguimiento basado en modelos trata de beneficiarse del conocimiento que tenemos de los objetos para poder realizar plantillas 2D y 3D para detectar objetos en la imagen y poder realizar su seguimiento. M.J. Leotta and J.L. Mundy~\cite{vehicle_surveillance_3d} emplean esta técnica para detectar vehículos haciendo uso de una plantilla deformable que se ajusta para identificar diferentes formas de vehículos. En la literatura también se ha combinado esta técnica con filtros de Kalman.
+El seguimiento basado en modelos trata de beneficiarse del conocimiento que tenemos de los objetos para poder realizar plantillas 2D y 3D para detectar objetos en la imagen y poder realizar su seguimiento. M.J. Leotta and J.L. Mundy~\cite{vehicle_surveillance_3d} emplean esta técnica para detectar vehículos haciendo uso de una plantilla deformable que se ajusta para identificar diferentes formas de vehículos. En la literatura también se ha combinado esta técnica con filtros de Kalman.
 
 
+\section{Bases de Datos para la detección de vehículos}
+\label{sec:dataset}
 
+La detección de vehículos pretende encontrar un vehículo en una imagen o en un vídeo y determinar qué tipo de vehículo es. Dado que queremos encontrar el vehículo en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y diferentes iluminaciones, necesitaremos entrenar el modelo con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes datasets con el fin de solucionar este problema.
 
+\subsection{GRAM Road-Traffic Monitoring}
 
+GRAM Road-Traffic Monitoring (GRAM-RTM) \cite{gram-tracking} \cite{gram} es un conjunto de datos para el seguimiento de vehículos en tiempo real. Consiste en 3 secuencias de video (Figura \ref{fig.gram}), grabadas bajo diferentes condiciones y con diferentes plataformas.
+
+El primer video, llamado M-30 (7520 \textit{frames}), se grabó en un día soleado con una cámara Nikon Coolpix L20, con una resolución de 800 x 480 @ 30 fps. La segunda secuencia, llamada M-30-HD (9390 \textit{frames}), se grabó en una ubicación similar pero durante un día nublado, y con una cámara de alta resolución: una Nikon DX3100 a 1200 x 720 @ 30 fps. La tercera secuencia de video, llamada Urban1 (23435 \textit{frames}), se grabó en una intersección concurrida con una cámara de tráfico de video vigilancia con una resolución de 600 x 360 @ 25fps.
+
+Todos los vehículos en el conjunto de datos GRAM-RTM fueron anotados manualmente. Este conjunto posee las siguientes categorías de clases: coches, camiones, furgonetas y camiones grandes. El número total de objetos diferentes en cada secuencia es: 256 para M-30, 235 para M-30-HD y 237 para Urban1. Todas las anotaciones en el conjunto GRAM-RTM se crearon en un formato XML compatible con PASCAL VOC.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=1\textwidth]{figures/Estado_arte/gram.png}
+   \caption{Imágenes de ejemplo del dataset GRAM Road-Traffic Monitoring}
+	\label{fig.gram}
+\end{center}
+\end{figure}
+
+\subsection{BIT-Vehicle Dataset}
+
+El conjunto de datos BIT-Vehicle \cite{bit} contiene 9850 imágenes de vehículos. Contiene imágenes con tamaños de 1600 x 1200 y 1920 x 1080. Estas imágenes (Figura \ref{fig.bit}) fueron capturadas desde dos cámaras en diferentes momentos y lugares. Las imágenes contienen cambios en las condiciones de iluminación, la escala, el color de la superficie de los vehículos y el punto de vista. Las partes superior o inferior de algunos vehículos no están incluidas en las imágenes debido a la demora en la captura y al tamaño del vehículo. 
+
+En cada imagen puede haber uno o dos vehículos y la ubicación de cada vehículo está previamente anotada. Además, el conjunto de datos se puede utilizar para evaluar el rendimiento de la detección de vehículos.
+
+Los vehículos del conjunto de datos se dividen en seis categorías: bus, microbus, minifurgoneta, Sedan, SUV y camión. El número de vehículos por tipo de vehículo es de 558 para bus, 883 para microbus, 476 para minifurgoneta, 5922 para Sedan, 1392 para SUV, y 82 para camiones.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{figures/Estado_arte/bit.png}
+   \caption{Imágenes de ejemplo del dataset BIT-Vehicle}
+	\label{fig.bit}
+\end{center}
+\end{figure}
+
+\subsection{CarND-Vehicle-Detection}
+
+CarND-Vehicle-Detection \cite{carnd1} es un proyecto dedicado a la detección de vehículos en vídeo, por ello crearon dos conjuntos de datos que se pueden encontrar en \cite{carnd2}.
+
+El \textit{dataset} 1 incluye datos de conducción en Mountain View California y las ciudades vecinas durante el día. Contiene más de 65000 etiquetas en 9423 imágenes almacenadas por una cámara de investigación Point Grey que se ejecuta a una resolución máxima de 1920x1200 a 2Hz. El conjunto de datos fue anotado mediante CrowdAI utilizando una combinación entre aprendizaje automático y el trabajo de personas. Este conjunto de datos ocupa un total de 1.5 GB, y las clases que contiene son: coche, camión y peatón.
+
+El \textit{dataset} 2 es similar al conjunto de datos 1, pero contiene campos adicionales para la oclusión y una etiqueta adicional para los semáforos. El conjunto de datos fue anotado en su totalidad por humanos usando Autti y es un poco más grande que el anterior con 15000 imágenes (ocupa 3.3 GB). Este conjunto incluye las clases: coche, camión, peatón y farolas.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/Estado_arte/carnd_dataset2.png}
+   \caption{Imágenes de ejemplo del dataset 2 de CarND-Vehicle-Detection}
+	\label{fig.carnd}
+\end{center}
+\end{figure}
