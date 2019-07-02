@@ -1,1 +1,0 @@
-/usr/local/cuda-9.2/include/curand_mrg32k3a.h
