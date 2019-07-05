@@ -1,0 +1,170 @@
+\chapter{Experimentos}\label{cap.experimentos}
+
+A la hora de crear cualquier sistema es necesario hacer múltiples experimentos que nos permitan llegar a ciertas conclusiones que nos sean útiles a la hora de mejorar el diseño. Dichos experimentos deben ser evaluados de alguna forma para comprobar la calidad de los resultados que obtenemos. En este trabajo en concreto se ha recurrido a la herramienta DeepLearningSuite~\cite{detectionsuite} para llevar a cabo dicha evaluación.
+
+Con DeepLearningSuite se obtienen medidas de calidad tales como la precición y el recal medios (\acrshort{map} y \acrshort{mar}) de todas las clases en función de la \acrfull{iou}. En nuestro caso nos hemos quedado con las medidas que tienen un \acrshort{iou} como mínimo, pues se ha considerado que con ello se puede medir la calidad.
+
+Este Capítulo vamos a dividirlo en tres secciones en las cuales hablaremos de lo siguiente:
+\begin{itemize}
+    \item Evaluación de diversas redes neuronales
+    \item Evaluación ampliando Dataset
+    \item Evaluación de Darknet con diferentes conjuntos  de imágenes
+    \item Evaluación de Smart-Traffic-Sensor
+\end{itemize}
+
+A lo largo de este Capítulo se van a ver diferentes experimentos realizados y las medidas obtenidas con ellos en cuanto al \acrfull{map}, \acrfull{mar} con un mínimo de 0.5 \acrshort{iou} y el tiempo de procesaiento que dedica al realizar las detecciones.
+
+\section{Evaluación de diversas redes neuronales}
+ 
+Tal y como se ha comentado en el Capítulo~\ref{cap.diseno} se han realizado pruebas con diferentes frameworks. En concreto con TensorFlow, Keras, y Darknet. Con ello se pretendía ver cual era el framework que mejores resultados obtenía además de dotar a Smart-Traffic-Sensor de la capacidad de admitir redes entrenadas con diversos frameworks.
+
+Para llevar a cabo el entrenamiento en todos los frameworks mencionados se han empleado un total de 3173 imágenes, de las cuales 2700 eran de train y 473 de validación. Todas ellas en condiciones meteorológicas favorables y con buena calidad. La distribución de las muestras que posee la base de datos se indica en la Tabla~\ref{tabla_database}.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 15798 \\ \hline
+Motorcycle & 143 \\ \hline
+Van & 1437 \\ \hline
+Bus & 274 \\ \hline
+Truck & 765 \\ \hline
+Small-Truck & 400 \\ \hline
+Tank-Truck & 103 \\ \hline
+Total & 18920 \\ \hline
+\end{tabular}
+\caption{Muestras de la Base de Datos del 1º entrenamiento}
+\label{tabla_database}
+\end{center}
+\end{table}
+
+En el entrenamiento se ha partido de modelos pre-entrenados. Para ver como el entrenamiento con nuestros datos consigue mejorar la capacidad de las redes a la hora de detectar objetos, se han evaluado las redes pre-entrenadas y las entrenadas. La evaluación se ha realizado sobre un conjunto de 303 imágenes, con muestras de diferentes clases de vehículos. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes con las que se ha realizado el test.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 922 \\ \hline
+Motorcycle & 19 \\ \hline
+Van & 125 \\ \hline
+Truck & 82 \\ \hline
+Small-Truck & 112 \\ \hline
+Total & 1260 \\ \hline
+\end{tabular}
+\caption{Muestras de los datos de Test de la primera evaluación}
+\label{tabla_datos_primera_evaluacion}
+\end{center}
+\end{table}
+
+En la Tabla~\ref{tabla_redes_preentrenadas} se pueden ver los resultados obtenidos tras evaluar las redes pre-entrenadas con algunos datos de test.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Redes Neuronales & mAP & mAR & Mean Inference Time (ms) \\ 
+\hline \hline
+Keras(VGG\_ILSVRC\_16\_layers\_fc\_reduced.h5) & 0 & 0 & 0\\ \hline
+TensorFlow (frozen\_inference\_graph.pb) & 0.0035 & 0.0373 & 142 \\ \hline
+Darknet  (darknet53.conv.74) & 0 & 0 & 14162 \\ \hline
+\end{tabular}
+\caption{Resultados Redes Pre-Entrenadas}
+\label{tabla_redes_preentrenadas}
+\end{center}
+\end{table}
+
+Los resultados que se obtienen con nuestras redes entrenadas se pueden ver en la Tabla~\ref{tabla_redes_entrenadas}.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Redes Neuronales & mAP & mAR & Mean Inference Time (ms) \\ 
+\hline \hline
+Keras & 0.6709 & 0.7082 & 3194\\ \hline
+TensorFlow  & 0.3283 & 0.4231 & 76 \\ \hline
+Darknet  & 0.8641 & 0.9385 & 16894\\ \hline
+\end{tabular}
+\caption{Resultados Redes Entrenadas}
+\label{tabla_redes_entrenadas}
+\end{center}
+\end{table}
+
+Con toda esta información se puede ver claramente que es necesario re-entrenar las redes con nuestros datos para tener una cierta calidad, ya que cuanto más rico sea el dataset con el que se entrena más información podrá adquirir acerca de los objetos a detectar.
+
+Con esta evaluación también se puede ver que los resultados que se obtienen por la red entrenada con Darknet son mejores que los de TensorFlow y Keras. Hay que recordar que con Darknet se implementó una red \acrshort{yolo}, con TensorFlow una SSD Mobilenet y con Keras una SSD VGR-16.
+
+Viendo los tiempos de detección se puede ver que cuanto más tiempo tarda la red en realizar la detección mejores resultados obtiene. Esto puede deberse a que la red contiene más capas neuronales o que poseen mayor complejidas y por tanto mayor tiempo en el procesamiento.
+
+
+\section{Evaluación ampliando Dataset}
+
+Tras la evaluación incial, la primera cuestión que se nos plantea es el enriquecer nuestra base de datos con mas imágenes para volver a entrenar la red y ver si sus resultados mejoran. 
+
+La base de datos empleada en este caso para realizar el entrenamiento consta de 6717 imágenes, todas ellas de buena calidad y en buenas condiciones meteorológicas. De esas 6717 imágenes, 5323 se toman como train y 1394 como validación. En la Tabla~\ref{tabla_redes_database_mayor} se puede ver la distribución de las muestras de la base de datos.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 28655 \\ \hline
+Motorcycle & 1517 \\ \hline
+Van & 4675 \\ \hline
+Bus & 274 \\ \hline
+Truck & 874 \\ \hline
+Small-Truck & 663 \\ \hline
+Tank-Truck & 103 \\ \hline
+Total & 36762 \\ \hline
+\end{tabular}
+\caption{Muestras de la Base de Datos del 2º entrenamiento}
+\label{tabla_redes_database_mayor}
+\end{center}
+\end{table}
+
+Con esta nueva base de datos se ha vuelto a realizar el entrenamiento para evaluar como afecta el enriquecimiento de los datos. Además se ha evaluado una red entrenada por Arvind Jayaraman~\cite{CarND_VehicleDetection} para la detección de vehículos con TensorFlow. Todo estos datos quedan recogidos en la Tabla~\ref{tabla_redes_entrenadas_mayor_database}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Redes Neuronales & mAP & mAR & Mean Inference Time (ms) \\ 
+\hline \hline
+Keras & 0.7478 & 0.7831 & 3427\\ \hline
+TensorFlow  & 0.5484 & 0.61361 & 83 \\ \hline
+Darknet  & 0.9180 & 0.9499 & 15357\\ \hline
+Arvind Jayaraman & 0.0384 & 0.0613 & 289\\ \hline
+\end{tabular}
+\caption{Resultados Redes Entrenadas}
+\label{tabla_redes_entrenadas_mayor_database}
+\end{center}
+\end{table}
+
+Con estos resultados se puede afirmar que el enriquecer la base de datos con mayor información nos da mayor calidad. Además se ha evaluado la red entrenada por Arvind Jayaraman, con lo que se ha visto que se obtienen muy malos resultados.
+
+\section{Evaluación de Darknet con diferentes conjuntos  de imágenes}
+
+En este punto ya tenemos identificada cual es la red neuronal que mejores resultados obtiene (Darknet). Es con esta red con la que vamos a continuar haciendo experimentos, es decir, nos hemos centrado en esta red con el fin de mejorar nuestros resultados y llegar a un sistema lo más robusto posible.
+
+Para poder mejorar nuestra red neuronal se ha incrementado la base de datos con imágenes de mala calidad y en condiciones meteorológicas desfavorables (lluvia y niebla). En total se ha creado una base de datos final para el entrenamiento de 9246 imágenes, de las cuales 7401 se usaban como train y 1845 como validación. En la Tabla~\ref{base_datos_final_train} se puede observar la cantidad de imágenes que se han empleado en el entrenamiento en función del tipo de imagen (buena calidad, mala calidad y condiciones meteorológicas desfavorables).
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Tipo  & Imágenes de Train & Imágenes de Test & Total \\
+\hline \hline
+Buena Calidad & 5323 &  1394 & 6717 \\ \hline
+Condiciones Meteorológicas malas & 1568 & 324 & 1892 \\ \hline
+Mala Calidad & 510 & 127 & 637 \\ \hline
+\end{tabular}
+\caption{Base de Datos Final}
+\label{base_datos_final_train}
+\end{center}
+\end{table}
+
+
+\section{Evaluación de Smart-Traffic-Sensor}
