@@ -44,7 +44,7 @@ Se ha tratado que la base de datos construida abarcará la mayor diversidad de v
 
 En estas 9774 imágenes tenemos un total de 48914 muestras repartidas tal y como se muestra en la Tabla ~\ref{tabla_muestras}.
 
-\begin{table}[htbp]
+\begin{table}[htbp][H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -64,7 +64,7 @@ Tank-Truck & 119 \\ \hline
 \end{table}
 
 Para intentar conseguir un sistema robusto antes diferentes condiciones se ha creado una base de datos que tiene imágenes en condiciones meteorológicas buenas, imágenes en condiciones meteorológicas malas (con niebla y lluvia) e imágenes de mala calidad. En la Tabla ~\ref{tabla_img_base_datos} se pueden ver la cantidad de imágenes que hay para cada tipo.
-\begin{table}[htb]
+\begin{table}[htb][H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -99,7 +99,7 @@ Para llevar a cabo el diseño se ha hecho uso del github models de TensorFlow ~\
 
 La red \acrshort{ssd} MobileNet V2 es una red \acrshort{ssd} que en lugar de tener una red VGG-16 de base, tiene una red MobileNet. En la Figura ~\ref{fig.ssd_mobilenet} se puede ver dicho diseño.
 
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=1\textwidth]{figures/Diseno_global/ssd_mobilenet.png}
    \caption{Red SSD Mobilenet V2}
@@ -154,7 +154,7 @@ Con el diseño que se ha explicado se ha entrenado un total de 3173 imágenes, d
  
  Con Keras se ha implementado una red \acrshort{ssd}. Para ello se ha recurrido al diseño realizados por Pierluigi Ferrari~\cite{ssd_ferrari}, el cual define una red \acrshort{ssd} que tiene como red base una VGG-16. En la Figura ~\ref{fig.ssd_300} se puede ver el diseño.
  
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=1.1\textwidth]{figures/Diseno_global/ssd300.png}
    \caption{Red SSD}
@@ -164,7 +164,7 @@ Con el diseño que se ha explicado se ha entrenado un total de 3173 imágenes, d
 
 VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 2 capas totalmente conectadas y una capa de softmax que se emplea para clasificar. En la Figura ~\ref{fig.vgg16} se puede ver cual es la arquitectura de la red VGG.
 
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.8\textwidth]{figures/Diseno_global/vgg16.png}
    \caption{Red VGG-16}
@@ -184,7 +184,7 @@ El modelo implementado es una red neuronal convolucional, donde ls capas convolu
 
 La arquitectura unificada de \acrshort{yolo} ~\ref{fig.yolov3} es extremadamente rápida, procesando imágenes en tiempo real a 45 frames por segundo. Una versión más pequeña de la red, Fast \acrshort{yolo}, procesa 155 frames por segundo, logrando duplicar el mAP (mean Average Precision) de otros detectores en tiempo real.
 
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{figures/Diseno_global/yolov3.png}
    \caption{Arquitectura YOLO}
@@ -200,7 +200,7 @@ En el diseño final de Smart-Traffic-Sensor se usa Darknet, pues es el framework
 
 El sistema del que partíamos (\textit{Traffic-Monitor} ~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}.
 
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/zonas.png}
    \caption{Zonas de entrada y seguimiento}
@@ -212,7 +212,7 @@ En la zona de entrada se realizan las detecciones y en la de seguimiento es dond
 
 Este concepto de separar zona de entrada y seguimiento va a perder relevancia en nuestro sistema, pues ya no va a ser necesario hacer esta distinción. Tendremos una única zona en la que se lleve a cabo la detección, la clasificación y el tracking. Vamos a continuar teniendo una zona marcada en la imagen para identificar en que parte de la carretera queremos centrar nuestras detecciones ( por si existiesen carriles de diferente sentido). A esta zona de detección , clasificación y seguimiento vamos a llamarle zona de evaluación. En la Figura ~\ref{fig.nueva_zona} se puede ver la zona  de evaluación.
 
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/nueva_zona.png}
    \caption{Zona Evaluación}
@@ -227,7 +227,7 @@ Para tener un sistema lo más robusto posible se han tenido en cuenta varios det
 \begin{itemize}
     \item Dentro de la zona de evaluación tenemos dos zonas. En la
      Figura ~\ref{fig.zona_evaluacion} quedan identificadas esas dos zonas.
-.    \begin{figure}
+.    \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/zonas_evaluacion.png}
    \caption{Zonas de Evaluación}
@@ -265,7 +265,7 @@ Una vez tenemos información acerca de la orientación definiremos el área de b
 
 Los emparejamientos entre los vehículos detectados en el instante \textit{t} y los blob almacenados del instante \textit{t-1} se limitarán a los vehículos que caen dentro del área del círculo o la elipse que se obtiene en función de la posición del vehículo en el instante \textit{t-1}. En la Figura ~\ref{fig.area_vehiculo} se puede ver la evolución que sufre el área alrededor del vehículo a medida que avanza.
 
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.9\textwidth]{figures/Diseno_global/areas_vehiculo.png}
    \caption{Evolución del área alrededor del vehículo}
@@ -276,7 +276,7 @@ Los emparejamientos entre los vehículos detectados en el instante \textit{t} y 
 
 Estas elipses de definen como $C_{xc,yc,\omega}$, donde $\omega$ es la orientación y $(x_c, y_c)$ es el centro del vehículo. Además a la hora de describiir una elipse debemos conocer sus dos ejes. Estos parámetros se pueden ver en la Figura ~\ref{fig.elipse}.
 
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
     \includegraphics[width=0.7\textwidth]{figures/Diseno_global/elipse.png}
    \caption{Elipse asociada a los vehículos}
@@ -296,7 +296,7 @@ Un blob 2D cuyo centro es $B(x,y)$ se encontrará dentro de la elipse  $C_{xc,yc
 
 $a_x$ y $a_y$ son los componentes del vector de orientación. En la Figura ~\ref{fig.emparejamiento_blob} se puede ver como se realiza el tracking entre dos blob consecutivos. 
 
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
    \includegraphics[width=0.7\textwidth]{figures/Diseno_global/emparejamiento_blob.png}
    \caption{Seguimiento con proximidad espacial}
@@ -350,7 +350,7 @@ Tal y como se ha dicho \acrshort{klt} se aplica en forma de kernels de tamaño $
 
 En la Figura ~\ref{fig.klt_piramidal} se puede ver como funciona \acrshort{klt} de forma piramidal.
 
- \begin{figure}
+ \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/klt_piramidal.png}
    \caption{\acrshort{klt} Piramidal}

@@ -149,7 +149,7 @@ Y. Abdullah, G. Mehmet, A. Iman and B. Erkan~\cite{rcnn_detection}  plantean el 
     \item Se extrapola la salida de cada \acrshort{cnn} y se ingresa en una \acrfull{svm} para clasificar la región. Además se realiza una regresión lineal para restringir el cuadro de la detección.
 \end{enumerate}
 
-Estas fases pueden verse en la siguiente Figura:
+Estas fases pueden verse en la Figura ~\ref{fig.rcnn}.
 
 \begin{figure}[H]
   \begin{center}
@@ -231,7 +231,7 @@ Este sistema se basa en el algoritmo C4.5 de Quinlan~\cite{c4_5} a la hora de cl
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/Estado_arte/c4_5.png}
+    \includegraphics[width=1\textwidth]{figures/Estado_arte/c4_5.png}
 		\caption{Clasificación de vehículos basada en modelos 3D construidos mediante el uso de puntos de fuga}
 		\label{fig.c4_5}
 		\end{center}
@@ -241,7 +241,7 @@ Buch et al.~\cite{3dhog_article} presentaron un sistema que combinaba plantillas
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/Estado_arte/3dhog.png}
+    \includegraphics[width=0.8\textwidth]{figures/Estado_arte/3dhog.png}
 		\caption{Plantillas 3DHOG para la clasificación de vehículos}
 		\label{fig.3dhog}
 		\end{center}
@@ -251,7 +251,7 @@ En este sistema es necesario un previo entrenamiento. A la hora de realizar las 
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/Estado_arte/3dhog_plantilla.png}
+    \includegraphics[width=0.7\textwidth]{figures/Estado_arte/3dhog_plantilla.png}
 		\caption{Reconstrucción  del  histograma  3DHOG}
 		\label{fig.3dhog_histograma}
 		\end{center}
@@ -313,9 +313,9 @@ En cada imagen puede haber uno o dos vehículos y la ubicación de cada vehícul
 
 Los vehículos del conjunto de datos se dividen en seis categorías: bus, microbus, minifurgoneta, Sedan, SUV y camión. El número de vehículos por tipo de vehículo es de 558 para bus, 883 para microbus, 476 para minifurgoneta, 5922 para Sedan, 1392 para SUV, y 82 para camiones.
 
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
-	\includegraphics[width=0.7\textwidth]{figures/Estado_arte/bit.png}
+	\includegraphics[width=0.9\textwidth]{figures/Estado_arte/bit.png}
    \caption{Imágenes de ejemplo del dataset BIT-Vehicle}
 	\label{fig.bit}
 \end{center}
@@ -328,10 +328,9 @@ CarND-Vehicle-Detection \cite{carnd1} es un proyecto dedicado a la detección de
 El \textit{dataset} 1 incluye datos de conducción en Mountain View California y las ciudades vecinas durante el día. Contiene más de 65000 etiquetas en 9423 imágenes almacenadas por una cámara de investigación Point Grey que se ejecuta a una resolución máxima de 1920x1200 a 2Hz. El conjunto de datos fue anotado mediante CrowdAI utilizando una combinación entre aprendizaje automático y el trabajo de personas. Este conjunto de datos ocupa un total de 1.5 GB, y las clases que contiene son: coche, camión y peatón.
 
 El \textit{dataset} 2 es similar al conjunto de datos 1, pero contiene campos adicionales para la oclusión y una etiqueta adicional para los semáforos. El conjunto de datos fue anotado en su totalidad por humanos usando Autti y es un poco más grande que el anterior con 15000 imágenes (ocupa 3.3 GB). Este conjunto incluye las clases: coche, camión, peatón y farolas.
-
-\begin{figure}
+\begin{figure}[H] 
 \begin{center}
-	\includegraphics[width=0.5\textwidth]{figures/Estado_arte/carnd_dataset2.png}
+	\includegraphics[width=0.8\textwidth]{figures/Estado_arte/carnd_dataset2.png}
    \caption{Imágenes de ejemplo del dataset 2 de CarND-Vehicle-Detection}
 	\label{fig.carnd}
 \end{center}
