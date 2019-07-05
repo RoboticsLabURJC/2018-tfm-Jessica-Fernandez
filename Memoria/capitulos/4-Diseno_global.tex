@@ -79,9 +79,6 @@ Mala Calidad & 705\\ \hline
 \end{center}
 \end{table}
 
-\section{Calibración de la Cámara}
-
-
 \section{Funcionamiento General}
 
 En esta sección se explica en que técnicas se basa la aplicación Smart-Traffic-Sensor en cuanto a la detección, clasificación y el seguimiento de vehículos.
@@ -392,6 +389,7 @@ El seguimiento se centra en asociar las detecciones actuales con los blobs almac
 
 Smart-Traffic-Sensor tiene opciones para configurar la cámara, es decir para realizar su calibración. Al tener información de la cámara empleada tendremos información 3D de la imagen. Es decir podemos realizar una proyección al mundo 3D de nuestros puntos en la imagen.
 
-Para calcular la velocidad solo necesitamos conocer la distancia que ha recorrido el vehículo y el tiempo que ha tardado en hacerlo. Disponemos de una zona de evaluación por la cual discurren los vehículos, por tanto podemos saber cuanta distancia recorre por dicha zona de evaluación y el tiempo que tarda en hacerlo. Para calcular la distancia tenemos que calcular la posición 3D de los vehículos y con ella hacer su diferencia.
+Para calcular la velocidad solo necesitamos conocer la distancia que ha recorrido el vehículo y el tiempo que ha tardado en hacerlo. Disponemos de una zona de evaluación por la cual discurren los vehículos, por tanto podemos saber cuanta distancia recorre por dicha zona de evaluación y el tiempo que tarda en hacerlo. Para calcular la distancia tenemos que calcular la posición 3D de los vehículos y con ella hacer su diferencia. Esto se puede llevar a cabo haciendo uso de su homografía, la cual podemos estimar gracias a que conocemos los parámetros de la cámara.
+
 
 
