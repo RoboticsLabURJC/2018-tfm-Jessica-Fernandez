@@ -1,32 +1,32 @@
 \chapter{Conclusiones}\label{cap.conclusiones}
 
-A lo largo de toda la memoria se ha explicado todo el proyecto realizado. Se han abordado todos los pasos que se han llevado a cabo; desde el comienzo en el que se parte de la literatura de otros autores hasta los experimentos sobre nuestro propio sistema. Es decir, se ha dado una visión general de todo lo que se ha hecho para llegar a tener nuestro Smart-Traffic-Sensor.
+A lo largo de toda la memoria se ha explicado todo el proyecto realizado. Se han abordado todos los pasos que se han llevado a cabo; desde el comienzo en el que se parte de la literatura de otros autores hasta los experimentos sobre nuestro propio sistema. Es decir, se ha dado una visión general de todo lo que se ha hecho para llegar a tener nuestro \textit{Smart-Traffic-Sensor}.
 
 En este capítulo se va a realizar un resumen general del trabajo realizado y las conclusiones a las que se ha llegado. Finalmente se plantearán sus posibles líneas futuras.
 
 \section{Conclusiones}
 
-Este trabajo parte de una versión previa denominada Traffic-Monitor~\cite{traffic_monitor_redo}. En ella se plantea una solución clásica para la monitorización de vehículos. El objetivo principal de Smart-Traffic-Sensor es mejorar los resultados respecto a los que se obtienen con Traffic-Sensor. Para ello se plantearon dos  objetivos:
+Este trabajo parte de una versión previa denominada \textit{Traffic-Monitor}~\cite{traffic_monitor_redo}. En ella se plantea una solución clásica para la monitorización de vehículos. El objetivo principal de \textit{Smart-Traffic-Sensor} es mejorar los resultados respecto a los que se obtienen con \textit{Traffic-Monitor}. Para ello se plantearon dos  objetivos:
 \begin{itemize}
-    \item Realizar la monitorización haciendo uso de técnicas más actuales como Deep Learning.
-    \item Ofrecer la posibilidad de emplear diferentes framework de Deep Learning para la detección y clasificación. Es decir, poder emplear redes neuronales entrenadas con diferentes frameworks en  Smart-Traffic-Sensor. En concreto, tener la posibilidad de usar redes entrenadas con Keras, TensorFlow y Darknet.
+    \item Realizar la monitorización haciendo uso de técnicas más actuales como \textit{Deep Learning}.
+    \item Ofrecer la posibilidad de emplear diferentes \textit{framework} de \textit{Deep Learning} para la detección y clasificación. Es decir, poder emplear redes neuronales entrenadas con diferentes \textit{frameworks} en  \textit{Smart-Traffic-Sensor}. En concreto, tener la posibilidad de usar redes entrenadas con \textit{Keras}, \textit{TensorFlow} y \textit{Darknet}.
     \item Dotar al sistema de mayor robustez ante diversidad de imágenes tales como imágenes con mala calidad o con condiciones meteorológicas adversas.
 \end{itemize}
 
-Ambos objetivos se han tenido en cuenta a lo largo de todo el trabajo, diseñando un sistema capaz de monitorizar vehículos basándonos principalmente en las detecciones que se obtienen mediante redes neuronales y dotandole de la capacidad de detectar vehículos en diferentes tipos de imágenes.
+Ambos objetivos se han tenido en cuenta a lo largo de todo el trabajo, diseñando un sistema capaz de monitorizar vehículos basándonos principalmente en las detecciones que se obtienen mediante redes neuronales y dotándole de la capacidad de detectar vehículos en diferentes tipos de imágenes.
 
 Tras evaluar nuestro trabajo se han podido extraer algunas conclusiones:
 \begin{itemize}
     \item Cuanta más información empleamos en el entrenamiento, mayor versatilidad tendremos.
-    \item El tamaño de los vehículos influye a la hora de realizar las detecciones. Cuanto más pequeños sean los vehículos mayor dificultad habrá para detectarlos. Esta cuestión afecta directamente a las motocicletas, las cuales de por si poseen menor tamaño. Este hecho hace que en cuanto se alejen un poco su tamaño quede muy reducido, haciendo muy dificil su detección.
+    \item El tamaño de los vehículos influye a la hora de realizar las detecciones. Cuanto más pequeños sean los vehículos mayor dificultad habrá para detectarlos. Esta cuestión afecta directamente a las motocicletas, las cuales de por si poseen menor tamaño. Este hecho hace que en cuanto se alejen un poco su tamaño quede muy reducido, haciendo muy difícil su detección.
     \item Las clases de las que poseemos mayor cantidad de datos en el entrenamiento normalmente obtienen mejores resultados, pues se tiene mayor información acerca de ellas.
 \end{itemize}
 
 A continuación vamos a hacer un repaso de los resultados respecto a la detección de vehículos que hemos encontrado en la diferente literatura publicada. Para ver con ello si los resultados que obtenemos son comparables con los que se están publicando.
 
-Y. Abdullah, G. Mehmet, A. Iman and B. Erkan ~\cite{rcnn_detection} porpusieron dos soluciones. Una con Faster \acrshort{rcnn} y otra con \acrshort{rcnn}. En su artículo indican el \acrshort{map} obtenido para dos conjuntos de datos tanto con Faster \acrshort{rcnn} como con \acrshort{rcnn}. Esto se puede ver en la Tabla~\ref{resultados_abdullah}.
+Y. Abdullah, G. Mehmet, A. Iman and B. Erkan ~\cite{rcnn_detection} propusieron dos soluciones. Una con Faster \acrshort{rcnn} y otra con \acrshort{rcnn}. En su artículo indican el \acrshort{map} obtenido para dos conjuntos de datos tanto con Faster \acrshort{rcnn} como con \acrshort{rcnn}. Esto se puede ver en la Tabla~\ref{resultados_abdullah}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -42,9 +42,9 @@ R-CNN (Dataset 2)  & 0.657 \\ \hline
 \end{center}
 \end{table}
 
-L. Chen, F. Ye, Y. Ruan, H. Fan and Q. Chen~\cite{l_chen} usan k-means para obtener características de las imágenes y emplearlas durante el entrenamiento. Además concatenan caracteristicas de diferentes tamaños de imagen. Para realizar la detección emplean \acrshort{cnn}. En la Tabla~\ref{resultados_lchen} se puede ver el \acrshort{map} obtenido con su diseño, asi como los resultados que ha obtenido con otro tipo de redes neuronales.
+L. Chen, F. Ye, Y. Ruan, H. Fan and Q. Chen~\cite{l_chen} usan \textit{k-means} para obtener características de las imágenes y emplearlas durante el entrenamiento. Además concatenan características de diferentes tamaños de imagen. Para realizar la detección emplean \acrshort{cnn}. En la Tabla~\ref{resultados_lchen} se puede ver el \acrshort{map} obtenido con su diseño, asi como los resultados que ha obtenido con otro tipo de redes neuronales.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -66,20 +66,20 @@ Ricardo Guerrero-Gómez-Olmedo, Roberto López-Sastre, Saturnino Maldonado-Basc�
 
 Albert Soto~\cite{albert_soto} propone el uso de \acrshort{yolo} para la detección de vehículos y llega a obtener una precisión de 0.5893 y un recall de 0.4092.
 
-Viendo todos estos resultados se puede observar que Smart-Traffic-Sensor consigue superarlos. Con ello podemos afirmar que hemos llegado a obtener un sistema muy robusto y que aparentemente su calidad es suficientemente buena.
-Además hemos cumplio con creces el objetivo de mejorar los resultados que ofrecía Traffic-Monitor.
+Viendo todos estos resultados se puede observar que \textit{Smart-Traffic-Sensor} consigue superarlos. Con ello podemos afirmar que hemos llegado a obtener un sistema muy robusto y que aparentemente su calidad es suficientemente 
+buena. Además hemos cumplido con creces el objetivo de mejorar los resultados que ofrecía \textit{Traffic-Monitor}.
 
 \section{Trabajos Futuros}
 
 En esta sección se van a comentar posibles líneas futuras de este proyecto.
 
-La base de datos que se ha empleado tan solo tiene vehículos que se ven por su parte trasera. Por tanto todo el trabajo realizado solo se he centrado en secuencias de videos en las que los vehículos se ven por su parte trasera. Esto podría extenderse a diversas posiciones de los vehículos, desde vehículos que se vean por la parte frontal hasta vehíulos que se vean de forma lateral. Con ello se conseguría enriquecer la base de  datos y por tanto obtener un modelo mucho más versatil que funcionará con cualquier disposición de los vehículos.
+La base de datos que se ha empleado tan solo tiene vehículos que se ven por su parte trasera. Por tanto todo el trabajo realizado solo se he centrado en secuencias de vídeos en las que los vehículos se ven por su parte trasera. Esto podría extenderse a diversas posiciones de los vehículos, desde vehículos que se vean por la parte frontal hasta vehículos que se vean de forma lateral. Con ello se conseguría enriquecer la base de  datos y por tanto obtener un modelo mucho más versatil que funcionará con cualquier disposición de los vehículos.
 
-En este caso se han incluido imágenes con condiciones meteorológicas malas, pero solo se han incluido imágenes de lluvia y niebla, pues no se consiguió obtener una base de datos con otras condiciones. Se deberían incluir imágenes con mayores condiciones de niebla, con nieve , con borrascas, etc. Es decir, condiciones mucho más adversas para ver si es capaz de seguir comportandose bien.
+En este caso se han incluido imágenes con condiciones meteorológicas malas, pero solo se han incluido imágenes de lluvia y niebla, pues no se consiguió obtener una base de datos con otras condiciones. Se deberían incluir imágenes con mayores condiciones de niebla, con nieve , con borrascas, etc. Es decir, condiciones mucho más adversas para ver si es capaz de seguir comportándose bien.
 
-Otra linea posible es dar el paso hacia la detección de vehículos en condiciones nocturnas, aunque en esta cuestión sería necesario el uso de cámaras infrarrojas.
+Otra línea posible es dar el paso hacia la detección de vehículos en condiciones nocturnas, aunque en esta cuestión sería necesario el uso de cámaras infrarrojas.
 
-En cuanto a las redes neuronales empleadas, hubiera sido muy interesante poder realizar una red propia, con la que poder hacer las detecciones y clasificaciones de los vehículos
+En cuanto a las redes neuronales empleadas, hubiera sido muy interesante poder realizar una red propia, con la que poder hacer las detecciones y clasificaciones de los vehículos.
 
 Finalmente se puede decir que por supuesto el sistema se podría mejorar en cuanto a los resultados obtenidos y ampliarlo incluyendo información acerca de lo que ocurre en la carretera, es decir, se podría detectar accidentes o comportamientos sospechosos.
 

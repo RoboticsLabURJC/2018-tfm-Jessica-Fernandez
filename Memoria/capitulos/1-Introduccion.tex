@@ -252,13 +252,13 @@ La empresa Morpho ha desarrollado un sistema basado en visión que pretende sust
 
 Las \acrfull{rna} son un modelo matemático que pretende asemejarse al comportamiento biológico de las neuronas. Su objetivo principal es poder aprender al igual que lo hacen los seres humanos, para ello siguen una estructura jerárquica similar.
 
-Las neuronas biológicas poseen un cuerpo celular que contiene un núcleo, una serie de ramas denominadas dendritas y un axón. Las dendritas transmiten la información de las células vecinas mediante sinapsis al cuerpo celular, y este genera impulsos nerviosos para transmitir la información a otras neuronas a través del axón.
+Las neuronas biológicas poseen un cuerpo celular que contiene un núcleo, una serie de ramas denominadas dendritas y un axón. Las dendritas transmiten la información de las células vecinas mediante sinapsis al cuerpo celular, y éste genera impulsos nerviosos para transmitir la información a otras neuronas a través del axón.
 
 En las redes neuronales la sinapsis y las dendritas son las entradas, y el proceso interno es el cuerpo neuronal. Cada entrada tiene asociado un peso. Estos pesos se multiplican por las propias entradas. Normalmente se suma el resultados de estos productos y se genera un resultados que se transmite por la salida o axón. En la Figura ~\ref{fig.neurona} se puede ver una comparativa de las neuronas biológicas y las artificales.
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/Introduccion/neurona.JPG}
+    \includegraphics[width=0.7\textwidth]{figures/Introduccion/neurona.jpg}
 		\caption{Neurona Biológica y Artificial}
 		\label{fig.neurona}
 		\end{center}
@@ -269,11 +269,11 @@ Actualmente las \acrshort{rna} han tomado mucha relevancia en el mundo de la \ac
 
 \section{Objetivos}
 
-Este TFM se basa en la monitorización visual de transporte mediante el uso de una cámara. El objetivo principal de este proyecto es obtener un sistema capaz de detectar, clasificar y realizar un seguimiento de vehículos en tiempo real. Para ello se ha partido de un sistema inicial realizado por Redouane Kachach~\cite{redo_tesis} en su tesis doctoral. Dicho sistema se basa en técnicas clásicas. El objetivo es mejorar sus resultados con el uso de técnicas más actuales como el \textit{Deep Learning}.
+Este \acrfull{tfm} se basa en la monitorización visual de vehículos mediante el uso de una cámara. El objetivo principal de este proyecto es obtener un sistema capaz de detectar, clasificar y realizar un seguimiento de vehículos en tiempo real. Para ello se ha partido de un sistema inicial realizado por Redouane Kachach~\cite{redo_tesis}(\textit{Traffic-Monitor~\cite{traffic_monitor_redo}} en su tesis doctoral. Dicho sistema se basa en técnicas clásicas. El objetivo es mejorar sus resultados con el uso de técnicas más actuales como el \textit{Deep Learning}.
 
-Al hacer uso de \textit{Deep Learning} la detección y clasificación de vehículos van de la mano. En este trabajo se evaluaran diferentes  librerías relacionadas con el \textit{Deep Learning}, tales como \textit{TensorFlow}, \textit{Keras} y \textit{Darknet}, con el objetivo de emplear la que mejores resultados ofrezca.
+La detección se basa en identificar la posisición de los vehículos en la imagen. Al hacer uso de \textit{Deep Learning} la detección y clasificación de vehículos van de la mano. En este trabajo se evaluaran diferentes  librerías relacionadas con el \textit{Deep Learning}, tales como \textit{TensorFlow}, \textit{Keras} y \textit{Darknet}, con el objetivo de emplear la que mejores resultados ofrezca.
 
-La fase de clasificación debe identificar los vehículos en función de 7 categorías: Motocicletas, Coches, Furgonetas, Autobuses, Camiones Pequeños, Camiones y Camiones Cisterna. Esta es una mejora respecto al sistema del que se parte~\cite{redo_tesis}, pues en ese caso la clasificación se realizaba entre 5 tipos de vehículos. No existía la diferenciación entre los tres tipos de camiones, sino que eran una única catgoría.
+La fase de clasificación debe categorizar los vehículos en función de 7 clases: Motocicletas, Coches, Furgonetas, Autobuses, Camiones Pequeños, Camiones y Camiones Cisterna. Esta es una mejora respecto al sistema del que se parte~\cite{redo_tesis}, pues en ese caso la clasificación se realizaba entre 5 tipos de vehículos. No existía la diferenciación entre los tres tipos de camiones, sino que se trataban como una única categoría.
 
 En cuanto al seguimiento, el objetivo es tener la capacidad de realizar el tracking de cada vehículo durante todo el recorrido.
 
@@ -281,9 +281,9 @@ Para conseguir todos los objetivos mencionados es necesario recopilar una amplia
 
 Además el sistema debe cumplir los siguientes requisitos:
 \begin{enumerate}
-    \item El sistema tiene que emplear como sensor una cámara
-    \item El sistema debe funcionar en tiempo real
-    \item Las bases de datos que se han empleado durante el desarrollo del proyecto son de la parte trasera del vehículo, por lo que todos los videos que se evaluen tendrán esta característica. Para funcionar con otra orientación de la cámara tendríamos que emplear una base de datos mayor con diferentes orientaciones. Esto no se ha podido realizar debido a la falta e tiempo.
+    \item El sistema tiene que emplear como sensor una cámara.
+    \item El sistema debe funcionar en tiempo real.
+    \item Las bases de datos que se han empleado durante el desarrollo del proyecto son de la parte trasera del vehículo, por lo que todos los videos que se evalúen tendrán esta característica. Para funcionar con otra orientación de la cámara tendríamos que emplear una base de datos mayor con diferentes orientaciones de los vehículos. Esto no se ha podido realizar debido a la falta de tiempo.
     \item  Los algoritmos están preparados para funcionar de día.
 \end{enumerate}
 
@@ -297,7 +297,7 @@ El Capítulo~\ref{cap.estado} hace un repaso acerca de los trabajos científicos
 
 En el Capítulo~\ref{cap.herramientas} se da una explicación general de las herramientas empleadas a la hora de desarrollar el proyecto.
 
-En el Capítulo~\ref{cap.diseno} se explica en detalle como se ha desarrollado todo el sistema de monitorización. Haciendo hincapié cada parte de la monitorización: clasificación, detección y seguimiento de vehículos.
+En el Capítulo~\ref{cap.diseno} se explica en detalle como se ha desarrollado todo el sistema de monitorización. Haciendo hincapié en cada parte de la monitorización: clasificación, detección y seguimiento de vehículos.
 
 El Capítulo~\ref{cap.experimentos} engloba todas las pruebas realizadas a lo largo del \acrfull{tfm}. Así como la evaluación que se ha realizado para saber como de bien funcionaba el sistema realmente.
 

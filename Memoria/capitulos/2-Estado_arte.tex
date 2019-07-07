@@ -1,8 +1,8 @@
 \chapter{Estado del arte}\label{cap.estado}
 
-En este capítulo se revisará la bibliografía más relevante relacionada con la monitorización del tráfico obteniendo así información acerca de las diferentes técnicas propuestas. 
+En este capítulo se revisará la bibliografía más relevante relacionada con la monitorización del tráfico, obteniendo así información acerca de las diferentes técnicas propuestas. 
 
-Nos centraremos en las técnicas propuestas para la detección, clasificación y seguimiento de vehículos en las cuales se haga uso únicamente de una cámara como sensor. Comentaremos cuales son los métodos empleados, asi como sus ventajas e inconvenientes.
+Nos centraremos en las técnicas propuestas para la detección, clasificación y seguimiento de vehículos en las cuales se haga uso únicamente de una cámara como sensor. 
 
 En los últimos años el precio de las cámaras se ha visto reducido y la potencia de cómputo de nuestros dispositivos ha aumentado, favoreciendo al desarrollo de sistemas de análisis de tráfico. Debido a esto, se trata de un área en continuo desarrollo desde los años 90, en el cual se pretende dar una solución en tiempo real. 
 
@@ -21,10 +21,10 @@ A continuación veremos las soluciones que plantean los diferentes autores para 
 
 La detección de vehículos trata de identificar donde se localizan los vehículos en los fotogramas. En la literatura hay numerosas técnicas que han sido planteadas para esta función, las cuales van a ser comentadas a continuación. 
 
-Una técnica muy empleada en este problema es la sustracción del fondo. Se trata de restar la imagen del fondo de las sucesivas imágenes, con el fin de quedarnos con los objetos que se encuentran en movimiento, que en este caso en concreto serán los vehículos. S.I. Arroyo, F. Safar y D. Oliva ~\cite{probabilidad_infraccion}
+Una técnica muy empleada en este problema es la sustracción del fondo. Se trata de restar la imagen del fondo de las sucesivas imágenes, con el fin de quedarnos con los objetos que se encuentran en movimiento, que en este caso en concreto serán los vehículos. S.I. Arroyo, F. Safar and D. Oliva ~\cite{probabilidad_infraccion}
  se basan en la diferencia entre el fotograma actual y la imagen referencia (imagen de fondo). Esta imagen referencia debe ajustarse a las condiciones de luminosidad en el tiempo.
  
- Otra técnica muy parecida a la sustracción de fondo es la diferencia absoluta (SAD) entre dos secuencias. A.F. Granados y J.I. Marin .H~\cite{deteccion_flujo_vehicular} presentan una técnica basada  en la diferencia absoluta (\acrfull{sad}) entre dos secuencias. Para ello aplican filtrado homomórfico con el fin de reducir el efecto de los cambios de iluminación. Tras esto realizan la diferencia absoluta (\acrshort{sad}), umbralizan y segmentan los objetos en movimiento. J. Portillo, G. Sánchez, J. Olivares y H. Pérez~\cite{deteccion_movimiento} también propusieron un método en el que se hacía uso de la \acrshort{sad} y complementariamente se realizaba un análisis de bordes en la región considerada en movimiento.
+ Otra técnica muy parecida a la sustracción de fondo es la diferencia absoluta (\acrfull{sad}) entre dos secuencias. A.F. Granados and J.I. Marin .H~\cite{deteccion_flujo_vehicular} presentan una técnica basada  en la diferencia absoluta (\acrshort{sad}) entre dos fotogramas consecutivos. Para ello aplican filtrado homomórfico con el fin de reducir el efecto de los cambios de iluminación. Tras esto realizan la diferencia absoluta (\acrshort{sad}), umbralizan y segmentan los objetos en movimiento. J. Portillo, G. Sánchez, J. Olivares and H. Pérez~\cite{deteccion_movimiento} también propusieron un método en el que se hacía uso de la \acrshort{sad} y complementariamente se realizaba un análisis de bordes en la región considerada en movimiento.
 
 En la vida real tenemos situaciones más complejas, pues los cambios de iluminación y la aparición de objetos en la escena (por ejemplo ramas de los árboles, personas, etc) es muy probable. Por tanto, necesitamos un método que sea capaz de funcionar correctamente a pesar de estos problemas.
 
@@ -46,7 +46,7 @@ El número de gaussianas \textit{k} viene determinado por el número de \textit{
 \Sigma_{k,t}=\sigma_{k}^2I
 \end{equation}
 
-En esta versión de \acrshort{mog} la pertenencia de cada nuevo píxel al fondo es evaluada contra las distintas gaussianas que lo forman. Si el valor de un píxel está en un rango de 2.5 la desviación estándar de la gaussiana se considera que pertenece a dicha gaussiana. El nuevo píxel será clasificado como fondo si pertenece a alguna de estas gaussianas y los parámetros $\mu$\textsubscript{k,t},$\Sigma$\textsubscript{k,t}\textsuperscript{2} y $\omega$\textsubscript{k,t} serán actualizados con el nuevo valor mediante las siguientes fórmulas:
+En esta versión de \acrshort{mog} la pertenencia de cada nuevo píxel al fondo es evaluada contra las distintas gaussianas que lo forman. Si el valor de un píxel está en un rango de 2.5 la desviación estándar de la gaussiana, se considera que pertenece a dicha gaussiana. El nuevo píxel será clasificado como fondo si pertenece a alguna de estas gaussianas y los parámetros $\mu$\textsubscript{k,t},$\Sigma$\textsubscript{k,t}\textsuperscript{2} y $\omega$\textsubscript{k,t} serán actualizados con el nuevo valor mediante las siguientes fórmulas:
 
 \begin{equation}\label{gaussiana_formula1}
 \omega_{k,t}=(1-\alpha)\omega_{k,t-1}+\alpha(M_{k,t})
@@ -79,10 +79,10 @@ P. Barcellos, C. Bouvié, F.L. Escouto and  J. Scharcanski~\cite{gmm_mei_article
 
 Xia et al.~\cite{gmm_em_article} combinaron \acrshort{gmm} y \acrfull{em}. \acrshort{em} comienza prediciendo los parámetros de las distribuciones y los usa para calcular las probabilidades de que cada objeto pertenezca a una clase. Esas probabilidades se usan para re-estimar los parámetros de las probabilidades hasta que consigamos que converjan. 
 
-Buch et al.~\cite{3dhog_article}  presentaron un sistema que combina  puntos de interés 3D y HOG para detectar el fondo presentando así 3DHOG.
+Buch et al.~\cite{3dhog_article}  presentaron un sistema que combina  puntos de interés 3D y \acrfull{hog} para detectar el fondo presentando así 3DHOG.
 
 
-Bjorn Johansson, Johan Wiklund, Per-Erik Forssén and Gösta  Granlund~\cite{combining_shadow} emplean el método estadístico de J.Wood~\cite{wood} para identificar si un píxel pertenece al fondo o al primer plano. El método es una modificación del conocido método de sustracción de fondo de  C.Stauffer and  W.E.  Grimson~\cite{adaptative_background}, con una regla de actualización algo diferente y un límite de regularización más bajo para las desviaciones estándar de Gauss. Principalmente lo que se hace es usar un modelo de mezcla de gaussianas en cada píxel para estimar la distribución de color a lo largo del tiempo, detectándose como píxeles de primer plano aquellos cuyo color sea improbable que pertenezca a la distribución. Además los píxeles de primer plano pueden ser clasificados como sombras. Si el color de un píxel se encuentra en una región cilíndrica entre el negro (el origen) y cualquiera de los colores centrales de los gaussianos de fondo se considerará sombra.
+Bjorn Johansson, Johan Wiklund, Per-Erik Forssén and Gösta  Granlund~\cite{combining_shadow} emplean el método estadístico de J.Wood~\cite{wood} para identificar si un píxel pertenece al fondo o al primer plano. El método es una modificación del conocido método de sustracción de fondo de  C.Stauffer and  W.E.  Grimson~\cite{adaptative_background}, con una regla de actualización algo diferente y un límite de regularización más bajo para las desviaciones estándar de Gauss. Principalmente lo que se hace es usar un modelo de mezcla de gaussianas en cada píxel para estimar la distribución de color a lo largo del tiempo, detectándose como píxeles de primer plano aquellos cuyo color sea improbable que pertenezca a la distribución. Además los píxeles de primer plano pueden ser clasificados como sombras. Si el color de un píxel se encuentra en una región cilíndrica entre el negro (el origen) y cualquiera de los colores centrales de las gaussianas de fondo se considerará sombra.
 
 
 Otra técnica empleada a la hora de detectar el fondo es hacer uso de los denominados \textit{codebooks}. Originalmente esta clase de técnicas fueron empleadas en la clasificación de texto. A la hora de clasificar texto es muy importante disponer de un diccionario de palabras que se ajuste al contenido que tendrá dicho texto. Estas palabras forman lo que se llama  \textit{codebooks} o vocabulario. Este mismo planteamiento se puede emplear a la hora de clasificar imágenes, pero en lugar de palabras tendremos vectores de elementos que describen las características de dichas imágenes.
@@ -97,11 +97,11 @@ K. Kim, T.H. Chalidabhongse, D. Harwood and L. Davis~\cite{real_time_foreground_
     \item $p$\textsubscript{i}, $q$\textsubscript{i}: es la primera y la última vez respectivamente que ha aparecido la palabra.
 \end{itemize}
 
-Gracias a $\lambda$\textsubscript{i} podemos saber que valores pertenecen o no al fondo. Si se tiene un valor grande de $\lambda$\textsubscript{i} quiere decir que el objeto en cuestión aparece cada mucho tiempo. Esto puede indicar que se trate de un objeto que ha aparecido de forma temporal y por tanto no pertenece al fondo. Para estimar el fondo se comparará cada píxel de la nueva imagen con la palabra cuya media es más cercana. Si el píxel pertenece a la palabra, querrá decir que pertenece al fondo y por tanto se actualizará la palabra en cuestión con esta nueva información. Si por el contrario, no perteneciera a la palabra se trataría de un objeto en movimiento.
+Gracias a $\lambda$\textsubscript{i} podemos saber que valores pertenecen o no al fondo. Si se tiene un valor grande de $\lambda$\textsubscript{i} quiere decir que el objeto en cuestión aparece cada mucho tiempo. Esto puede indicar que se trate de un objeto que ha aparecido de forma temporal y por tanto no pertenece al fondo. Para estimar el fondo se comparará cada píxel de la nueva imagen con la palabra cuya media está más cercana. Si el píxel pertenece a la palabra, querrá decir que pertenece al fondo y por tanto se actualizará la palabra en cuestión con esta nueva información. Si por el contrario, no perteneciera a la palabra se trataría de un objeto en movimiento.
 
 En el planteamiento de M. Mazaheri and S. Mozaffari~\cite{real_time_adaptative_background} la detección esta basada en \textit{codebooks}.
 
-Otro de los métodos empleados en la detección de fondo son los basados en la estimación no paramétrica de la función de densidad a partir de un número de muestras determinadas. Un caso muy popular de este método son los histogramas, los cuales representan la frecuencia de cada valor de forma gráfica a través de barras. Con ello se puede ver la distribución de los datos. Esto tiene un problema y es que en función del rango de la cuantización el resultado puede variar. Para evitarlo, se hace uso de una función matemática llamada \textit{núcleo}, que obtiene una representación más suave de los datos. Dado un conjunto de valores de entrada (X\textsubscript{1},X\textsubscript{2},...,X\textsubscript{n}), los cuales vienen de una distribución desconocida \textsubscript{f}, su \textit{núcleo} se calcula de la siguiente forma:
+Otro de los métodos empleados en la detección de fondo son los basados en la estimación no paramétrica de la función de densidad a partir de un número de muestras determinadas. Un caso muy popular de este método son los histogramas, los cuales representan la frecuencia de cada valor de forma gráfica a través de barras. Con ello se puede ver la distribución de los datos. Esto tiene un problema, y es que en función del rango de la cuantización el resultado puede variar. Para evitarlo, se hace uso de una función matemática llamada \textit{núcleo}, que obtiene una representación más suave de los datos. Dado un conjunto de valores de entrada (X\textsubscript{1},X\textsubscript{2},...,X\textsubscript{n}), los cuales vienen de una distribución desconocida \textit{f}, su \textit{núcleo} se calcula de la siguiente forma:
 
 \begin{equation}\label{nucleo_formula}
 \widehat{f}_{h}(x) = \frac{1}{n}\sum_{i=1}^{n}K_{h}(x - x_{i}) = \frac{1}{nh}\sum_{i=1}^{n}K(\frac{x - x_{i}}{h})
@@ -135,11 +135,11 @@ r}(x_{t})$ podemos saber si el píxel pertenece a un objeto en movimiento o no. 
 r}(x_{t})$ se encuentra por debajo de un umbral fijado consideraremos que se trata de un píxel perteneciente a un objeto en movimiento.
 \\
 
-Todas las técnicas que se han ido comentando a lo largo de esta sección basan la detección de vehículos en la detección del fondo. En función de este fondo pueden saber cuales son los objetos que se encuentran en movimiento. Actualmente ha tomado mucha popularidad el deep learning, gracias a lo cual podemos ser capacez de detectar objetos con grandes resultados, sin necesidad de tener que detectar el fondo. 
+Todas las técnicas que se han ido comentando a lo largo de esta sección basan la detección de vehículos en la detección del fondo. En función de este fondo pueden saber cuales son los objetos que se encuentran en movimiento. Actualmente ha tomado mucha popularidad el \textit{Deep Learning}, gracias a lo cual podemos ser capacez de detectar objetos con grandes resultados, sin necesidad de tener que detectar el fondo. 
 
-Rigoberto Vizcay~\cite{tesis_rigoberto} se basa en redes \acrshort{cnn} para la detección de vehículos y peatones. Una red neuronal convolucional es una red que presenta una o varias capas convolucionales.
+Rigoberto Vizcay~\cite{tesis_rigoberto} se basa en redes \acrfull{cnn} para la detección de vehículos y peatones. Una red neuronal convolucional es una red que presenta una o varias capas convolucionales.
 
-Y. Abdullah, G. Mehmet, A. Iman and B. Erkan~\cite{rcnn_detection}  plantean el uso de fast \acrfull{rcnn}r y \acrfull{rcnn} para la detección de vehículos. 
+Y. Abdullah, G. Mehmet, A. Iman and B. Erkan~\cite{rcnn_detection}  plantean el uso de \acrfull{rcnn} y Faster \acrshort{rcnn} para la detección de vehículos. 
 \\
 
 \acrshort{rcnn} para realizar las detecciones realiza tres fases:
@@ -159,52 +159,49 @@ Estas fases pueden verse en la Figura ~\ref{fig.rcnn}.
 		\end{center}
 \end{figure}
 
-Fast \acrshort{rcnn} es una versión más rápida que \acrshort{rcnn}, en la que se modifican algunos aspectos para conseguirlo:
-\begin{enumerate}
-    \item Antes de extraer las regiones de interés se extraen las características. Para ello se emplea una única \acrshort{cnn} para toda la imagen en vez de 2000.
-    \item \acrshort{svm} se remplaza por la función de softmax.
-\end{enumerate}
+Faster \acrshort{rcnn} es una versión más rápida que \acrshort{rcnn}, en la que se modifican algunos aspectos para conseguirlo. En este método se incluye la técnica region proposal, la cual determina que regiones de la imagen tienen mayor probabilidad de contener objetos y por tanto cuales son las regiones que se introducirán en el clasificador. Esto optimiza mucho el trabajo pues evita introducir al clasificador regiones que no sean de interés.
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/Estado_arte/fast_rcnn.png}
-		\caption{Fases de Fast \acrshort{rcnn}}
+    \includegraphics[width=0.7\textwidth]{figures/Estado_arte/faster_rcnn.png}
+		\caption{Fases de Faster \acrshort{rcnn}}
 		\label{fig.fast_rcnn}
 		\end{center}
 \end{figure}
 
-Ignacio Arriola~\cite{tesis_ignacio_arriola} hace uso de Faster \acrshort{rcnn}, una versión aún más rápida que Fast \acrshort{rcnn}.
+Ignacio Arriola~\cite{tesis_ignacio_arriola} hace también uso de Faster \acrshort{rcnn}.
 
 
 
 
 \section{Clasificación de vehículos}
 
-La clasificación de vehículos trata de determinar a que clase pertenece cada objeto detectado. Analizando los trabajos que se centran en este problemas se ha podido ver que son tres los métodos más empleados:
+La clasificación de vehículos trata de determinar a que clase pertenece cada objeto detectado. Analizando los trabajos que se centran en este problema se ha podido ver que son tres los métodos más empleados:
 \begin{itemize}
     \item Técnicas basadas en características.
     \item Técnicas basadas en modelos 3D.
+    \item Técnicas basadas en \textit{Deep Learning}
 \end{itemize}
 
-Las técnicas basadas en características se centran en extraer propiedades de la imagen que permitan poder clasificar cada objeto. En el caso de la clasificación de vehículos, tratarán de definir un conjunto de características, con las cuales pueda quedar bien descrito el vehículo en cuestión. Para ello se necesitará mucha información, cuantas más características tengamos del objeto será más fácil de identificar. En esta familia de técnicas se requiere una fase de entrenamiento previa donde el sistema sea capaz de aprender las diferentes características. Una vez tengamos el sistema entrenado le pasaremos los objetos detectados, para que estime a que clase pertenecen. Dicha clase será siempre la que más características tenga en común con el objeto que pretendemos clasificar.
+Las técnicas basadas en características se centran en extraer propiedades de la imagen que permitan poder clasificar cada objeto. En el caso de la clasificación de vehículos, tratarán de definir un conjunto de características, con las cuales pueda quedar bien descrito el vehículo en cuestión. Para ello se necesitará mucha información, cuantas más características tengamos del objeto será más fácil de describir. En esta familia de técnicas se requiere una fase de entrenamiento previa donde el sistema sea capaz de aprender las diferentes características. Una vez tengamos el sistema entrenado le pasaremos los objetos detectados, para que estime a que clase pertenecen. Dicha clase será siempre la que más características tenga en común con el objeto que pretendemos clasificar.
  
-Las características pueden ser visuales o geométricas (longitud, área, relación  entre el alto y el ancho, etc). En el caso de las características geométricas Shih-Hao Yu et al.~\cite{an_Automatic_traffic} presentaron un sistema que er capaz de distinguir entre tres clases: camiones, autobuses y coches. Para ello se basaba en dos características (tamaño y linealidad). La linealidad se empleaba para distinguir entre autobuses y camiones.
+Las características pueden ser visuales o geométricas (longitud, área, relación  entre el alto y el ancho, etc). En el caso de las características geométricas Shih-Hao Yu et al.~\cite{an_Automatic_traffic} presentaron un sistema que era capaz de distinguir entre tres clases: camiones, autobuses y coches. Para ello se basaba en dos características (tamaño y linealidad). La linealidad se empleaba para distinguir entre autobuses y camiones.
 
 Jin-Cyuan Lai, Shih-Shinh Huang and Chien-Cheng Tseng~\cite{image_based_vehicle} definieron las mismas clases que en ~\cite{an_Automatic_traffic}(coches, camiones y autobuses). Ellos se basaban en la compacidad y la proporción entre el ancho y el alto de los cuadros detectados. Además filtran los blobs en función de estas restricciones con el fin de eliminar ruido y blobs muy pequeños.
 
-H. Asaidi , A. Aarab and M. Bellouki~\cite{shadow_elimination} definieron tres categorías: furgonetas, coches y camiones. Para definir cada vehículo determinaron 7 características geométricas. En función a estas 7 características calculaban la distancia euclídea entre el vehículo detectado y las categorías definidas. El vehículo será clasificado a la categoría con la que se obtenga una menor distancia.
+H. Asaidi , A. Aarab and M. Bellouki~\cite{shadow_elimination} definieron tres categorías: furgonetas, coches y camiones. Para definir cada vehículo determinaron 7 características geométricas. En función a estas 7 características calculaban la distancia euclídea entre el vehículo detectado y las categorías definidas. El vehículo era clasificado a la categoría con la que se obtenía menor distancia.
 
-Las características visuales son más complejas que las geométricas, pues tratan de definir la forma y el aspecto de cada objeto.Para ello emplean descriptores.
+Las características visuales son más complejas que las geométricas, pues tratan de definir la forma y el aspecto de cada objeto. Para ello emplean descriptores.
 
-Dos descriptores que tienen muca relevancia son el descriptor \acrfull{hog} y el descriptor Haar. C.P. Papageorgiou, M. Oren and T. Poggio~\cite{haar_paper} fueron quien introducieron los descriptores Haar para la detección de caras humanas. Navneet Dalal and Bill Triggs~\cite{hog_paper} propusieron el descriptor \acrshort{hog} para detectar peatones.
+Dos descriptores que tienen mucha relevancia son el descriptor \acrfull{hog} y el descriptor Haar. C.P. Papageorgiou, M. Oren and T. Poggio~\cite{haar_paper} fueron quien introducieron los descriptores Haar para la detección de caras humanas. Navneet Dalal and Bill Triggs~\cite{hog_paper} propusieron el descriptor \acrshort{hog} para detectar peatones.
 
-A partir del descriptor \acrshort{hog} hay alguna variante como por ejemplo el descriptor 3DHOG. Buch et al.Buch et al.~\cite{3dhog_article}  para detectar el fondo ya emplearon este descriptor, el cual combina puntos de interés 3D y \acrshort{hog}.
+A partir del descriptor \acrshort{hog} hay alguna variante como por ejemplo el descriptor 3DHOG. Buch et al.~\cite{3dhog_article} ya emplearon este descriptor para detectar el fondo , el cual combina puntos de interés 3D y \acrshort{hog}.
 
 Estos descriptores son muy aplicados en el mundo de la clasificación de objetos gracias a los buenos resultados que se ha visto que obtienen. \acrshort{hog} suele mezclarse con algun otro clasificador, pues se ha visto que da muy buenos resultados.
 
-Bailing Zhang, Yifan Zhou and Hao PanTammam Tillo~\cite{hybrid_model} presentan un método basado en \acrfull{kaa} para la clasificación de vehículos. A la hora de detectar los vehículos emplean \acrshort{hog} combinado con clasificadores \acrfull{svm} en cascada. Para la clasificación también hace uso de \acrfull{eoh} como característica discriminante.
+Bailing Zhang, Yifan Zhou and Hao PanTammam Tillo~\cite{hybrid_model} presentaron un método basado en \acrfull{kaa} para la clasificación de vehículos. A la hora de detectar los vehículos empleaban \acrshort{hog} combinado con clasificadores \acrfull{svm} en cascada. Para la clasificación también hicieron uso de \acrfull{eoh} como característica discriminante.
 
-Otra técnica que ha sido aplicada a la hora de clasificar vehículos es la ténica eigenfaces, la cual fue introducida por L. Sirovich and M. Kirby~\cite{low_dimensional} para detectar y reconocer caras. Wei Wang, Yulong Shang, Jinzhi Guo and Zhiwei Qian~\cite{real_time_vehicle} fueron unos de los autores que aplicaron la técnica de eigenfaces (se trata de construir con características un subespacio de vectores) para la clasificación de vehículos. En este trabajo en concreto tan solo clasificaban las detecciones como coches o no coches. Inicialmente es necesario entrenar al sistema con una base de datos. Tras este aprendizaje ya se podrán clasificar los vehículos. Para ello se captura la parte frontal del vehículo y se le aplican operaciones de post-procesado para emplearlas en la entrada del clasificador. Esta proyección de la parte frontal del vehículo es comparada con las proyecciones recopiladas en el entrenamiento. Si la comparacion se encuentra por debajo de un umbral fijado se considerará que la clasificación se ha realizado correctamente. 
+Otra técnica que ha sido aplicada a la hora de clasificar vehículos es la ténica eigenfaces, la cual fue introducida por L. Sirovich and M. Kirby~\cite{low_dimensional} para detectar y reconocer caras. Wei Wang, Yulong Shang, Jinzhi Guo and Zhiwei Qian~\cite{real_time_vehicle} fueron unos de los autores que aplicaron la técnica de eigenfaces (se trata de construir con características un subespacio de vectores) para la clasificación de vehículos. En este trabajo en concreto tan solo clasificaban las detecciones como coches o no coches. Inicialmente es necesario entrenar al sistema con una base de datos. Tras este aprendizaje ya se podrán clasificar los vehículos. Para ello se captura la parte frontal del vehículo y se le aplican operaciones de post-procesado para emplearlas en la entrada del clasificador. Esta proyección de la parte frontal del vehículo es comparada con las proyecciones recopiladas para el entrenamiento. Si la comparación se encuentra por debajo de un umbral fijado se considerará que la clasificación se ha realizado correctamente. 
 
 Hasta ahora hemos hablado de sistemas que empleaban o técnicas basadas en características geométricas o visuales. Las características visuales ofrecen grandes ventajas frente a las geométricas, las cuales son muy suceptibles ante cambios de posición de la cámara o vehículos con geometrías similares. Por el contrario las características visuales son muy complejas y requieren de una fase de entrenamiento. Por ello lo ideal es hacer uso de ambas características, para asi conseguir un sistema muy robusto. Dentro de este contexto tenemos a Zezhi Chen and Tim Ellis~\cite{multi_shape_descriptor}, los cuales presentan un sistema que emplea dos conjuntos de características. Uno de ellos \acrfull{mbf} formado por hasta 13 características, entre las cuales tenemos el perímetro, el área, etc. Y otro conjunto llamado \acrfull{iphog}, los cuales codifican la forma y la distribución de los objetos dentro de la imagen. Las características son introducidas en un clasificador \acrshort{svm}, el cual realiza un entrenamiento para aprender dichas características. En la Figura \ref{fig.multi_shape_descriptor} podemos ver un ejemplo de detecciones de este sistema.
 
@@ -216,7 +213,7 @@ Hasta ahora hemos hablado de sistemas que empleaban o técnicas basadas en carac
 		\end{center}
 \end{figure}
 
-En las técnicas basadas en modelos 3D es necesario conocer los parámetros de la cámara que se emplee. En este caso tendremos una plantilla por cada clase y compararemos dicha plantilla con el objeto a clasificar para ver cual es la clase que más se le ajusta.
+En las técnicas basadas en modelos 3D es necesario conocer los parámetros de la cámara que se emplee. En este caso tendremos una plantilla por cada clase y compararemos dicha plantilla con el objeto a clasificar, para ver cual es la clase que más se le ajusta.
 Wook-Sun Shin, Doo-Heon Song and Chang-Hun Lee~\cite{vehicle_classification_by_road} presenta  un  sistema  basado  en  plantillas  3D  que  no necesita una cámara calibrada. Este sistema se bada en los puntos de fuga de los carriles para reconstruir la forma 3D de cada vehículo. Un ejemplo de esta reconstrucción se puede ver en la Figura \ref{fig.3d_fuga}
 
 \begin{figure}[H]
@@ -237,7 +234,7 @@ Este sistema se basa en el algoritmo C4.5 de Quinlan~\cite{c4_5} a la hora de cl
 		\end{center}
 \end{figure}
 
-Buch et al.~\cite{3dhog_article} presentaron un sistema que combinaba plantillas 3D con \acrshort{hog} para clasificar los diferentes vehículos y los peatones. Este sistema se llama 3DHOG, y en el aplican descriptores \acrshort{hog} a plantillas 3D que definen los vehículos. Para cada categoría se define una plantilla 3D que permita definirla. En la Figura ~\ref{fig.3dhog} se puede ver un ejemplo de dichas plantillas.
+Buch et al.~\cite{3dhog_article} presentaron un sistema que combinaba plantillas 3D con \acrshort{hog} para clasificar los diferentes vehículos y los peatones. Este sistema se llama 3DHOG, y en él aplican descriptores \acrshort{hog} a plantillas 3D que definen los vehículos. Para cada categoría se define una plantilla 3D que permita definirla. En la Figura ~\ref{fig.3dhog} se puede ver un ejemplo de dichas plantillas.
 
 \begin{figure}[H]
   \begin{center}
@@ -247,7 +244,7 @@ Buch et al.~\cite{3dhog_article} presentaron un sistema que combinaba plantillas
 		\end{center}
 \end{figure}
 
-En este sistema es necesario un previo entrenamiento. A la hora de realizar las clasificaciones se proyectan las plantillas 3D sobre los vehículos detectados y se les aplica transformaciones afines para ajustarlas al vehículo en cuestión. Tras esto se calculan sus histograma 3DHOG y se comparan con los que se han aprendido en la fase de entrenamiento. Esta reconstrucción de los histogramas 3DHOG puede verse en la Figura ~\ref{fig.3d_fuga}.
+En este sistema es necesario un previo entrenamiento. A la hora de realizar las clasificaciones se proyectan las plantillas 3D sobre los vehículos detectados y se les aplica transformaciones afines para ajustarlas al vehículo en cuestión. Tras esto se calculan sus histograma 3DHOG y se comparan con los que se han aprendido en la fase de entrenamiento. Esta reconstrucción de los histogramas 3DHOG puede verse en la Figura ~\ref{fig.3dhog_histograma}.
 
 \begin{figure}[H]
   \begin{center}
@@ -257,8 +254,8 @@ En este sistema es necesario un previo entrenamiento. A la hora de realizar las 
 		\end{center}
 \end{figure}
 
-Tal y como se ha comentado en la Seccion ~\ref{ap.deteccion_vehiculos} actualmente se ha extendido mucho el uso de Deep Learning tanto para la detección como para la clasificación de objetos. 
-A.F. Granados y J.I. Marin.H~\cite{deteccion_flujo_vehicular} extraen los descriptores de Fourier de los vehículos detectados y los clasifican mediante una red neuronal. Dicha red neuronal consta de cuatro capas: una capa deentrada con una neurona por característica, dos capas ocultas con siete neuronas cada una y una capa de salida con una neurona clase. 
+Tal y como se ha comentado en la Seccion ~\ref{ap.deteccion_vehiculos} actualmente se ha extendido mucho el uso de \textit{Deep Learning} tanto para la detección como para la clasificación de objetos. 
+A.F. Granados y J.I. Marin.H~\cite{deteccion_flujo_vehicular} extraen los descriptores de Fourier de los vehículos detectados y los clasifican mediante una red neuronal. Dicha red neuronal consta de cuatro capas: una capa de entrada con una neurona por característica, dos capas ocultas con siete neuronas cada una y una capa de salida con una neurona clase. 
 
 
 \section{Seguimiento de vehículos}
@@ -273,12 +270,12 @@ Las técnicas más empleadas en el seguimiento de vehículos son:
     \item Seguimiento basado en modelos
 \end{itemize}
 
-Las ténicas basadas en las regiones se centran en el seguimiento de regiones conexas del objeto. Normalmente la propiedad que suele emplearse es el color. En los diferentes artículos publicados se puede ver el uso de diferentes espacios de color como RGB, el espacio CEI lab o CEI LUV, el espacio HSV, etc. Lo más común es el uso de histogramas de color que nos permiten representar las regiones. Estas ténicas fueron introducidas por D. Comaniciu, V. Ramesh and P. Meer~\cite{kernel_based_object}. El seguimiento se basa en la comparación de los histogramas de las nuevas imágenes con el histograma de las regiones de interés calculadas en imágene sprevias. Para ver el parecido entre los histogramas se emplea una medida similar a la distancia de Bhattacharyya y mean-shift para optimizar la selección del candidato.
+Las ténicas basadas en las regiones se centran en el seguimiento de regiones conexas del objeto. Normalmente la propiedad que suele emplearse es el color. En los diferentes artículos publicados se puede ver el uso de diferentes espacios de color como RGB, el espacio CEI lab o CEI LUV, el espacio HSV, etc. Lo más común es el uso de histogramas de color que nos permiten representar las regiones. Estas ténicas fueron introducidas por D. Comaniciu, V. Ramesh and P. Meer~\cite{kernel_based_object}. El seguimiento se basa en la comparación de los histogramas de las nuevas imágenes con el histograma de las regiones de interés calculadas en imágenes previas. Para ver el parecido entre los histogramas se emplea una medida similar a la distancia de Bhattacharyya y mean-shift para optimizar la selección del candidato.
 
-Stefan Duffner and Christophe Garcia~\cite{pixeltrack} presentó un algoritmo llamado PixelTrack, el cual combina la transformada de Hough con un modelo genérico de detección de fondo. Para ello necesita inicializar una ventana sobre el objeto. Gracias a esta técnica son capaces de seguir objetos en tiempo real con fondo cambiante, oclusiones y condiciones desfavorables.
+Stefan Duffner and Christophe Garcia~\cite{pixeltrack} presentó un algoritmo llamado \textit{PixelTrack}, el cual combina la transformada de Hough con un modelo genérico de detección de fondo. Para ello necesita inicializar una ventana sobre el objeto. Gracias a esta técnica son capaces de seguir objetos en tiempo real con fondo cambiante, oclusiones y condiciones desfavorables.
 Lili Huang and M. Barth~\cite{real_time_vehicle} plantean un algoritmo para llevar a cabo el seguimiento de vehículos y la resolución de oclusiones. En este algoritmo emplean un modelo de color basado en mean-shift para identificar a que vehículo pertenece cada parche de 3x3 píxeles cuando existe una oclusión.
 
-El seguimiento basado en características, tal y como su nombre indica se centra en seguir los objetos en función a las características que se crean oportunas. Cada autor hace uso de unas características. Entre estas características tenemos puntos característicos como esquinas, el perímetro del objeto, sus dimensiones, etc. Si lo comparamos con el seguimiento basado en regiones podemos ver que es más robusto, pues en el caso de las regiones trataban de seguir el objeto en función del color o la textura, lo cual es muy suceptible ante el cambio de iluminación. Entre las técnicas más empleadas en este ámbito podemos encontrar \acrfull{sift}(D.G. Lowe~\cite{article_sift}), \acrfull{klt} (J. Shi and C. Tomasi~\cite{article_klt}). Otra ténica muy empelada en la literatura es \acrshort{hog}(Dalal and Bill Triggs~\cite{hog_paper}), la cual en muchas ocasiones ha sido combinada con \acrshort{svm}, tal y como se ha comentado en la seccion anterior, Zezhi Chen and Tim Ellis~\cite{multi_shape_descriptor} ya hicieron uso de ambos métodos.
+El seguimiento basado en características, tal y como su nombre indica se centra en seguir los objetos en función a las características que se crean oportunas. Cada autor hace uso de unas características. Entre estas características tenemos puntos característicos como esquinas, el perímetro del objeto, sus dimensiones, etc. Si lo comparamos con el seguimiento basado en regiones podemos ver que es más robusto, pues en el caso de las regiones trataban de seguir el objeto en función del color o la textura, lo cual es muy suceptible ante el cambio de iluminación. Entre las técnicas más empleadas en este ámbito podemos encontrar \acrfull{sift}(D.G. Lowe~\cite{article_sift}) y \acrfull{klt} (J. Shi and C. Tomasi~\cite{article_klt}). Otra ténica muy empleada en la literatura es \acrshort{hog}(Dalal and Bill Triggs~\cite{hog_paper}), la cual en muchas ocasiones ha sido combinada con \acrshort{svm}, tal y como se ha comentado en la seccion anterior, Zezhi Chen and Tim Ellis~\cite{multi_shape_descriptor} ya hicieron uso de ambos métodos.
 
 
 El seguimiento basado en modelos trata de beneficiarse del conocimiento que tenemos de los objetos para poder realizar plantillas 2D y 3D para detectar objetos en la imagen y poder realizar su seguimiento. M.J. Leotta and J.L. Mundy~\cite{vehicle_surveillance_3d} emplean esta técnica para detectar vehículos haciendo uso de una plantilla deformable que se ajusta para identificar diferentes formas de vehículos. En la literatura también se ha combinado esta técnica con filtros de Kalman.
@@ -293,7 +290,7 @@ La detección de vehículos pretende encontrar un vehículo en una imagen o en u
 
 GRAM Road-Traffic Monitoring (GRAM-RTM) \cite{gram-tracking} \cite{gram} es un conjunto de datos para el seguimiento de vehículos en tiempo real. Consiste en 3 secuencias de video (Figura \ref{fig.gram}), grabadas bajo diferentes condiciones y con diferentes plataformas.
 
-El primer video, llamado M-30 (7520 \textit{frames}), se grabó en un día soleado con una cámara Nikon Coolpix L20, con una resolución de 800 x 480 @ 30 fps. La segunda secuencia, llamada M-30-HD (9390 \textit{frames}), se grabó en una ubicación similar pero durante un día nublado, y con una cámara de alta resolución: una Nikon DX3100 a 1200 x 720 @ 30 fps. La tercera secuencia de video, llamada Urban1 (23435 \textit{frames}), se grabó en una intersección concurrida con una cámara de tráfico de video vigilancia con una resolución de 600 x 360 @ 25fps.
+El primer video, llamado M-30 (7520 \textit{frames}), se grabó en un día soleado con una cámara Nikon Coolpix L20, con una resolución de 800 x 480 a 30 \acrshort{fps}. La segunda secuencia, llamada M-30-HD (9390 \textit{frames}), se grabó en una ubicación similar pero durante un día nublado, y con una cámara de alta resolución: una Nikon DX3100 a 1200 x 720 a 30 \acrshort{fps}. La tercera secuencia de video, llamada Urban1 (23435 \textit{frames}), se grabó en una intersección concurrida con una cámara de tráfico de video vigilancia con una resolución de 600 x 360 a 25 \acrshort{fps}.
 
 Todos los vehículos en el conjunto de datos GRAM-RTM fueron anotados manualmente. Este conjunto posee las siguientes categorías de clases: coches, camiones, furgonetas y camiones grandes. El número total de objetos diferentes en cada secuencia es: 256 para M-30, 235 para M-30-HD y 237 para Urban1. Todas las anotaciones en el conjunto GRAM-RTM se crearon en un formato XML compatible con PASCAL VOC.
 

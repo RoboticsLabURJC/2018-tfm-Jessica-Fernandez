@@ -1,28 +1,29 @@
 \chapter{Experimentos}\label{cap.experimentos}
 
-A la hora de crear cualquier sistema es necesario hacer múltiples experimentos que nos permitan llegar a ciertas conclusiones que nos sean útiles a la hora de mejorar el diseño. Dichos experimentos deben ser evaluados de alguna forma para comprobar la calidad de los resultados que obtenemos. En este trabajo en concreto se ha recurrido a la herramienta DeepLearningSuite~\cite{detectionsuite} para llevar a cabo dicha evaluación.
+A la hora de crear cualquier sistema es necesario hacer múltiples experimentos que nos permitan llegar a ciertas conclusiones que nos sean útiles a la hora de mejorar el diseño. Dichos experimentos deben ser evaluados de alguna forma para comprobar la calidad de los resultados que obtenemos. En este trabajo en concreto se ha recurrido a la herramienta \textit{DeepLearningSuite}~\cite{detectionsuite} para llevar a cabo dicha evaluación.
 
-Con DeepLearningSuite se obtienen medidas de calidad tales como la precición y el recal medios (\acrshort{map} y \acrshort{mar}) de todas las clases en función de la \acrfull{iou}. En nuestro caso nos hemos quedado con las medidas que tienen un \acrshort{iou} como mínimo, pues se ha considerado que con ello se puede medir la calidad.
+Con \textit{DeepLearningSuite} se obtienen medidas de calidad tales como la precición y el recall medios (\acrshort{map} y \acrshort{mar}) de todas las clases en función de la \acrfull{iou}. En nuestro caso nos hemos quedado con las medidas que tienen un \acrshort{iou} como mínimo de 0.5, pues se ha considerado que es suficiente para medir la calidad.
 
-Este Capítulo vamos a dividirlo en tres secciones en las cuales hablaremos de lo siguiente:
+Este Capítulo vamos a dividirlo en cinco secciones en las cuales hablaremos de lo siguiente:
 \begin{itemize}
     \item Evaluación de diversas redes neuronales
     \item Evaluación ampliando Dataset
     \item Evaluación de Darknet con diferentes conjuntos  de imágenes
     \item Evaluación de Smart-Traffic-Sensor
+    \item Evaluación de los tiempos de procesamiento
 \end{itemize}
 
-A lo largo de este Capítulo se van a ver diferentes experimentos realizados y las medidas obtenidas con ellos en cuanto al \acrfull{map}, \acrfull{mar} con un mínimo de 0.5 \acrshort{iou} y el tiempo de procesaiento que dedica al realizar las detecciones.
+A lo largo de este Capítulo se van a ver diferentes experimentos realizados y las medidas obtenidas con ellos en cuanto al \acrfull{map}, \acrfull{mar} con un mínimo de 0.5 \acrshort{iou}, y el tiempo de procesamiento que dedica al realizar las detecciones.
 
-Hay que decir que todos los experimentos realizados con DeepLearningSuite se han hecho desde un ordenador sin GPU, por ello se verá que los tiempos medios de procesamiento son un poco elevados.
+Hay que decir que todos los experimentos realizados con \textit{DeepLearningSuite} se han hecho desde un ordenador sin GPU, por ello se verá que los tiempos medios de procesamiento son un poco elevados.
 
 \section{Evaluación de diversas redes neuronales}
  
-Tal y como se ha comentado en el Capítulo~\ref{cap.diseno} se han realizado pruebas con diferentes frameworks. En concreto con TensorFlow, Keras, y Darknet. Con ello se pretendía ver cual era el framework que mejores resultados obtenía además de dotar a Smart-Traffic-Sensor de la capacidad de admitir redes entrenadas con diversos frameworks.
+Tal y como se ha comentado en el Capítulo~\ref{cap.diseno} se han realizado pruebas con diferentes \textit{frameworks}. En concreto con \textit{TensorFlow}, \textit{Keras}, y \textit{Darknet}. Con ello se pretendía ver cual era el framework que mejores resultados obtenía, además de dotar a \textit{Smart-Traffic-Sensor} de la capacidad de admitir redes entrenadas con diversos \textit{frameworks}.
 
-Para llevar a cabo el entrenamiento en todos los frameworks mencionados se han empleado un total de 3173 imágenes, de las cuales 2700 eran de train y 473 de validación. Todas ellas en condiciones meteorológicas favorables y con buena calidad. La distribución de las muestras que posee la base de datos se indica en la Tabla~\ref{tabla_database}.
+Para llevar a cabo el entrenamiento en todos los \textit{frameworks} mencionados se han empleado un total de 3173 imágenes, de las cuales 2700 eran de \textit{train} y 473 de validación. Todas ellas en condiciones meteorológicas favorables y con buena calidad. La distribución de las muestras que posee la base de datos se indica en la Tabla~\ref{tabla_database}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -44,7 +45,7 @@ Total & 18920 \\ \hline
 
 En el entrenamiento se ha partido de modelos pre-entrenados. Para ver como el entrenamiento con nuestros datos consigue mejorar la capacidad de las redes a la hora de detectar objetos, se han evaluado las redes pre-entrenadas y las entrenadas. La evaluación se ha realizado sobre un conjunto de 303 imágenes, con muestras de diferentes clases de vehículos. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes con las que se ha realizado el test.
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -63,7 +64,7 @@ Total & 1260 \\ \hline
 \end{table}
 
 En la Tabla~\ref{tabla_redes_preentrenadas} se pueden ver los resultados obtenidos tras evaluar las redes pre-entrenadas con algunos datos de test.
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -79,7 +80,7 @@ Darknet  (darknet53.conv.74) & 0 & 0 & 14162 \\ \hline
 \end{table}
 
 Los resultados que se obtienen con nuestras redes entrenadas se pueden ver en la Tabla~\ref{tabla_redes_entrenadas}.
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -94,20 +95,20 @@ Darknet  & 0.8641 & 0.9385 & 16894\\ \hline
 \end{center}
 \end{table}
 
-Con toda esta información se puede ver claramente que es necesario re-entrenar las redes con nuestros datos para tener una cierta calidad, ya que cuanto más rico sea el dataset con el que se entrena más información podrá adquirir acerca de los objetos a detectar.
+Con toda esta información se puede ver claramente que es necesario re-entrenar las redes con nuestros datos para tener una cierta calidad, ya que cuanto más rico sea el \textit{dataset} con el que se entrena más información podrá adquirir acerca de los objetos a detectar.
 
-Con esta evaluación también se puede ver que los resultados que se obtienen por la red entrenada con Darknet son mejores que los de TensorFlow y Keras. Hay que recordar que con Darknet se implementó una red \acrshort{yolo}, con TensorFlow una SSD Mobilenet y con Keras una SSD VGR-16.
+Con esta evaluación también se puede ver que los resultados que se obtienen por la red entrenada con \textit{Darknet} son mejores que los de \textit{TensorFlow} y \textit{Keras}. Hay que recordar que con \textit{Darknet} se implementó una red \acrshort{yolo}, con \textit{TensorFlow} una \acrshort{ssd} Mobilenet y con \textit{Keras} una \acrshort{ssd} VGR-16.
 
-Viendo los tiempos de detección se puede ver que cuanto más tiempo tarda la red en realizar la detección mejores resultados obtiene. Esto puede deberse a que la red contiene más capas neuronales o que poseen mayor complejidas y por tanto mayor tiempo en el procesamiento.
+Viendo los tiempos de detección se puede ver que cuanto más tiempo tarda la red en realizar la detección mejores resultados obtiene. Esto puede deberse a que la red contiene más capas neuronales o que posee mayor complejidad y por tanto dedica mayor tiempo al procesamiento.
 
 
 \section{Evaluación ampliando Dataset}\label{sec.ampliado_dataset}
 
 Tras la evaluación incial, la primera cuestión que se nos plantea es el enriquecer nuestra base de datos con mas imágenes para volver a entrenar la red y ver si sus resultados mejoran. 
 
-La base de datos empleada en este caso para realizar el entrenamiento consta de 6717 imágenes, todas ellas de buena calidad y en buenas condiciones meteorológicas. De esas 6717 imágenes, 5323 se toman como train y 1394 como validación. En la Tabla~\ref{tabla_redes_database_mayor} se puede ver la distribución de las muestras de la base de datos.
+La base de datos empleada en este caso para realizar el entrenamiento consta de 6717 imágenes, todas ellas de buena calidad y en buenas condiciones meteorológicas. De esas 6717 imágenes, 5323 se toman como \textit{train} y 1394 como validación. En la Tabla~\ref{tabla_redes_database_mayor} se puede ver la distribución de las muestras de la base de datos.
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -127,9 +128,9 @@ Total & 36762 \\ \hline
 \end{center}
 \end{table}
 
-Con esta nueva base de datos se ha vuelto a realizar el entrenamiento para evaluar como afecta el enriquecimiento de los datos. Además se ha evaluado una red entrenada por Arvind Jayaraman~\cite{CarND_VehicleDetection} para la detección de vehículos con TensorFlow. Todo estos datos quedan recogidos en la Tabla~\ref{tabla_redes_entrenadas_mayor_database}
+Con esta nueva base de datos se ha vuelto a realizar el entrenamiento para evaluar como afecta el enriquecimiento de los datos. Además se ha evaluado una red entrenada por Arvind Jayaraman~\cite{CarND_VehicleDetection} para la detección de vehículos con \textit{TensorFlow}. Todo estos datos quedan recogidos en la Tabla~\ref{tabla_redes_entrenadas_mayor_database}
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -149,7 +150,7 @@ Con estos resultados se puede afirmar que el enriquecer la base de datos con may
 
 \section{Evaluación de Darknet con diferentes conjuntos  de imágenes}
 
-En este punto ya tenemos identificada cual es la red neuronal que mejores resultados obtiene (Darknet). Es con esta red con la que vamos a continuar haciendo experimentos, es decir, nos hemos centrado en esta red con el fin de mejorar nuestros resultados y llegar a un sistema lo más robusto posible.
+En este punto ya tenemos identificada cual es la red neuronal que mejores resultados obtiene (\textit{Darknet}). Es con esta red con la que vamos a continuar haciendo experimentos, es decir, nos hemos centrado en esta red con el fin de mejorar nuestros resultados y llegar a un sistema lo más robusto posible.
 
 Para poder mejorar nuestra red neuronal se ha incrementado la base de datos con imágenes de mala calidad y en condiciones meteorológicas desfavorables (lluvia y niebla). En las Figuras~\ref{fig.buena_calidad},~\ref{fig.malas_condiciones} y ~\ref{fig.mala_calidad} se pueden ver ejemplos de dichas imágenes.
 
@@ -177,9 +178,9 @@ Para poder mejorar nuestra red neuronal se ha incrementado la base de datos con 
 \end{center}
 \end{figure}
 
-En total se ha creado una base de datos final para el entrenamiento de 9246 imágenes, de las cuales 7401 se usaban como train y 1845 como validación. En la Tabla~\ref{base_datos_final_train} se puede observar la cantidad de imágenes que se han empleado en el entrenamiento en función del tipo de imagen (buena calidad, mala calidad y condiciones meteorológicas desfavorables).
+En total se ha creado una base de datos final para el entrenamiento de 9246 imágenes, de las cuales 7401 se usaban como \textit{train} y 1845 como validación. En la Tabla~\ref{base_datos_final_train} se puede observar la cantidad de imágenes que se han empleado en el entrenamiento en función de su tipo (buena calidad, mala calidad y condiciones meteorológicas desfavorables).
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -196,7 +197,7 @@ Mala Calidad & 510 & 127 & 637 \\ \hline
 
 La cantidad de muestras de cada clase que tienen las imágenes de buena calidad puede verse en la Tabla~\ref{tabla_redes_database_mayor}. Los tipos de muestras que hay en las imágenes de malas condiciones climatológicas pueden verse en la Tabla~\ref{tabla_redes_database_malas_condiciones} y los de las imágenes de mala calidad en la Tabla~\ref{tabla_redes_database_mala_calidad}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -214,7 +215,7 @@ Total & 8248 \\ \hline
 \end{center}
 \end{table}
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -237,19 +238,19 @@ Total & 1833 \\ \hline
 Para evaluar como afecta el hecho de incorporar imágenes con diferentes condiciones se ha realizado un estudio que engloba 3 etapas:
 
 \begin{enumerate}
-    \item En primer lugar se entreno la red neuronal con imágenes de buena calidad y se evaluo dicha red con  conjuntos de test de imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
-    \item Entrenamos la red neuronal con imágenes de buena calidad y malas condiciones climatológicas. La red resultante la evaluamos con imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
-    \item Finalmente realiamos un entrenamiento con toda la base de datos y lo evaluamos con imágenes de todos los tipos.
+    \item En primer lugar se entrenó la red neuronal con imágenes de buena calidad y se evaluó dicha red con  conjuntos de test de imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
+    \item Entrenámos la red neuronal con imágenes de buena calidad y malas condiciones climatológicas. La red resultante la evaluámos con imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
+    \item Finalmente realizamos un entrenamiento con toda la base de datos y lo evaluámos con imágenes de todos los tipos.
 \end{enumerate}
 
 \subsection{Red Neuronal con Imágenes de Buena Calidad}
 
-En una primer lugar tal y como se contaba en la Sección~\ref{sec.ampliado_dataset} se entreno nuestra red neuronal con un conjunto de un total de 6717 imágenes de buena calidad. Las imágenes de este conjunto incluían información acerca de las diferentes clases que contempla nuestro modelo. Se puede ver en la Tabla~\ref{tabla_redes_database_mayor} la cantidad de muestras de cada clase que contiene este conjunto.
+En un primer lugar tal y como se contaba en la Sección~\ref{sec.ampliado_dataset} se entrenó nuestra red neuronal con un conjunto de un total de 6717 imágenes de buena calidad. Las imágenes de este conjunto incluían información acerca de las diferentes clases que contempla nuestro modelo. Se puede ver en la Tabla~\ref{tabla_redes_database_mayor} la cantidad de muestras de cada clase que contiene este conjunto.
 
-El objetivo de entrenar la red neuronal con solo imágenes de buenas calidad es ver como se comporta frente a imágenes de diferentes condiciones. Para ello se ha evaluado este modelo con los 3 tipos de imágenes que tenemos (buena calidad, malas calidad y condiciones desfavorables) por separado y finalmente con un conjunto que incluía imágenes de todos los tipos.
+El objetivo de entrenar la red neuronal con solo imágenes de buena calidad es ver como se comporta frente a imágenes de diferentes condiciones. Para ello se ha evaluado este modelo con los 3 tipos de imágenes que tenemos (buena calidad, mala calidad y condiciones desfavorables) por separado y finalmente con un conjunto que incluía imágenes de todos los tipos.
 
 En la Tabla~\ref{tab_img_test_buenas} se muestra información acerca de las imágenes de test de buena calidad.
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -268,7 +269,7 @@ Nº Small-Truck & 22 \\ \hline
 \end{table}
 
 La Tabla~\ref{tab_img_test_malas_condiciones} nos da información acerca de las imágenes de test de malas condiciones meteorológicas empleadas en la evaluación.
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -286,7 +287,7 @@ Nº Van & 23 \\ \hline
 
 El conjunto de imágenes de test con mala calidad queda caracterizado en la Tabla~\ref{tab_img_test_mala_calidad}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -306,7 +307,7 @@ Nº Small-Truck & 9 \\ \hline
 
 Tras evaluar el modelo entrenado con todos los conjuntos de datos de test se han obtenido los resultados indicados en la Tabla~\ref{resultados_test_buenas}. Hay que decir que se ha evaluado los conjuntos de datos por separado y finalmente se ha hecho una evaluación a un grupo de imágenes de test, a las cuales hemos llamado \textit{Combinado} (incluyen 68 imágenes de cada tipo). Este grupo de imágenes llamado \textit{Combinado} se ve caracterizado en la Tabla~\ref{test_combinado}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -322,7 +323,7 @@ Combinado & 204 & 0.8311 & 0.8599\\ \hline
 \end{center}
 \end{table}
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -344,9 +345,9 @@ Observando los resultados se puede comprobar como la red entrenada se comporta p
 
 \subsection{Red Neuronal con Imágenes de Buena Calidad y Malas Condiciones Meteorológicas}
 
-Tras realizar la evaluación del modelo entrenado con imágenes de buena calidad se procedio a entrenar de nuevo el modelo incluyendo imágenes con condiciones climatológicas malas. Es decir, se ha entrenado el modelo con 6717 imágenes de buena calidad y 1892 imágenes con malas condiciones meteorológicas. Los resultados que se obtienen tras la evaluación pueden comprobarse en la Tabla~\ref{resultados_test_buenas_malas_condiciones}.
+Tras realizar la evaluación del modelo entrenado con imágenes de buena calidad se procedió a entrenar de nuevo el modelo incluyendo imágenes con condiciones climatológicas malas. Es decir, se ha entrenado el modelo con 6717 imágenes de buena calidad y 1892 imágenes con malas condiciones meteorológicas. Los resultados que se obtienen tras la evaluación pueden comprobarse en la Tabla~\ref{resultados_test_buenas_malas_condiciones}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -362,14 +363,14 @@ Combinado & 204 & 0.8188 & 0.8442\\ \hline
 \end{center}
 \end{table}
 
-El hecho de incluir imágenes con condiciones meteorológicas malas hace que el modelo sea capaz de funcionar en mejores condiciones con dicho tipo de imágenes. Además al tener estas imágenes de peor calidad debido a las malas condiciones beneficia al modelo a la hora de detectar vehículos en imágenes de mala calidad. Aunque también afecta a las imágenes de buena calidad, pues la calidad de la detección queda un poco reducida. Si nos fijamos en los resultados con el conjunto total son un pelín inferiores al modelo entrenado únicamente con imágenes de buena calidad, pero son bastante similares.
+El hecho de incluir imágenes con condiciones meteorológicas malas hace que el modelo sea capaz de funcionar en mejores condiciones con dicho tipo de imágenes. Además al tener estas imágenes de peor calidad debido a las malas condiciones meteorológicas beneficia al modelo a la hora de detectar vehículos en imágenes de mala calidad. Aunque también afecta a las imágenes de buena calidad, pues la calidad de la detección queda un poco reducida. Si nos fijamos en los resultados con el conjunto total son un pelín inferiores al modelo entrenado únicamente con imágenes de buena calidad, pero son bastante similares.
 
 
 \subsection{Red Neuronal con todo el conjunto de datos}
 
 Finalmente se ha entrenado el modelo con toda la base de datos. Esta base de datos tiene las características que se indican en las Tablas~\ref{base_datos_final_train},~\ref{tabla_redes_database_mayor}, ~\ref{tabla_redes_database_malas_condiciones} y ~\ref{tabla_redes_database_mala_calidad}. Los resultados que se obtienen tras la evaluación pueden verse en la Tabla~\ref{resultados_test_todas_img}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -385,43 +386,43 @@ Combinado & 204 & 0.8606 & 0.8899\\ \hline
 \end{center}
 \end{table}
 
-Al entrenar la red con toda la base de datos los resultados en cuanto a las imágenes de buena calidad quedan algo reducidos de nuevo. Pero en el caso de las imágenes de mala calidad y las de condiciones desfavorables los resultados mejoran respecto  a los experimentos anteriores. Consiguiendo así que la evaluación sobre un conjunto de datos de todos tipos quede mejorada respecto a las pruebas anteriores. 
+Al entrenar la red con toda la base de datos los resultados en cuanto a las imágenes de buena calidad quedan algo reducidos de nuevo. Pero en el caso de las imágenes de mala calidad y las de condiciones climatológicas desfavorables los resultados mejoran respecto  a los experimentos anteriores. Consiguiendo así que la evaluación sobre un conjunto de datos de todos los tipos quede mejorada respecto a las pruebas anteriores. 
 
 Con esto se puede ver que cuanto más diversidad tenga la base de datos mayor capacidad tendrá para detectar vehículos en diferentes escenarios. Es decir, enriquecer la base de datos con mayores casos hace que el sistema sea más robusto frente a cambios. 
 
 \section{Evaluación de Smart-Traffic-Sensor}
 
-Smart-Traffic-Sensor se basa principalmente en Deep Learning, pero lo combina con \acrshort{klt} cuando las detecciones realizadas por Deep Learning no son suficientes. Esto dota al sistema de mayor robustez. 
+\textit{Smart-Traffic-Sensor} se basa principalmente en \textit{Deep Learning}, pero lo combina con \acrshort{klt} cuando las detecciones realizadas por \textit{Deep Learning} no son suficientes. Esto dota al sistema de mayor robustez. 
 
-El objetivo de este punto es evaluar la calidad del sistema Smart-Traffic-Sensor y compararla con el sistema inicial del que se partía~\cite{redo_tesis}. En este sistema la carretera se dividía en una zona de entrada y otra de seguimiento. En la zona de entrada se confirmaba la detección de cada vehículo para posteriormente llevarle un seguimiento.  El sistema de detección que emplea se  basa en la detección del fondo para obtener las detecciones de los vehículos. Una vez pasan estos vehículos a la zona de seguimiento es cuando comienza a clasificarlos y emparejarlos. El seguimiento combina \acrshort{klt} con proximidad espacial al igual que se hace en Smart-Traffic-Sensor.
+El objetivo de este punto es evaluar la calidad del sistema \textit{Smart-Traffic-Sensor} y compararla con el sistema inicial del que se partía (\textit{Traffic-Monitor}~\cite{redo_tesis}). En este sistema la carretera se dividía en una zona de entrada y otra de seguimiento. En la zona de entrada se confirmaba la detección de cada vehículo para posteriormente llevarle un seguimiento.  El sistema de detección que emplea se  basa en la detección del fondo para obtener las detecciones de los vehículos. Una vez pasan estos vehículos a la zona de seguimiento es cuando comienza a clasificarlos y emparejarlos. El seguimiento combina \acrshort{klt} con proximidad espacial al igual que se hace en \textit{Smart-Traffic-Sensor}.
 
-Para la evaluación hemos empleado tres videos con condiciones diferentes (uno con buena calida, otro de lluvia y por último uno de mala calidad). DeepLearningSuite realiza evaluaciones de modelos entrenados sobre un conjunto de datos. En este caso no queremos evaluar el modelo sino el sistema global. Por ello se ha modificado DeepLearningSuite para poder evaluar muestras que se almacenen en un \textit{.txt}. 
+Para la evaluación hemos empleado tres videos con condiciones diferentes (uno con buena calida, otro de lluvia y por último uno de mala calidad). \textit{DeepLearningSuite} realiza evaluaciones de modelos entrenados sobre un conjunto de datos. En este caso no queremos evaluar el modelo sino el sistema global. Por ello se ha modificado \textit{DeepLearningSuite} para poder evaluar muestras que se almacenen en un \textit{.txt}. 
 
-En resumen la evaluación del sistema Smart-Traffic-Sensor se ha realizado siguiendo los siguientes pasos:
+En resumen la evaluación del sistema \textit{Smart-Traffic-Sensor} se ha realizado siguiendo los siguientes pasos:
 
 \begin{enumerate}
-    \item Se ejecuta Smart-Traffic-Sensor con un video y se guardan sus detecciones finales en archivos \textit{.txt} y sus respectivas imágenes.
+    \item Se ejecuta \textit{Smart-Traffic-Sensor} con un vídeo y se guardan sus detecciones finales en archivos \textit{.txt}, asi como sus respectivas imágenes.
     \item Nos quedamos con una parte de las detecciones e imágenes obtenidas. Por ejemplo cada 6 imágenes nos quedamos con una. Esto se hace pues sino tendríamos que evaluar una cantidad excesiva de imágenes.
-    \item Etiquetamos las imágenes almacenadas con labelImg~\cite{labelimg}. Pues necesitamos comparar las detecciones realizadas por Smart-Traffic-Sensor con alguna referencia.
-    \item Comparamos las detecciones obtenidas por Smart-Traffic-Sensor con las etiquetas. Para ello nos hemos apoyado en DeepLearningSuite.
+    \item Etiquetamos las imágenes almacenadas con \textit{labelImg}~\cite{labelimg}. Pues necesitamos comparar las detecciones realizadas por \textit{Smart-Traffic-Sensor} con alguna referencia.
+    \item Comparamos las detecciones obtenidas por \textit{Smart-Traffic-Sensor} con las etiquetas. Para ello nos hemos apoyado en \textit{DeepLearningSuite}.
 \end{enumerate}
 
 
-A continuación se muestran los resultados obtenidos para cada video con Smart-Traffic-Sensor, Traffic-Monitor~\cite{redo_tesis} y empleando únicamente el modelo entrenado.
+A continuación se muestran los resultados obtenidos para cada video con \textit{Smart-Traffic-Sensor}, \textit{Traffic-Monitor}~\cite{redo_tesis} y empleando únicamente el modelo entrenado.
 
-En primer lugar se evaluó un video de buena calidad, del cual podemos ver en la Figura~\ref{fig.video_buena_calidad} una de las detecciones realizadas por Smart-Traffic-Sensor.
+En primer lugar se evaluó un vídeo de buena calidad, del cual podemos ver en la Figura~\ref{fig.video_buena_calidad} una de las detecciones realizadas por \textit{Smart-Traffic-Sensor}.
 
 \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Experimentos/sts_buena.png}
-   \caption{Detecciones Smart-Traffic-Sensor Video Buena Calidad}
+   \caption{Detecciones Smart-Traffic-Sensor Vídeo Buena Calidad}
 	\label{fig.video_buena_calidad}
 \end{center}
 \end{figure}
 
-De este video se extrajo un total de 299 imágenes que se componen de las muestras que se indican en la Tabla~\ref{tabla_video_bueno}.
+De este vídeo se extrajo un total de 299 imágenes que se componen de las muestras que se indican en la Tabla~\ref{tabla_video_bueno}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -434,14 +435,14 @@ Nº Van & 145 \\ \hline
 Nº Truck & 71 \\ \hline
 Nº Small-Truck & 98 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test del Video de Buena Calidad}
+\caption{Imágenes de Test del Vídeo de Buena Calidad}
 \label{tabla_video_bueno}
 \end{center}
 \end{table}
 
-Los resultados obtenidos con el video de buena calidad se pueden ver en la Tabla~\ref{resultados_video_bueno}. Un video del funcionamiento de Smart-Traffic-Sensor se puede ver en \footnote{\url{https://www.youtube.com/watch?v=s0ozbxs0YmY&feature=youtu.be}}.
+Los resultados obtenidos con el vídeo de buena calidad se pueden ver en la Tabla~\ref{resultados_video_bueno}. Un vídeo del funcionamiento de \textit{Smart-Traffic-Sensor} se puede ver en \footnote{\url{https://www.youtube.com/watch?v=s0ozbxs0YmY&feature=youtu.be}}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -451,27 +452,27 @@ Smart-Traffic-Sensor & 0.8926 & 0.9009 \\ \hline
 Traffic-Monitor & 0.4374 & 0.5940 \\ \hline
 Redes Neuronales & 0.8316 & 0.8966\\ \hline
 \end{tabular}
-\caption{Resultados Video de Buena Calidad}
+\caption{Resultados Vídeo de Buena Calidad}
 \label{resultados_video_bueno}
 \end{center}
 \end{table}
 
-Observando los resultados en esta primera evaluación se puede verificar que el sistema que obtiene mejores resultados es el Smart-Traffic-Sensor. El hecho de combinar \acrshort{klt} con las detecciones realizadas mediante Deep Learning lo dota de mayor robustez. Esto se hace evidente si nos fijamos en los resultados que se obtienen mediante redes neuronales, con los cuales podemos ver que el hecho de complementarlo con \acrshort{klt} hace que el sistema mejore. No obstante los resultados que se obtienen mediante las redes neuronales son de muy buena calidad, demostrando su gran capacidad a la hora de detectar vehículos. El uso de \acrshort{klt} simplemente lo complementa en casos de oclusiones o vehículos que se vean muy pequeños debido a su lejania. Por el contrario los resultados que da Traffic-Monitor son un poco pobres si los comparamos con los conseguidos gracias a Smart-Traffic-Sensor. En las sucesivas pruebas que se han hecho con Traffic-Monitor se ha apreciado que no funciona bien con vehículos lejanos (en muchas ocasiones los coches los clasifica como motocicletas) y que en muchas ocasiones tiene dificultad para diferenciar entre coche y furgoneta. Cuando se trata de furgonetas pequeñas las confunde con coches. Esto se debe a que la clasificación se hace mediante modelos 3D, razón por la cual una furgoneta pequeña puede aproximarse más al modelo 3D de un coche que al de una furgoneta grande.
+Observando los resultados en esta primera evaluación se puede verificar que el sistema que obtiene mejores resultados es el \textit{Smart-Traffic-Sensor}. El hecho de combinar \acrshort{klt} con las detecciones realizadas mediante \textit{Deep Learning} lo dota de mayor robustez. Esto se hace evidente si nos fijamos en los resultados que se obtienen mediante redes neuronales, con los cuales podemos ver que el hecho de complementarlo con \acrshort{klt} hace que el sistema mejore. No obstante los resultados que se obtienen mediante las redes neuronales son de muy buena calidad, demostrando su gran capacidad a la hora de detectar vehículos. El uso de \acrshort{klt} simplemente lo complementa en casos de oclusiones o vehículos que se vean muy pequeños debido a su lejanía. Por el contrario los resultados que da \textit{Traffic-Monitor} son un poco pobres si los comparamos con los conseguidos gracias a \textit{Smart-Traffic-Sensor}. En las sucesivas pruebas que se han hecho con \textit{Traffic-Monitor} se ha apreciado que no funciona bien con vehículos lejanos (en muchas ocasiones los coches los clasifica como motocicletas) y que en muchas ocasiones tiene dificultad para diferenciar entre coche y furgoneta. Cuando se trata de furgonetas pequeñas las confunde con coches. Esto se debe a que la clasificación se hace mediante modelos 3D, razón por la cual una furgoneta pequeña puede aproximarse más al modelo 3D de un coche que al de una furgoneta grande.
 
 
-El segundo video que se ha evaluado es un video con condiciones meteorológicas desfavorables. En concreto se trata de un video en condiciones de lluvia. En la Figura~\ref{fig.video_malas_condiciones} se puede ver un ejemplo de Smart-Traffic-Sensor.
+El segundo vídeo que se ha evaluado es un vídeo con condiciones meteorológicas desfavorables. En concreto se trata de un vídeo en condiciones de lluvia. En la Figura~\ref{fig.video_malas_condiciones} se puede ver un ejemplo de \textit{Smart-Traffic-Sensor}.
 
 \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Experimentos/sts_malas_condiciones.png}
-   \caption{Detecciones Smart-Traffic-Sensor Video Malas Condiciones Meteorológicas}
+   \caption{Detecciones Smart-Traffic-Sensor Vídeo Malas Condiciones Meteorológicas}
 	\label{fig.video_malas_condiciones}
 \end{center}
 \end{figure}
 
-Con este video se han obtenido 138 imágenes que se componen tan solo de coches tal y como se indica en la Tabla~\ref{tabla_video_malas_condiciones}. Los videos que se obtuvieron en condiciones de lluvia no contenían ningún otro tipo de vehículo.
+Con este vídeo se han obtenido 138 imágenes que se componen tan solo de coches tal y como se indica en la Tabla~\ref{tabla_video_malas_condiciones}. Los vídeos que se obtuvieron en condiciones de lluvia no contenían ningún otro tipo de vehículo.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -480,14 +481,14 @@ Nº de Imágenes  & 138 \\
 Nº de Muestras Totales & 544\\ \hline
 Nº Car & 544 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test del Video de Malas Condiciones Meteorológicas}
+\caption{Imágenes de Test del Vídeo de Malas Condiciones Meteorológicas}
 \label{tabla_video_malas_condiciones}
 \end{center}
 \end{table}
 
-Los resultados obtenidos al evaluar el video de malas condiciones climatológicas se pueden observar en la Tabla~\ref{resultados_video_malas_condiciones}. Podemos ver como se comporta Smart-Traffic-Sensor con este video en \footnote{\url{https://www.youtube.com/watch?v=YxpfMtxIr_Q&feature=youtu.be}}.
+Los resultados obtenidos al evaluar el vídeo de malas condiciones climatológicas se pueden observar en la Tabla~\ref{resultados_video_malas_condiciones}. Podemos ver como se comporta \textit{Smart-Traffic-Sensor} con este vídeo en \footnote{\url{https://www.youtube.com/watch?v=YxpfMtxIr_Q&feature=youtu.be}}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -497,27 +498,27 @@ Smart-Traffic-Sensor & 0.9899 & 0.9926 \\ \hline
 Traffic-Monitor & 0.2407 & 0.3162 \\ \hline
 Redes Neuronales & 0.9659 & 0.9889\\ \hline
 \end{tabular}
-\caption{Resultados Video de Malas Condiciones Meteorológicas}
+\caption{Resultados Vídeo de Malas Condiciones Meteorológicas}
 \label{resultados_video_malas_condiciones}
 \end{center}
 \end{table}
 
-Recapitulando todos los resultados de nuevo se observa que Smart-Traffic-Sensor es el sistema que mejores resultados obtiene. A pesar de encontrarnos en condiciones de lluvia es capaz de funcionar y con muy buenos resultados. Con esta prueba se puede ver que Traffic-Monitor no es robusto ante cambios, pues no es capaz de funcionar correctamente con lluvia. Esto queda indicado en la tesis que describe Traffic-Monitor~\cite{redo_tesis}, en la cual se aclara que la aplicación funciona únicamente con buenas condiciones.
+Recapitulando todos los resultados de nuevo se observa que \textit{Smart-Traffic-Sensor} es el sistema que mejores resultados obtiene. A pesar de encontrarnos en condiciones de lluvia es capaz de funcionar y con muy buenos resultados. Con esta prueba se puede ver que \textit{Traffic-Monitor} no es robusto ante cambios, pues no es capaz de funcionar correctamente con lluvia. Esto queda indicado en la tesis que describe \textit{Traffic-Monitor}~\cite{redo_tesis}, en la cual se aclara que la aplicación funciona únicamente con buenas condiciones.
 
-El tercer video que se empleó para evaluar el sistema se trata de un video con mala calidad. En la Figura~\ref{fig.video_mala_calidad} se muestra un ejemplo de dicho video.
+El tercer vídeo que se empleó para evaluar el sistema se trata de un vídeo con mala calidad. En la Figura~\ref{fig.video_mala_calidad} se muestra un ejemplo de dicho vídeo.
 
 
 \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Experimentos/sts_mala_calidad.png}
-   \caption{Detecciones Smart-Traffic-Sensor Video Mala Calidad}
+   \caption{Detecciones Smart-Traffic-Sensor Vídeo Mala Calidad}
 	\label{fig.video_mala_calidad}
 \end{center}
 \end{figure}
 
-De este video se han obtenido 75 imágenes para poder realizar su evaluación. Estas imágenes se componen de coches, motocicletas y furgonetas tal y como se indica en la Tabla~\ref{tabla_video_mala_calidad}. 
+De este vídeo se han obtenido 75 imágenes para poder realizar su evaluación. Estas imágenes se componen de coches, motocicletas y furgonetas tal y como se indica en la Tabla~\ref{tabla_video_mala_calidad}. 
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -528,14 +529,14 @@ Nº Car & 72 \\ \hline
 Nº Motorcycle & 6 \\ \hline
 Nº Van & 31 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test del Video de Mala Calidad}
+\caption{Imágenes de Test del Vídeo de Mala Calidad}
 \label{tabla_video_mala_calidad}
 \end{center}
 \end{table}
 
-Los resultados obtenidos al evaluar el video de mala calidad se pueden observar en la Tabla~\ref{resultados_video_mala_calidad}. Se puede ver el comportamiento de Smart-Traffic-Sensor con este video en \footnote{\url{https://www.youtube.com/watch?v=WZLAyreBNyU&feature=youtu.be}}.
+Los resultados obtenidos al evaluar el vídeo de mala calidad se pueden observar en la Tabla~\ref{resultados_video_mala_calidad}. Se puede ver el comportamiento de \textit{Smart-Traffic-Sensor} con este vídeo en \footnote{\url{https://www.youtube.com/watch?v=WZLAyreBNyU&feature=youtu.be}}.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
@@ -545,21 +546,21 @@ Smart-Traffic-Sensor & 0.9439 & 0.9444 \\ \hline
 Traffic-Monitor & 0.4479 & 0.6303 \\ \hline
 Redes Neuronales & 0.9390 & 0.9300\\ \hline
 \end{tabular}
-\caption{Resultados Video de Mala Calidad}
+\caption{Resultados Vídeo de Mala Calidad}
 \label{resultados_video_mala_calidad}
 \end{center}
 \end{table}
 
-Con toda la información recapitulada se puede decir que Smart-Traffic-Sensor es robusto ante imágenes de mala calidad y en condiciones meteorológicas malas. Además es capaz de continuar realizando el seguimiento de los vehículos cuando estos se encuentran muy lejos.
-Evidentemente funciona mejor con vehículos próximos, pues es más sencillo detectarlos, pero aún asi es  capaz de detectarlos con gran calidad. Si nos fijamos en los resultados que se obtienen en los tres videos se puede comprobar que son mejores para videos de mala calidad y condiciones meteorológicas desfavorables que en el caso de buena calidad. Esto tiene su explicación, ya que las exigencias que le marcamos a los datos con buena calidad son mayores. Es decir, en los videos de mala calidad y condiciones meteorológicas malas  no esperamos que el sistema sea capaz de detectar vehículos lejanos, pues ni siquiera es sencillo para un ser humano poder clasificar dichos vehículos. Por ello la zona de evaluación que se marca no engloba vehículos que se encuentren muy lejos. A parte de esto, da la casualidad que en estos videos la cámara se encuentra a menor distancia de los vehículos que en el caso del video de buena calidad. Esto se hace evidente porque los vehículos que entran en la zona de evaluación tienen mayor tamaño que los que se pueden ver en el video de buena calidad.
+Con toda la información recapitulada se puede decir que \textit{Smart-Traffic-Sensor} es robusto ante imágenes de mala calidad y en condiciones meteorológicas malas. Además es capaz de continuar realizando el seguimiento de los vehículos cuando estos se encuentran muy lejos.
+Evidentemente funciona mejor con vehículos próximos, pues es más sencillo detectarlos, pero aún asi es  capaz de detectarlos con gran calidad. Si nos fijamos en los resultados que se obtienen en los tres vídeos se puede comprobar que son mejores para vídeos de mala calidad y condiciones meteorológicas desfavorables que en el caso de buena calidad. Esto tiene su explicación, ya que las exigencias que le marcamos a los datos con buena calidad son mayores. Es decir, en los vídeos de mala calidad y condiciones meteorológicas malas  no esperamos que el sistema sea capaz de detectar vehículos lejanos, pues ni siquiera es sencillo para un ser humano poder clasificar dichos vehículos. Por ello la zona de evaluación que se marca no engloba vehículos que se encuentren muy lejos. A parte de esto, da la casualidad que en estos vídeos la cámara se encuentra a menor distancia de los vehículos que en el caso del vídeo de buena calidad. Esto se hace evidente porque los vehículos que entran en la zona de evaluación tienen mayor tamaño que los que se pueden ver en el vídeo de buena calidad.
 
-Otro detalle es que en el video de buena calidad aparecen más clases de vehículos que en los otros casos, en los cuales la mayoría son coches. La base de datos con la que se ha entrenado la red neuronal posee mayor cantidad de coches que del resto de vehículos, es decir se encuentra desbalanceada. Esto nos lleva a que el modelo llegue a aprender mejor la categoria coche que el resto de categorias. No obstante, se ha apreciado que en todas las categorías se obtienen grandes resultados, exceptuando el caso de las motocicletas. Cuando avanzan los vehículos por la carretera se va reduciendo su tamaño, pues se van alejando. Las motocicletas son vehículos de menor tamaño que el resto de categorias, por ello a nada que avancen empezarán a tomar un tamaño muy reducido, haciendo muy dificil su clasificación. Por esta razón los resultados en cuanto a las motocicletas suelen ser peores a no ser que se encuentren próximos a la cámara y por tanto tengan mayores dimensiones.
+Otro detalle es que en el vídeo de buena calidad aparecen más clases de vehículos que en los otros casos, en los cuales la mayoría son coches. La base de datos con la que se ha entrenado la red neuronal posee mayor cantidad de coches que del resto de vehículos, es decir se encuentra desbalanceada. Esto nos lleva a que el modelo llegue a aprender mejor la categoría coche que el resto de categorías. No obstante, se ha apreciado que en todas las categorías se obtienen grandes resultados, exceptuando el caso de las motocicletas. Cuando avanzan los vehículos por la carretera se va reduciendo su tamaño, pues se van alejando. Las motocicletas son vehículos de menor tamaño que el resto de categorías, por ello a nada que avancen empezarán a tomar un tamaño muy reducido, haciendo muy difícil su clasificación. Por esta razón los resultados en cuanto a las motocicletas suelen ser peores a no ser que se encuentren próximos a la cámara y por tanto tengan mayores dimensiones.
 
-Para ver como se comporta el sistema frente a las diversas categorias se han obtenido resultados para cada categoria en el video de buena calidad y en el mala calidad con Smart-Traffic-Sensor. En el de condiciones meteorológicas desfavorable no se ha realizado, pues todos los vehículos que aparecían se correspondñian con la categoría coche.
+Para ver como se comporta el sistema frente a las diversas categorías se han obtenido resultados para cada categoría en el vídeo de buena calidad y en el de mala calidad con \textit{Smart-Traffic-Sensor}. En el de condiciones meteorológicas desfavorable no se ha realizado, pues todos los vehículos que aparecían se correspondían con la categoría coche.
 
-En la Tabla~\ref{resultados_categoria_video_buena_calidad} se pueden ver los resultados que se obtienen con el video de buena calidad y en la Tabla~\ref{resultados_categoria_video_mala_calidad} se pueden apreciar los resultados que nos da el video de mala calidad.
+En la Tabla~\ref{resultados_categoria_video_buena_calidad} se pueden ver los resultados que se obtienen con el vídeo de buena calidad y en la Tabla~\ref{resultados_categoria_video_mala_calidad} se pueden apreciar los resultados que nos da el vídeo de mala calidad.
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -571,12 +572,12 @@ Van & 0.8809 & 0.8897\\ \hline
 Truck & 0.9703 & 0.9718\\ \hline
 Small-Truck & 0.9604 & 0.9694\\ \hline
 \end{tabular}
-\caption{Resultados para las Diferentes Categorías en Video de Buena Calidad}
+\caption{Resultados para las Diferentes Categorías en Vídeo de Buena Calidad}
 \label{resultados_categoria_video_buena_calidad}
 \end{center}
 \end{table}
 
-\begin{table}[htbp][H] 
+\begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -586,7 +587,7 @@ Car & 1 & 1 \\ \hline
 Motorcycle & 0.8317 & 0.8333 \\ \hline
 Van & 1 & 1 \\ \hline
 \end{tabular}
-\caption{Resultados para las Diferentes Categorías en Video de Mala Calidad}
+\caption{Resultados para las Diferentes Categorías en Vídeo de Mala Calidad}
 \label{resultados_categoria_video_mala_calidad}
 \end{center}
 \end{table}
@@ -595,11 +596,11 @@ En ambos casos se hace evidente que la categoría motocicleta es la que peores r
 
 \section{Evaluación de los Tiempos de Procesamiento de las Redes}
 
-Tal y como se ha indicado todos los experimentos realizados con DeepLearningSuite se han hecho desde un ordenador sin GPU. Para saber si estas redes neuronales tienen un tiempo de procesamiento que nos permita trabajar en tiempo real con un ordenador por supuesto con GPU hemos empleado un servidor. Del cual hemos extraido los resultados con el fin de saber que nuestras redes son capacez de trabajar en tiempo real.
+Tal y como se ha indicado todos los experimentos realizados con \textit{DeepLearningSuite} se han hecho desde un ordenador sin GPU. Para saber si estas redes neuronales tienen un tiempo de procesamiento que nos permita trabajar en tiempo real con un ordenador por supuesto con GPU hemos empleado un servidor. Del cual hemos extraido los resultados con el fin de saber que nuestras redes son capacez de trabajar rápidamente.
 
 En la Tabla~\ref{tiempos} se pueden ver los resultados obtenidos.
 
-\begin{table}[htbp][H] 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -614,5 +615,5 @@ Darknet & 48 \\ \hline
 \end{center}
 \end{table}
 
-
+Los resultados que se obtienen respecto a los tiempos de procesamiento son bastante razonables y por supuesto permiten trabajar en tiempo real.
 
