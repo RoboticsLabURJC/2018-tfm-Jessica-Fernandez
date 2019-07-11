@@ -1,0 +1,45 @@
+\chapter{Conclusiones}\label{cap.conclusiones}
+
+A lo largo de la memoria se ha explicado todo el proyecto realizado. Se han abordado todos los pasos que se han llevado a cabo; desde el comienzo en el que se parte de la literatura de otros autores hasta los experimentos sobre nuestro propio sistema. Es decir, se ha dado una visión general de todo lo que se ha hecho para llegar a la aplicación \textit{Smart-Traffic-Sensor} actual.
+
+En este capítulo se recapitulan los objetivos planteados y el grado en el que se han satisfecho, las conclusiones a las que se ha llegado y las contribuciones principales de este TFM. Finalmente se plantearán sus posibles líneas futuras.
+
+\section{Conclusiones}
+
+Este trabajo parte de una versión previa denominada \textit{Traffic-Monitor}~\cite{traffic_monitor_redo}. En ella se plantea una solución clásica para la monitorización de vehículos. El objetivo principal de este TFM es mejorar los resultados respecto a los que se obtienen con \textit{Traffic-Monitor}. Este objetivo principal se ha alcanzado exitosamente programando una
+aplicación nueva, en C++, llamada \textit{Smart-Traffic-Sensor} que sustituye al motor algorítmico anterior de detección, clasificación y seguimiento por otro basado en redes neuronales. Esta aplicación ha sido validada experimentalmente y mejora objetivamente las prestaciones. Concretamente se plantearon cuatro  objetivos:
+\begin{itemize}
+    \item Realizar la monitorización haciendo uso de técnicas más actuales como \textit{Deep Learning}. Se ha reemplazado el antiguo sistema de detección basado en aprendizaje y substracción de fondo por una detección neuronal en la que se han probado varias redes diferentes, incluso en distintas plataformas y con diversos tipos de imágenes. Dichas plataformas empleadas son: \textit{Keras}, \textit{TensorFlow} y \textit{Darknet}.
+    \item Evolucionar hacia una clasificación basada en redes neuronales. Pues se partía de un sistema (\textit{TrafficMonitor}) que empleaba patrones volumétricos junto SVM para la clasificación de vehículos. Dicho sistema era capaz de distinguir entre 5 clases posibles (Motocicletas, Coches, Furgonetas, Autobuses y Camiones). En \textit{Smart-Traffic-Sensor} se ha incluido redes neuronales con el objetivo de clasificar los vehículos en función de 7 clases: Motocicletas, Coches, Furgonetas, Autobuses, Camiones Pequeños, Camiones y Camiones Cisterna.
+    \item Dotar al sistema de mayor robustez ante diversidad de imágenes tales como imágenes con mala calidad o con condiciones meteorológicas adversas. Esta mejora se ha conseguido gracias a la recopilacion de una extensa base de datos que incluía imágenes con condiciones meteorológicas difíciles o de baja calidad.
+    \item Se ha recopilado una base de datos para el entrenamiento y el test en función a tres fuentes: 
+    \begin{itemize}
+        \item 3460 imágenes de buena calidad de la base de datos de Redouane Kachach~\cite{traffic_monitor_lab}
+        \item 4994 imágenes de \acrfull{gram}~\cite{guerrero2013iwinac}, de las cuales 3646 eran de niebla y  1348 de condiciones normales.
+        \item 1320 imágenes de cámaras de tráfico en abierto obtenidas de forma online. De ellas 615 se trataban de situaciones de lluvia y 705 de imágenes con mala calidad
+    \end{itemize} 
+    Para su uso en el entrenamiento de las redes neuronales y por supuesto para el test, es necesario tener todas las imágenes etiquetadas. Este proceso se debe realizar manualmente haciendo uso de alguna herramienta que permita marcar las posiciones de los vehículos y sus clases. En este TFM se ha empleado labelImg~\cite{labelimg} para etiquetar todas las imágenes.
+\end{itemize}
+
+Los cuatro subobjetivos se han tenido en cuenta a lo largo de todo el trabajo, diseñando un sistema capaz de monitorizar vehículos basándonos principalmente en las detecciones que se obtienen mediante redes neuronales y dotándole de la capacidad de detectar vehículos en diferentes tipos de imágenes.
+Todo el sistema se ha analizado experimentalmente con la ayuda de la herramienta \textit{DetectionSuite}, que ofrece estadísticos como \acrshort{map} y \acrshort{mar}. Esta herramienta junto con la base de datos propia elaborada en este TFM ha permitido seleccionar la mejor red neuronal de todas las exploradas (la de YOLOv3), y comparar su rendimiento con otras técnicas del estado del arte y con la aplicación anterior.
+
+Tras evaluar nuestro trabajo se han podido extraer algunas conclusiones técnicas:
+\begin{itemize}
+    \item Cuanta más información empleamos en el entrenamiento, mayor versatilidad tendremos en las redes neuronales conseguidas.
+    \item El tamaño de los vehículos influye a la hora de realizar las detecciones. Cuanto más pequeños sean los vehículos mayor dificultad habrá para detectarlos. Esta cuestión afecta directamente a las motocicletas, las cuales de por si poseen menor tamaño. Este hecho hace que en cuanto se alejen un poco de la cámara su tamaño quede muy reducido, haciendo muy difícil su detección mediante redes neuronales.
+    \item Las clases de las que poseemos mayor cantidad de datos en el entrenamiento normalmente obtienen mejores resultados, pues se tiene mayor información acerca de ellas. Este hecho apunta a que enriqueciendo aún más la base de datos de entrenamiento con más muestras se pueden conseguir mejores resultados de detección y clasificación.
+\end{itemize}
+
+
+\section{Trabajos Futuros}
+
+Si bien este trabajo ha supuesto un paso adelante respecto de la versión anterior de la aplicación, abre también nuevas posibilidades de mejora y extensión de la funcionalidad. En esta sección se van a comentar posibles líneas futuras de este proyecto.
+
+\begin{enumerate}
+    \item La base de datos que se ha empleado solo tiene vehículos que se ven por su parte trasera. Por tanto todo el trabajo realizado solo se ha centrado en secuencias de vídeos en las que los vehículos se ven por su parte trasera. Esto podría extenderse a diversas posiciones de los vehículos, desde vehículos que se vean por la parte frontal hasta vehículos que se vean de forma lateral. Con ello se conseguiría enriquecer la base de  datos y por tanto obtener un modelo mucho más versatil que funcionara con cualquier disposición de los vehículos.
+    \item En este trabajo se han incluido imágenes con condiciones meteorológicas malas, pero solo de lluvia y niebla, pues no se consiguió obtener una base de datos con otras condiciones. Se deberían incluir imágenes con mayores condiciones de niebla, con nieve, con borrascas, etc. Es decir, condiciones mucho más adversas para ver si es capaz de seguir comportándose bien.
+    \item Otra línea posible es dar el paso hacia la detección de vehículos en condiciones nocturnas, aunque en esta cuestión sería necesario el uso de cámaras infrarrojas.
+    \item Otro punto interesante a explorar en cuanto a las redes neuronales empleadas, es diseñar una red propia, con la que poder hacer las detecciones y clasificaciones de los vehículos.
+    \item También se podría extender el sistema para que fuera capaz de detectar automáticamente desde las imágenes incidentes o situaciones de interés. Por ejemplo peatón en calzada, vehículo en dirección contraria, accidente, atasco, etc.
+\end{enumerate}{}
