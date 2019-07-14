@@ -8,9 +8,9 @@ Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunst
 
 Esta base de datos propia consta de:
 \begin{itemize}
-    \item La base de datos recopilada por Redouane Kachach en su tesis doctoral, para la aplicación \textit{TrafficMonitor}, que es antecesor directo de este TFM~\cite{traffic_monitor_lab}.
-    \item La base de datos \acrfull{gram} creada por R. Guerrero-Gomez-Olmedo, R. J. Lopez-Sastre, S. Maldonado-Bascon and A. Fernandez-Caballero~\cite{guerrero2013iwinac}. 
-    \item Imágenes recopiladas de cámaras en abierto de forma online durante este TFM.
+    \item La base de datos recopilada por Redouane Kachach en su tesis doctoral, para la aplicación \textit{TrafficMonitor}, que es antecesor directo de este TFM~\cite{traffic_monitor_lab}. Dicha base de datos consta de 3460 imágenes de buena calidad.
+    \item La base de datos \acrfull{gram} creada por R. Guerrero-Gomez-Olmedo, R. J. Lopez-Sastre, S. Maldonado-Bascon and A. Fernandez-Caballero~\cite{guerrero2013iwinac}. Esta base de datos está formada por imágenes extraídas de tres vídeos. El primer vídeo, llamado M-30 (7520 fotogramas), se grabó en un día soleado. El segundo, llamado M-30-HD (9390 fotogramas), se grabó en una ubicación similar pero durante un día nublado. El tercero, llamado Urban1 (23435 fotogramas) se grabó en una intersección concurrida. De esta gran base de datos se emplearon 3646 imágenes del vídeo M-30-HD y 1348 del vídeo M-30.
+    \item Imágenes recopiladas de cámaras en abierto de forma online durante este TFM. 615 se trataban de situaciones de lluvia y 705 de imágenes con mala calidad.
 \end{itemize} 
 
 Se ha tratado que la base de datos construida abarcara la mayor diversidad de vehículos posibles y en diferente tipos de escenarios. Hay que tener en cuenta que toda la base de datos tiene vehículos vistos por la parte trasera. En total consta de 9774 imágenes y está formada por 7 clases: \textit{Car}, \textit{Motorcycle}, \textit{Van}, \textit{Bus}, \textit{Truck}, \textit{Small-truck} y \textit{Tank-truck}.
@@ -53,13 +53,29 @@ Mala Calidad & 705\\ \hline
 \end{center}
 \end{table}
 
-En la Figura se pueden ver algunas imágenes de nuestra base de datos.FIGURAAA!!
-Hay que decir que todas las imágenes han sido etiquetadas a mano haciendo uso de la herramienta labelImg ~\cite{labelimg}, la cual permite guardar las etiquetas en archivos xml en formato PASCAL VOC (formato usado por ImageNet) o en formato YOLO en txt.
+En la Figura~\ref{fig.base_datos} se pueden ver algunas imágenes de nuestra base de datos.
+
+\begin{figure}[H]
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{figures/Diseno_global/base_datos.png}
+   \caption{Base de Datos}
+	\label{fig.base_datos}
+\end{center}
+\end{figure}
+
+Hay que decir que todas las imágenes han sido etiquetadas a mano haciendo uso de la herramienta labelImg ~\cite{labelimg}, la cual permite guardar las etiquetas en archivos xml en formato PASCAL VOC (formato usado por ImageNet) o en formato \acrshort{yolo} en txt.
 
 \section{Diseño de la Aplicación}
-DIAGRAMA  un diagrama de entradas y salidas, como si fuera caja negra. Después un diagrama de bloques donde repasas cuales son los bloques
-constituyentes de la aplicación y cómo se conectan entre sí!!!!!
-  
+
+Nuestra aplicación es una especie de caja negra donde entran fotogramas de una secuencia de video y salen dichas imágenes con los vehículos detectados e identificados en función del seguimiento y la clasificación. En la Figura~\ref{fig.caja_negra} se puede ver esta caja negra.
+
+\begin{figure}[H] 
+\begin{center}
+	\includegraphics[width=1\textwidth]{figures/Diseno_global/caja_negra.PNG}
+   \caption{Caja Negra}
+	\label{fig.caja_negra}
+\end{center}
+\end{figure}
 
 \textit{Smart-Traffic-Sensor} es un sistema que se realizó con el objetivo de monitorizar tráfico rodado en tiempo real. Esta monitorizacion consta de tres elementos principales:
 
@@ -69,15 +85,24 @@ constituyentes de la aplicación y cómo se conectan entre sí!!!!!
     \item Seguimiento de vehículos
 \end{itemize}
 
+En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que indica los elementos principales de los que se compone \textit{Smart-Traffic-Sensor}, es decir, en que se fundamenta para funcionar.
+
+\begin{figure}[H]
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/Diseno_global/diagrama_bloques.PNG}
+   \caption{Diagrama de Bloques}
+	\label{fig.diagrama_bloques}
+\end{center}
+\end{figure}
 
 Las detecciones y la clasificación van de la mano, pues se realizan con \textit{Deep Learning}. En concreto con una red de \acrshort{yolo}. Los vehículos que detectemos los clasificaremos en función a 7 clases:  \textit{car, motorcycle, van, bus, truck, small-truck} y \textit{tank-truck}. 
-El seguimiento se centra en la proximidad espacial, y si esta falla se utliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
+El seguimiento se centra en la proximidad espacial, y si esta falla se utIliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
 
-El sistema del que partíamos (\textit{Traffic-Monitor} ~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}.
+El sistema del que partíamos (\textit{Traffic-Monitor}~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}.
 
 \begin{figure}[H] 
 \begin{center}
-	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/zonas.png}
+	\includegraphics[width=0.5\textwidth]{figures/Diseno_global/zonas.jpg}
    \caption{Zonas de entrada y seguimiento}
 	\label{fig.zonas}
 \end{center}
@@ -85,11 +110,11 @@ El sistema del que partíamos (\textit{Traffic-Monitor} ~\cite{traffic_monitor_r
 
 En la zona de entrada se realizan las detecciones y en la de seguimiento es donde se lleva a cabo la clasificación y el tracking de los vehículos.
 
-Este concepto de separar zona de entrada y seguimiento va a perder relevancia en nuestro sistema, pues ya no va a ser necesario hacer esta distinción. Tendremos una única zona en la que se lleve a cabo la detección, la clasificación y el tracking. Vamos a continuar teniendo una zona marcada en la imagen para identificar en qué parte de la carretera queremos centrar nuestras detecciones (por si existiesen carriles de diferente sentido). A esta zona de detección, clasificación y seguimiento vamos a llamarle zona de evaluación. En la Figura ~\ref{fig.nueva_zona} se puede ver la zona  de evaluación.
+Este concepto de separar zona de entrada y seguimiento va a perder relevancia en nuestro sistema, pues ya no va a ser necesario hacer esta distinción. Tendremos una única zona en la que se lleve a cabo la detección, la clasificación y el \textit{tracking}. Vamos a continuar teniendo una zona marcada en la imagen para identificar en qué parte de la carretera queremos centrar nuestras detecciones (por si existiesen carriles de diferente sentido). A esta zona de detección, clasificación y seguimiento vamos a llamarle zona de evaluación. En la Figura ~\ref{fig.nueva_zona} se puede ver la zona  de evaluación.
 
 \begin{figure}[H] 
 \begin{center}
-	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/nueva_zona.png}
+	\includegraphics[width=0.5\textwidth]{figures/Diseno_global/nueva_zona.png}
    \caption{Zona Evaluación}
 	\label{fig.nueva_zona}
 \end{center}
@@ -100,12 +125,32 @@ Este trabajo se ha basado principalmente en el uso de \textit{Deep Learning} par
 
 A la hora de realizar el \textit{tracking} se hace uso de la proximidad espacial, pero esto se explicará con más detalle en las siguientes secciones.
 
+
 En resumen se puede decir que tenemos dos grandes bloques:
 \begin{itemize}
-    \item Detección y Clasificación de vehículos
-    \item Tracking de vehículos
+    \item Detección y Clasificación de vehículos: para llevarlo a cabo se invoca a una red \acrshort{yolo} sobre la imagen completa. Dicha red fue entrenada con una base de datos propia de 9246 imágenes, las cuales fueron etiquetadas a mano.   
+    \item Tracking de vehículos: se basa en la proximidad espacial para emparejar cada vehículo detectado con los vehículos detectados del instante anterior. Si un vehículo de los que está registrado no fuera detectado mediante \textit{Deep Learning} en el instante actual se haría uso de \acrshort{klt} para estimar su posición. \acrshort{klt} permite determinar el movimiento de un objeto dentro de una secuencia de imágenes.
 \end{itemize}
 
+El conjunto total de detección, clasificación y seguimiento de vehículos tarda 50 ms, con lo cual se podría esperar que la aplicación funcione a unos 20 fotogramas por segundo. Las pruebas fueron realizadas mediante un servidor por lo que el tiempo de actualización de los gráficos es mayor, obteniendo con ello que \textit{Smart-Traffic-Sensor} funciona a 10 fotogramas por segundo. No obstante esto debería probarse con un ordenador con GPU propia para ver realmente la velocidad a la que funciona. Todo esto se comentará más a fondo en el Capítulo \ref{cap.experimentos}.
+
+A continuación se muestran dos diagramas de flujo, en los cuales se indica el planteamiento que se ha llevado a cabo en \textit{Smart-Traffic-Sensor}. En el primer diagrama~\ref{fig.diagrama_flujo_blob} se indica los pasos que se realizan una vez hemos detectado un blob en la imagen. En el segundo~\ref{fig.diagrama_flujo_vehiculos} se muestra que es lo que se hace con los vehículos ya registrados, es decir, con los que se les está llevando un seguimiento.
+
+\begin{figure}[H] 
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{figures/Diseno_global/diagrama_flujo.png}
+   \caption{Diagrama de Flujo de  los Blobs Detectados}
+	\label{fig.diagrama_flujo_blob}
+\end{center}
+\end{figure}
+
+\begin{figure}[H] 
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{figures/Diseno_global/diagrama_flujo1.png}
+   \caption{Diagrama de Flujo de  los Vehículos Registrados}
+	\label{fig.diagrama_flujo_vehiculos}
+\end{center}
+\end{figure}
 
 \section{Detección y Clasificación}
 
@@ -172,11 +217,10 @@ Dada una imagen de entrada y un conjunto de etiquetas de \textit{ground truth}, 
 Para solucionar este desequilibrio \acrshort{ssd} hace dos cosas. En primer lugar, utiliza la \acrfull{nms} para agrupar \textit{bounding boxes} muy superpuestos en un solo \textit{bounding box}. En otras palabras, si cuatro \textit{bounding boxes} de formas, tamaños, etc. similares contienen el mismo objeto, el \acrshort{nms} conservará el que tenga la mayor confianza y descartará el resto. En segundo lugar, el modelo usa una técnica llamada minería negativa para equilibrar las clases durante el entrenamiento. En la minería negativa dura, solo se utiliza un subconjunto de los ejemplos negativos con la mayor pérdida de entrenamiento (es decir, falsos positivos) en cada iteración de entrenamiento. \acrshort{ssd} mantiene una relación de 3: 1 de negativos a positivos.
 
 
-Mobilenet emplea unas capas llamadas \textit{depthwise separable convolutions} en lugar de capas convolucionales para la clasificación. En una capa convolucional se extrae información mediante \textit{kernels} que recorren toda la imagen. Estos \textit{kernels} necesitan tener la misma profundidad que la imagen para ser aplicados, es decir, si tenemos una imagen RGB necesitaremos 3 \textit{kernels}, uno por cada canal de color. 
-Las capas \textit{depthwise separable convolutions} siguen un proceso diferentea las convolucionales: 
+Mobilenet emplea unas capas llamadas \textit{depthwise separable convolutions} en lugar de capas convolucionales para la clasificación. En una capa convolucional se extrae información mediante \textit{kernels} que recorren toda la imagen. Estos \textit{kernels} necesitan tener la misma profundidad que la imagen para ser aplicados, es decir, si tenemos una imagen RGB necesitaremos 3 \textit{kernels}, uno por cada canal de color. Las capas \textit{depthwise separable convolutions} siguen un proceso diferente a las convolucionales: 
 
 \begin{enumerate}
-    \item Realizan la operación \textit{depthwise convolution}, en la cual se aplican \textit{kernels} de igual profundidad que la imagen. Cada \textit{kernel} se emplea en cada canal de color por separado.
+    \item Realizan la operación \textit{depthwise convolution}, en la cual se aplican \textit{kernels} de igual profundidad que la imagen. Cada \textit{kernel} se aplica en cada canal de color por separado.
     \item Se lleva a cabo la operación \textit{pointwise convolution} en la cual se aplica un \textit{kernel} de 1x1xprofundidad de la imagen, con lo que se obtendrá así un único canal.
 \end{enumerate}
 
@@ -262,7 +306,7 @@ La regresión lineal consiste en minimizar $\sum_{i}\rho(r_i)$ , donde $r_i$  es
 
 Una vez tenemos información acerca de la orientación definiremos el área de búsqueda como una elipse que tiene como centro el mismo que el vehículo en \textit{t-1} y dirección la calculada con la Fórmula (~\ref{ec.regresion_lineal}).
 
-Los emparejamientos entre los vehículos detectados en el instante \textit{t} y los blob almacenados del instante \textit{t-1} se limita a los vehículos que caen dentro del área del círculo o la elipse que se obtiene en función de la posición del vehículo en el instante \textit{t-1}. En la Figura ~\ref{fig.area_vehiculo} se puede ver la evolución que sufre el área alrededor del vehículo a medida que avanza.
+Los emparejamientos entre los vehículos detectados en el instante \textit{t} y los blobs almacenados del instante \textit{t-1} se limita a los vehículos que caen dentro del área del círculo o la elipse que se obtiene en función de la posición del vehículo en el instante \textit{t-1}. En la Figura ~\ref{fig.area_vehiculo} se puede ver la evolución que sufre el área alrededor del vehículo a medida que avanza.
 
  \begin{figure}[H] 
 \begin{center}
@@ -293,13 +337,24 @@ Un blob 2D cuyo centro es $B(x,y)$ se encontrará dentro de la elipse  $C_{xc,yc
    \left(\frac{cos(C_\omega)(B_x - C_{x_c}) + sin(C_\omega)(B_y - C_{y_c})}{a} \right)^2 + \left(\frac{cos(C_\omega)(B_y - C_{y_c}) - sin(C_\omega)(B_x - C_{x_c})}{b} \right)^2 \leq 1
 \end{equation}
 
-$a_x$ y $a_y$ son los componentes del vector de orientación. En la Figura ~\ref{fig.emparejamiento_blob} se puede ver como se realiza el \textit{tracking} entre dos \textit{blob} consecutivos. 
+$a_x$ y $a_y$ son los componentes del vector de orientación. En la Figura ~\ref{fig.emparejamiento_blob} se puede ver cómo se realiza el \textit{tracking} entre dos \textit{blobs} consecutivos. 
 
  \begin{figure}[H] 
 \begin{center}
    \includegraphics[width=0.7\textwidth]{figures/Diseno_global/emparejamiento_blob.png}
    \caption{Seguimiento con proximidad espacial}
 	\label{fig.emparejamiento_blob}
+\end{center}
+\end{figure}
+
+
+En la Figura~\ref{fig.proximidad_espacial} se muestra un ejemplo de \textit{Smart-Traffic-Sensor} donde se ve como se realiza el seguimiento de dos vehículos con proximidad espacial. El vehículo identificado como 2 en la imagen del instante t-1 se asocia al vehículo que se encuentra más cercano a su posición en la imagen del instante t. Lo mismo ocurre con el vehículo 3.
+
+ \begin{figure}[H] 
+\begin{center}
+   \includegraphics[scale=0.3]{figures/Diseno_global/proximidad_espacial.png}
+   \caption{Seguimiento con proximidad espacial \textit{Smart-Traffic-Sensor}}
+	\label{fig.proximidad_espacial}
 \end{center}
 \end{figure}
 
@@ -321,7 +376,19 @@ El seguimiento se basa principalmente en la proximidad espacial pero se hará us
 
 Si no se detecta un vehículo ya sea porque haya alguna oclusión o se encuentre muy lejos, se empleará \acrshort{klt}, pues se ha visto que funciona incluso ante oclusiones durante un pequeño número de fotogramas consecutivos.
 
-Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1} , \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. A cotinuación se va a explicar más en detalle \acrshort{klt}.
+Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1} , \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. 
+
+Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver como a pesar de haber una oclusión se sigue detectando el vehículo. En este caso \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
+
+ \begin{figure}[H] 
+\begin{center}
+   \includegraphics[scale=0.5]{figures/Diseno_global/klt_deteccion.png}
+   \caption{Seguimiento con KLT \textit{Smart-Traffic-Sensor}}
+	\label{fig.klt_deteccion}
+\end{center}
+\end{figure}
+
+A continuación se va a explicar más en detalle \acrshort{klt}.
 
 Jean-Yves Bouguet~\cite{klt_bouguet} hicieron una implementación de \acrshort{klt} en la cual aplicaban \acrshort{klt} de forma recursiva sobre una pirámide de imágenes. Esta misma implementación es la que se ha empleado en este trabajo. 
 
@@ -372,19 +439,71 @@ En la Figura ~\ref{fig.klt_piramidal} se puede ver cómo funciona \acrshort{klt}
 Gracias al empleo de \acrshort{klt} piramidal se pueden estimar grandes desplazamientos con un tamaño de ventana muy pequeño.
 
 
-
-\subsection{Resumen General del Sistema}
-
-
-
-
-
-
 \section{Estimación de la Velocidad}
+
+Derivado del seguimiento de vehículos \textit{Smart-Traffic-Sensor} ofrece la funcionalidad de estimar la velocidad media que tienen estos vehículos durante su seguimiento.
 
 \textit{Smart-Traffic-Sensor} tiene opciones para configurar la cámara, es decir para realizar su calibración. Al tener información de la cámara empleada tendremos información 3D de la imagen. Es decir podemos realizar una proyección al mundo 3D de nuestros puntos en la imagen.
 
 Para calcular la velocidad sólo necesitamos conocer la distancia que ha recorrido el vehículo y el tiempo que ha tardado en hacerlo. Disponemos de una zona de evaluación por la cual discurren los vehículos, por tanto podemos saber cuánta distancia recorre por dicha zona de evaluación, y el tiempo que tarda en hacerlo. Para calcular la distancia tenemos que calcular la posición 3D de los vehículos y con ella hacer su diferencia. Esto se puede llevar a cabo haciendo uso de su homografía, la cual podemos estimar gracias a que conocemos los parámetros de la cámara.
 
+\section{Interfaz Gráfica de la Aplicación}
+
+La interfaz gráfica del proyecto nos da información acerca de lo que sucede en el vídeo que estamos monitorizando, además de mostrarnos en todo momento una ventana en la que se ve el vídeo que estamos monitorizando.
+
+Esta interfaz gráfica tiene dos partes principales:
+\begin{itemize}
+    \item Una ventana denominada \textit{Input Video} en la que se ve el vídeo que evaluamos y su monitorizacion (detecciones, clasificación y seguimiento). Un ejemplo de esta ventana puede verse en la Figura~\ref{fig.input_video}.
+     \begin{figure}[H] 
+    \begin{center}
+    	\includegraphics[scale=0.4]{figures/Diseno_global/sts_buena.png}
+       \caption{Ventana \textit{Input Video}}
+    	\label{fig.input_video}
+    \end{center}
+    \end{figure}
+    \item La interfaz llamada \textit{Smart-Traffic-Sensor}, la cual controla toda nuestra aplicación y nos muestra información acerca de lo que se va registrando de la monitorización. Dicha ventana se puede ver en la Figura~\ref{fig.interfaz_sts}.
+     \begin{figure}[H] 
+    \begin{center}
+    	\includegraphics[scale=0.5]{figures/Diseno_global/interfaz_grafica.png}
+       \caption{Interfaz \textit{
+       Smart-Traffic-Sensor}}
+    	\label{fig.interfaz_sts}
+    \end{center}
+    \end{figure}
+\end{itemize}
+
+La interfaz \textit{Smart-Traffic-Sensor} nos ofrece diversas funcionalidades para modificar lo que se muestra en la ventana \textit{Input Video}, nos permite cambiar el método de detección, clasificación y seguimiento, además de mostrarnos información acerca de los vehículos que se están monitorizando.
+
+A contiuación se va a explicar brevemente la funcionalidad de los botones que aplican en nuestro método, pues algunos solo aplican al funcionamiento del antiguo \textit{Traffic-Monitor}:
+\begin{itemize}
+    \item \textit{Play} permite detener y poner en marcha la ejecución del vídeo.
+    \item \textit{Save} nos ofrece la posibilidad de guardar información acerca de la zona de evaluación, es decir, guardar información acerca del tamaño y los puntos en los que se encuentra la zona de evaluación.
+    \item \textit{Classify} muestra los blobs y su clase (siempre que esté también activo \textit{Show Categories}).
+    \item \textit{Proximity Tracking}, \textit{KLT tracking}, \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} permiten cambiar de método para la detección, clasificación y seguimiento. \textit{Proximity Tracking}, \textit{KLT tracking} pertenecen al algoritmo que desarrollo Redouane en su tesis~\cite{redo_tesis}. Con \textit{Proximity Tracking} se emplea únicamente proximidad espacial para el seguimiento y en \textit{KLT tracking} se incluye \acrshort{klt} para los casos en los que la detección es insuficiente. Con \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} se activa el método desarrollado en este trabajo. La única diferencia entre ellos es la plataforma de detección y clasificación.
+    \item \textit{Show box} muestra el blob completamente pintado de verde. Solo aplicará si no está activo \textit{Classify}. En la Figura~\ref{fig.show_box} se puede ver un ejemplo.
+        \begin{figure}[H] 
+    \begin{center}
+    	\includegraphics[scale=0.35]{figures/Diseno_global/show_box.png}
+       \caption{\textit{Show box} activo}
+    	\label{fig.show_box}
+    \end{center}
+    \end{figure}
+    \item \textit{Show Categories} nos muestra la clase del vehículo monitorizado. Para que muestre la clase debe estar también activado \textit{Classify}.
+    \item \textit{Show tracking zone} oculta o muestra la zona de evaluación.
+    \textit{Show tracking info} nos permite ver en \textit{Input Video} toda la información de los vehículos monitorizados.
+\end{itemize}
+
+La interfaz también muestra un histórico de los vehículos monitorizados y una estadística total de la cantidad de vehículos de cada clase que han sido registrados. Esto puede verse en la Figura~\ref{fig.info_vehicles}.
+
+    
+Con todo ello tenemos una interfaz que nos muestra información acerca de los vehículos monitorizados muy completa.
 
 
+    \begin{figure}[H] 
+    \begin{center}
+    	\includegraphics[scale=0.6]{figures/Diseno_global/info.png}
+       \caption{Información de los Vehículos Monitorizados}
+    	\label{fig.info_vehicles}
+    \end{center}
+    \end{figure}
+    
