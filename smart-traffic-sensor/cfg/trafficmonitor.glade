@@ -933,7 +933,7 @@
         </child>
         <child>
           <object class="GtkCheckButton" id="cnn_tracking">
-            <property name="label" translatable="yes">CNN Tracking</property>
+            <property name="label" translatable="yes">TensorFlow Tracking</property>
             <property name="width_request">122</property>
             <property name="height_request">37</property>
             <property name="visible">True</property>

@@ -653,12 +653,12 @@ void DeepLearningTracker::process_detected_blobs_deep_learning(IplImage* frame,
                {
 		  Vehicle* curr_vehicle = static_cast<Vehicle*> (blob);
                    fs <<curr_vehicle->get_category()<<" "<< blob->get_rect().x<< " "<< blob->get_rect().y<<" "<< blob->get_rect().width<<" "<< blob->get_rect().height<<" "<<blob->get_probability()<<endl;
-                  /*LOG(" Followed by blob %d size(%d:%d) pos(%d:%d) (now is ocluded!)\n"
+                  LOG(" Followed by blob %d size(%d:%d) pos(%d:%d) (now is ocluded!)\n"
                       ,blob->get_id()
                       ,blob->get_rect().width
                       ,blob->get_rect().height
                       ,blob->get_2d_center().x
-                      ,blob->get_2d_center().y);*/
+                      ,blob->get_2d_center().y);
 
 
                   blob->ocluded = true;
