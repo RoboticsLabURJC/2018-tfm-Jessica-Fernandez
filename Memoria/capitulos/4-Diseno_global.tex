@@ -6,7 +6,51 @@ En este capítulo se hace una descripción del sistema desarrollado para llevar 
 
 Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y con diferentes iluminaciones, necesitaremos entrenar el modelo neuronal con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes \textit{datasets} públicos con el fin de permitir el entrenamiento de redes neuronales. Para el caso de la detección de vehículos hay pocos \textit{datasets}, por ello ha sido necesario crear una base de datos propia que tuviera un número suficiente de muestras y una variación amplia de tipos de escenarios, de vehículos, condiciones de luz, etc.
 
-Esta base de datos propia consta de:
+Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset Reducido}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 son para el entrenamiento de la red neuronal y 303 para test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
+
+La distribución de las muestras que poseen las imágenes empleadas para el entrenamiento (3476 imágenes) se indica en la Tabla~\ref{tabla_database}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 15798 \\ \hline
+Motorcycle & 143 \\ \hline
+Van & 1437 \\ \hline
+Bus & 274 \\ \hline
+Truck & 765 \\ \hline
+Small-Truck & 400 \\ \hline
+Tank-Truck & 103 \\ \hline
+Total & 18920 \\ \hline
+\end{tabular}
+\caption{\textit{Dataset Reducido}. Imágenes para el Entrenamiento}
+\label{tabla_database}
+\end{center}
+\end{table}
+
+Tal y como ya se ha dicho de las 3476 imágenes de \textit{Dataset Reducido}, 303 eran de test. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes de test.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 922 \\ \hline
+Motorcycle & 19 \\ \hline
+Van & 125 \\ \hline
+Truck & 82 \\ \hline
+Small-Truck & 112 \\ \hline
+Total & 1260 \\ \hline
+\end{tabular}
+\caption{\textit{Dataset Reducido}. Imágenes de Test}
+\label{tabla_datos_primera_evaluacion}
+\end{center}
+\end{table}
+
+Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una base de datos de mayor tamaño denominada \textit{Dataset Final}. Esta base de datos propia consta de:
 \begin{itemize}
     \item La base de datos recopilada por Redouane Kachach en su tesis doctoral, para la aplicación \textit{TrafficMonitor}, que es antecesor directo de este TFM~\cite{traffic_monitor_lab}. Dicha base de datos consta de 3460 imágenes de buena calidad.
     \item La base de datos \acrfull{gram} creada por R. Guerrero-Gomez-Olmedo, R. J. Lopez-Sastre, S. Maldonado-Bascon and A. Fernandez-Caballero~\cite{guerrero2013iwinac}. Esta base de datos está formada por imágenes extraídas de tres vídeos. El primer vídeo, llamado M-30 (7520 fotogramas), se grabó en un día soleado. El segundo, llamado M-30-HD (9390 fotogramas), se grabó en una ubicación similar pero durante un día nublado. El tercero, llamado Urban1 (23435 fotogramas) se grabó en una intersección concurrida. De esta gran base de datos se emplearon 3646 imágenes del vídeo M-30-HD y 1348 del vídeo M-30.
@@ -62,6 +106,140 @@ En la Figura~\ref{fig.base_datos} se pueden ver algunas imágenes de nuestra bas
 	\label{fig.base_datos}
 \end{center}
 \end{figure}
+
+De estas 9774 imágenes una parte se empleó en el entrenamiento y otra en el test. En la Tabla~\ref{tabla_distribucion_base_datos} se muestra la distribución de imágenes en función de \textit{train} y test.
+
+\begin{table}[H] 
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Tipo & Imágenes de Train & Imágenes de Test  \\ 
+\hline \hline
+Buena Calidad & 6717 & 389  \\ \hline
+Malas Condiciones Meteorológicas & 1892 & 71 \\ \hline
+Mala Calidad  & 637 & 68  \\ \hline
+Total & 9246 & 528 \\ \hline
+\end{tabular}
+\caption{Distribución Base de Datos}
+\label{tabla_distribucion_base_datos}
+\end{center}
+\end{table}
+
+Para el entrenamiento de la red neuronal la base de datos de entrenamiento se dividió en \textit{train} y validación. De las 9246 imágenes, 7401 se usaban como \textit{train} y 1845 como validación. En la Tabla~\ref{base_datos_final_train} se puede observar la cantidad de imágenes que se han empleado en el entrenamiento en función de su tipo (buena calidad, mala calidad y condiciones meteorológicas desfavorables).
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Tipo  & Imágenes de Train & Imágenes de Validación & Total \\
+\hline \hline
+Buena Calidad & 5323 &  1394 & 6717 \\ \hline
+Condiciones Meteorológicas malas & 1568 & 324 & 1892 \\ \hline
+Mala Calidad & 510 & 127 & 637 \\ \hline
+Total & 7401 & 1845 & 9246 \\ \hline
+\end{tabular}
+\caption{Base de Datos del Entrenamiento}
+\label{base_datos_final_train}
+\end{center}
+\end{table}
+
+La cantidad de muestras de cada clase que tienen las imágenes de buena calidad puede verse en la Tabla~\ref{tabla_redes_database_mayor}. Los tipos de muestras que hay en las imágenes de malas condiciones climatológicas pueden verse en la Tabla~\ref{tabla_redes_database_malas_condiciones} y los de las imágenes de mala calidad en la Tabla~\ref{tabla_redes_database_mala_calidad}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 6921 \\ \hline
+Motorcycle & 335 \\ \hline
+Van & 709 \\ \hline
+Bus & 100 \\ \hline
+Small-Truck & 183 \\ \hline
+Total & 8248 \\ \hline
+\end{tabular}
+\caption{Características de la Base de Datos con condiciones climatológicas desfavorables}
+\label{tabla_redes_database_malas_condiciones}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 1571 \\ \hline
+Motorcycle & 21 \\ \hline
+Van & 56 \\ \hline
+Bus & 27 \\ \hline
+Truck & 82 \\ \hline
+Small-Truck & 60 \\ \hline
+Tank-truck & 16 \\ \hline
+Total & 1833 \\ \hline
+\end{tabular}
+\caption{Características de la Base de Datos de Mala Calidad}
+\label{tabla_redes_database_mala_calidad}
+\end{center}
+\end{table}
+
+Las imágenes de test incluyen muestras de buena calidad, de malas condiciones climatológicas y de mala calidad. A continuación se muestra información acerca de cada tipo de conjunto.
+
+En la Tabla~\ref{tab_img_test_buenas} se muestra información acerca de las imágenes de test de buena calidad.
+\begin{table}[H] 
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Nº de Imágenes  & 389 \\
+\hline \hline
+Nº de Muestras Totales & 1657\\ \hline
+Nº Car & 1463 \\ \hline
+Nº Motorcycle & 9 \\ \hline
+Nº Van & 155 \\ \hline
+Nº Truck & 8 \\ \hline
+Nº Small-Truck & 22 \\ \hline
+\end{tabular}
+\caption{Imágenes de Test de Buena Calidad}
+\label{tab_img_test_buenas}
+\end{center}
+\end{table}
+
+La Tabla~\ref{tab_img_test_malas_condiciones} nos da información acerca de las imágenes de test de malas condiciones meteorológicas empleadas en la evaluación.
+\begin{table}[H] 
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Nº de Imágenes  & 71 \\
+\hline \hline
+Nº de Muestras Totales & 287\\ \hline
+Nº Car & 263 \\ \hline
+Nº Motorcycle & 1 \\ \hline
+Nº Van & 23 \\ \hline
+\end{tabular}
+\caption{Imágenes de Test de Malas Condiciones Meteorológicas}
+\label{tab_img_test_malas_condiciones}
+\end{center}
+\end{table}
+
+El conjunto de imágenes de test con mala calidad queda caracterizado en la Tabla~\ref{tab_img_test_mala_calidad}.
+
+\begin{table}[H] 
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Nº de Imágenes  & 68 \\
+\hline \hline
+Nº de Muestras Totales & 199\\ \hline
+Nº Car & 176 \\ \hline
+Nº Motorcycle & 3 \\ \hline
+Nº Van & 11 \\ \hline
+Nº Small-Truck & 9 \\ \hline
+\end{tabular}
+\caption{Imágenes de Test de Mala Calidad}
+\label{tab_img_test_mala_calidad}
+\end{center}
+\end{table}
+
 
 Hay que decir que todas las imágenes han sido etiquetadas a mano haciendo uso de la herramienta labelImg ~\cite{labelimg}, la cual permite guardar las etiquetas en archivos xml en formato PASCAL VOC (formato usado por ImageNet) o en formato \acrshort{yolo} en txt.
 

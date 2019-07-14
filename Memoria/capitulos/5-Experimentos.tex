@@ -21,47 +21,9 @@ Hay que decir que todos los experimentos realizados con \textit{DeepLearningSuit
  
 Tal y como se ha comentado en el Capítulo~\ref{cap.diseno} se han realizado pruebas con diferentes \textit{frameworks}. En concreto con \textit{TensorFlow}, \textit{Keras}, y \textit{Darknet}. Con ello se pretendía ver cual era el framework que mejores resultados obtenía, además de dotar a \textit{Smart-Traffic-Sensor} de la capacidad de admitir redes entrenadas con diversos \textit{frameworks}.
 
-Para llevar a cabo el entrenamiento en todos los \textit{frameworks} mencionados se han empleado un total de 3173 imágenes, de las cuales 2700 eran de \textit{train} y 473 de validación. Todas ellas en condiciones meteorológicas favorables y con buena calidad. La distribución de las muestras que posee la base de datos se indica en la Tabla~\ref{tabla_database}.
+Para llevar a cabo el entrenamiento en todos los \textit{frameworks} mencionados se han empleado un total de 3173 imágenes, de las cuales 2700 eran de \textit{train} y 473 de validación. Todas ellas en condiciones meteorológicas favorables y con buena calidad. 
 
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Clases & Muestras \\
-\hline \hline
-Car & 15798 \\ \hline
-Motorcycle & 143 \\ \hline
-Van & 1437 \\ \hline
-Bus & 274 \\ \hline
-Truck & 765 \\ \hline
-Small-Truck & 400 \\ \hline
-Tank-Truck & 103 \\ \hline
-Total & 18920 \\ \hline
-\end{tabular}
-\caption{Muestras de la Base de Datos del 1º entrenamiento}
-\label{tabla_database}
-\end{center}
-\end{table}
-
-En el entrenamiento se ha partido de modelos pre-entrenados. Para ver como el entrenamiento con nuestros datos consigue mejorar la capacidad de las redes a la hora de detectar objetos, se han evaluado las redes pre-entrenadas y las entrenadas. La evaluación se ha realizado sobre un conjunto de 303 imágenes, con muestras de diferentes clases de vehículos. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes con las que se ha realizado el test.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Clases & Muestras \\
-\hline \hline
-Car & 922 \\ \hline
-Motorcycle & 19 \\ \hline
-Van & 125 \\ \hline
-Truck & 82 \\ \hline
-Small-Truck & 112 \\ \hline
-Total & 1260 \\ \hline
-\end{tabular}
-\caption{Muestras de los datos de Test de la primera evaluación}
-\label{tabla_datos_primera_evaluacion}
-\end{center}
-\end{table}
+En el entrenamiento se ha partido de modelos pre-entrenados. Para ver como el entrenamiento con nuestros datos consigue mejorar la capacidad de las redes a la hora de detectar objetos, se han evaluado las redes pre-entrenadas y las entrenadas. La evaluación se ha realizado sobre un conjunto de 303 imágenes, con muestras de diferentes clases de vehículos. 
 
 En la Tabla~\ref{tabla_redes_preentrenadas} se pueden ver los resultados obtenidos tras evaluar las redes pre-entrenadas con algunos datos de test.
 \begin{table}[H] 
@@ -178,62 +140,7 @@ Para poder mejorar nuestra red neuronal se ha incrementado la base de datos con 
 \end{center}
 \end{figure}
 
-En total se ha creado una base de datos final para el entrenamiento de 9246 imágenes, de las cuales 7401 se usaban como \textit{train} y 1845 como validación. En la Tabla~\ref{base_datos_final_train} se puede observar la cantidad de imágenes que se han empleado en el entrenamiento en función de su tipo (buena calidad, mala calidad y condiciones meteorológicas desfavorables).
 
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|l|l|l|l|}
-\hline
-Tipo  & Imágenes de Train & Imágenes de Test & Total \\
-\hline \hline
-Buena Calidad & 5323 &  1394 & 6717 \\ \hline
-Condiciones Meteorológicas malas & 1568 & 324 & 1892 \\ \hline
-Mala Calidad & 510 & 127 & 637 \\ \hline
-\end{tabular}
-\caption{Base de Datos Final}
-\label{base_datos_final_train}
-\end{center}
-\end{table}
-
-La cantidad de muestras de cada clase que tienen las imágenes de buena calidad puede verse en la Tabla~\ref{tabla_redes_database_mayor}. Los tipos de muestras que hay en las imágenes de malas condiciones climatológicas pueden verse en la Tabla~\ref{tabla_redes_database_malas_condiciones} y los de las imágenes de mala calidad en la Tabla~\ref{tabla_redes_database_mala_calidad}.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Clases & Muestras \\
-\hline \hline
-Car & 6921 \\ \hline
-Motorcycle & 335 \\ \hline
-Van & 709 \\ \hline
-Bus & 100 \\ \hline
-Small-Truck & 183 \\ \hline
-Total & 8248 \\ \hline
-\end{tabular}
-\caption{Características de la Base de Datos con condiciones climatológicas desfavorables}
-\label{tabla_redes_database_malas_condiciones}
-\end{center}
-\end{table}
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Clases & Muestras \\
-\hline \hline
-Car & 1571 \\ \hline
-Motorcycle & 21 \\ \hline
-Van & 56 \\ \hline
-Bus & 27 \\ \hline
-Truck & 82 \\ \hline
-Small-Truck & 60 \\ \hline
-Tank-truck & 16 \\ \hline
-Total & 1833 \\ \hline
-\end{tabular}
-\caption{Características de la Base de Datos de Mala Calidad}
-\label{tabla_redes_database_mala_calidad}
-\end{center}
-\end{table}
 
 Para evaluar como afecta el hecho de incorporar imágenes con diferentes condiciones se ha realizado un estudio que engloba 3 etapas:
 
@@ -249,60 +156,7 @@ En un primer lugar tal y como se contaba en la Sección~\ref{sec.ampliado_datase
 
 El objetivo de entrenar la red neuronal con solo imágenes de buena calidad es ver como se comporta frente a imágenes de diferentes condiciones. Para ello se ha evaluado este modelo con los 3 tipos de imágenes que tenemos (buena calidad, mala calidad y condiciones desfavorables) por separado y finalmente con un conjunto que incluía imágenes de todos los tipos.
 
-En la Tabla~\ref{tab_img_test_buenas} se muestra información acerca de las imágenes de test de buena calidad.
-\begin{table}[H] 
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Nº de Imágenes  & 389 \\
-\hline \hline
-Nº de Muestras Totales & 1657\\ \hline
-Nº Car & 1463 \\ \hline
-Nº Motorcycle & 9 \\ \hline
-Nº Van & 155 \\ \hline
-Nº Truck & 8 \\ \hline
-Nº Small-Truck & 22 \\ \hline
-\end{tabular}
-\caption{Imágenes de Test de Buena Calidad}
-\label{tab_img_test_buenas}
-\end{center}
-\end{table}
 
-La Tabla~\ref{tab_img_test_malas_condiciones} nos da información acerca de las imágenes de test de malas condiciones meteorológicas empleadas en la evaluación.
-\begin{table}[H] 
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Nº de Imágenes  & 71 \\
-\hline \hline
-Nº de Muestras Totales & 287\\ \hline
-Nº Car & 263 \\ \hline
-Nº Motorcycle & 1 \\ \hline
-Nº Van & 23 \\ \hline
-\end{tabular}
-\caption{Imágenes de Test de Malas Condiciones Meteorológicas}
-\label{tab_img_test_malas_condiciones}
-\end{center}
-\end{table}
-
-El conjunto de imágenes de test con mala calidad queda caracterizado en la Tabla~\ref{tab_img_test_mala_calidad}.
-
-\begin{table}[H] 
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Nº de Imágenes  & 68 \\
-\hline \hline
-Nº de Muestras Totales & 199\\ \hline
-Nº Car & 176 \\ \hline
-Nº Motorcycle & 3 \\ \hline
-Nº Van & 11 \\ \hline
-Nº Small-Truck & 9 \\ \hline
-\end{tabular}
-\caption{Imágenes de Test de Mala Calidad}
-\label{tab_img_test_mala_calidad}
-\end{center}
-\end{table}
 
 
 Tras evaluar el modelo entrenado con todos los conjuntos de datos de test se han obtenido los resultados indicados en la Tabla~\ref{resultados_test_buenas}. Hay que decir que se ha evaluado los conjuntos de datos por separado y finalmente se ha hecho una evaluación a un grupo de imágenes de test, a las cuales hemos llamado \textit{Combinado} (incluyen 68 imágenes de cada tipo). Este grupo de imágenes llamado \textit{Combinado} se ve caracterizado en la Tabla~\ref{test_combinado}.
