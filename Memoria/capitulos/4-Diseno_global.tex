@@ -2,13 +2,13 @@
 
 En este capítulo se hace una descripción del sistema desarrollado para llevar a cabo la monitorización visual de vehículos.
 
-\section{Bases de Datos de Entrenamiento}
+\section{Bases de Datos de Entrenamiento}\label{sec.base_datos}
 
 Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y con diferentes iluminaciones, necesitaremos entrenar el modelo neuronal con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes \textit{datasets} públicos con el fin de permitir el entrenamiento de redes neuronales. Para el caso de la detección de vehículos hay pocos \textit{datasets}, por ello ha sido necesario crear una base de datos propia que tuviera un número suficiente de muestras y una variación amplia de tipos de escenarios, de vehículos, condiciones de luz, etc.
 
-Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset Reducido}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 son para el entrenamiento de la red neuronal y 303 para test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
+Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset STS}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 son para el entrenamiento de la red neuronal y 303 para test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
 
-La distribución de las muestras que poseen las imágenes empleadas para el entrenamiento (3476 imágenes) se indica en la Tabla~\ref{tabla_database}.
+La distribución de las muestras que poseen las imágenes empleadas para el entrenamiento (3173 imágenes) se indica en la Tabla~\ref{tabla_database}.
 
 \begin{table}[H]
 \begin{center}
@@ -25,12 +25,12 @@ Small-Truck & 400 \\ \hline
 Tank-Truck & 103 \\ \hline
 Total & 18920 \\ \hline
 \end{tabular}
-\caption{\textit{Dataset Reducido}. Imágenes para el Entrenamiento}
+\caption{\textit{Dataset STS}. Imágenes para el Entrenamiento}
 \label{tabla_database}
 \end{center}
 \end{table}
 
-Tal y como ya se ha dicho de las 3476 imágenes de \textit{Dataset Reducido}, 303 eran de test. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes de test.
+Tal y como ya se ha dicho de las 3476 imágenes de \textit{Dataset STS}, 303 eran de test. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes de test.
 
 \begin{table}[H]
 \begin{center}
@@ -45,12 +45,12 @@ Truck & 82 \\ \hline
 Small-Truck & 112 \\ \hline
 Total & 1260 \\ \hline
 \end{tabular}
-\caption{\textit{Dataset Reducido}. Imágenes de Test}
+\caption{\textit{Dataset STS}. Imágenes de Test}
 \label{tabla_datos_primera_evaluacion}
 \end{center}
 \end{table}
 
-Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una base de datos de mayor tamaño denominada \textit{Dataset Final}. Esta base de datos propia consta de:
+Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una base de datos de mayor tamaño denominada \textit{Dataset STS Enriquecido}. Esta base de datos propia consta de:
 \begin{itemize}
     \item La base de datos recopilada por Redouane Kachach en su tesis doctoral, para la aplicación \textit{TrafficMonitor}, que es antecesor directo de este TFM~\cite{traffic_monitor_lab}. Dicha base de datos consta de 3460 imágenes de buena calidad.
     \item La base de datos \acrfull{gram} creada por R. Guerrero-Gomez-Olmedo, R. J. Lopez-Sastre, S. Maldonado-Bascon and A. Fernandez-Caballero~\cite{guerrero2013iwinac}. Esta base de datos está formada por imágenes extraídas de tres vídeos. El primer vídeo, llamado M-30 (7520 fotogramas), se grabó en un día soleado. El segundo, llamado M-30-HD (9390 fotogramas), se grabó en una ubicación similar pero durante un día nublado. El tercero, llamado Urban1 (23435 fotogramas) se grabó en una intersección concurrida. De esta gran base de datos se emplearon 3646 imágenes del vídeo M-30-HD y 1348 del vídeo M-30.
@@ -60,7 +60,7 @@ Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una ba
 Se ha tratado que la base de datos construida abarcara la mayor diversidad de vehículos posibles y en diferente tipos de escenarios. Hay que tener en cuenta que toda la base de datos tiene vehículos vistos por la parte trasera. En total consta de 9774 imágenes y está formada por 7 clases: \textit{Car}, \textit{Motorcycle}, \textit{Van}, \textit{Bus}, \textit{Truck}, \textit{Small-truck} y \textit{Tank-truck}.
 
 
-En estas 9774 imágenes tenemos un total de 48914 muestras repartidas tal y como se muestra en la Tabla ~\ref{tabla_muestras}.
+En estas 9774 imágenes tenemos un total de 48914 muestras repartidas tal y como se muestra en la Tabla~\ref{tabla_muestras}.
 
 \begin{table}[htbp] 
 \begin{center}
@@ -143,7 +143,29 @@ Total & 7401 & 1845 & 9246 \\ \hline
 \end{center}
 \end{table}
 
-La cantidad de muestras de cada clase que tienen las imágenes de buena calidad puede verse en la Tabla~\ref{tabla_redes_database_mayor}. Los tipos de muestras que hay en las imágenes de malas condiciones climatológicas pueden verse en la Tabla~\ref{tabla_redes_database_malas_condiciones} y los de las imágenes de mala calidad en la Tabla~\ref{tabla_redes_database_mala_calidad}.
+La cantidad de muestras de cada clase que tienen las imágenes de buena calidad para el entrenamiento puede verse en la Tabla~\ref{tabla_redes_database_mayor}. 
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Clases & Muestras \\
+\hline \hline
+Car & 28655 \\ \hline
+Motorcycle & 1517 \\ \hline
+Van & 4675 \\ \hline
+Bus & 274 \\ \hline
+Truck & 874 \\ \hline
+Small-Truck & 663 \\ \hline
+Tank-Truck & 103 \\ \hline
+Total & 36762 \\ \hline
+\end{tabular}
+\caption{Características de la Base de Datos de Imágenes de Buena Calidad para el Entrenamiento}
+\label{tabla_redes_database_mayor}
+\end{center}
+\end{table}
+
+Los tipos de muestras que hay en las imágenes de malas condiciones climatológicas pueden verse en la Tabla~\ref{tabla_redes_database_malas_condiciones} y los de las imágenes de mala calidad en la Tabla~\ref{tabla_redes_database_mala_calidad}.
 
 \begin{table}[H]
 \begin{center}
@@ -158,7 +180,7 @@ Bus & 100 \\ \hline
 Small-Truck & 183 \\ \hline
 Total & 8248 \\ \hline
 \end{tabular}
-\caption{Características de la Base de Datos con condiciones climatológicas desfavorables}
+\caption{Características de la Base de Datos con Condiciones Climatológicas Desfavorables para el Entrenamiento}
 \label{tabla_redes_database_malas_condiciones}
 \end{center}
 \end{table}
@@ -178,7 +200,7 @@ Small-Truck & 60 \\ \hline
 Tank-truck & 16 \\ \hline
 Total & 1833 \\ \hline
 \end{tabular}
-\caption{Características de la Base de Datos de Mala Calidad}
+\caption{Características de la Base de Datos de Mala Calidad para el Entrenamiento}
 \label{tabla_redes_database_mala_calidad}
 \end{center}
 \end{table}
@@ -364,7 +386,7 @@ Se han probado tres entornos diferentes para evaluar cual era el que mejores res
 
 En los siguientes puntos se va a explicar el diseño que se ha llevado a cabo para integrar cada plataforma, en la aplicación \textit{Smart-Traffic-Sensor}.
 
-\subsection{Entorno TensorFlow y red SSD MobilenetV2}
+\subsection{Entorno TensorFlow y red SSD MobilenetV2}\label{sub.tensorflow}
 
 Para dar soporte dentro de la aplicación a redes de \textit{TensorFlow} se ha hecho uso del \textit{github models} de \textit{TensorFlow} ~\cite{tensorflow_models}, con el cual podemos entrenar una red pre-entrenada con nuestra propia base de datos. En este caso se ha empleado una red \acrfull{ssd} Mobilenet V2 entrenada con \acrshort{coco}, pues proporciona una buena relación entre la velocidad y la precisión. Para emplear dicha red se ha usado un archivo de configuración llamado \textit{ssd\_mobilenet\_v2\_coco.config}~\cite{ssd_mobilenetv2_config}.
 
@@ -419,7 +441,7 @@ En conclusión, las capas \textit{depthwise separable convolutions} realizan el 
 
 Con el diseño que se ha explicado se ha entrenado un total de 3173 imágenes, de las cuales 2700 eran de \textit{train} y 473 de validación. Las imágenes de \textit{train} son las que se usan para generar el modelo. Los datos de validación seleccionan el modelo que mejores resultados obtiene.
 
- \subsection{Entorno Keras y red SSD VGG-16}
+ \subsection{Entorno Keras y red SSD VGG-16}\label{sub.keras}
  
  Con \textit{Keras} se ha implementado una red \acrshort{ssd}. Para ello se ha recurrido al diseño realizados por Pierluigi Ferrari~\cite{ssd_ferrari}, el cual define una red \acrshort{ssd} que tiene como red base una VGG-16. En la Figura ~\ref{fig.ssd_300} se puede ver el diseño.
  
@@ -441,7 +463,7 @@ VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 
 \end{center}
 \end{figure}
 
-\subsubsection{Entorno Darknet y red YOLOv3}
+\subsubsection{Entorno Darknet y red YOLOv3}\label{sub.darknet}
 
 En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualmente. \acrshort{yolo} ~\cite{yolo_article1} es otro enfoque para la detección de objetos. El trabajo previo a \acrshort{yolo} emplea clasificadores para realizar la detección. En esta aproximación se enmarca la detección de objetos como un problema de regresión en \textit{bounding boxes} espacialmente separados y probabilidades de clase asociadas. En la evaluación, una red neuronal única predice \textit{bounding boxes} y probabilidades de clase directamente desde imágenes completas. 
 
