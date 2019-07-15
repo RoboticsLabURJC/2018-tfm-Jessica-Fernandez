@@ -127,6 +127,7 @@ private:
    Widget<Gtk::CheckButton> show_tracking_info;
    Widget<Gtk::CheckButton> show_categories;
    Widget<Gtk::CheckButton> show_oclusion;
+   Widget<Gtk::CheckButton> show_trajectory;
    Widget<Gtk::CheckButton> show_bounding_box;
    Widget<Gtk::CheckButton> show_klt_points;
    Widget<Gtk::CheckButton> show_projections;

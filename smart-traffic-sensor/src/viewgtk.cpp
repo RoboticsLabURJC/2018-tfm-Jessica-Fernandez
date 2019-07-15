@@ -105,6 +105,7 @@ namespace trafficmonitor {
     INIT_WIDGET(show_tracking_info, builder),
     INIT_WIDGET(show_categories, builder),
     INIT_WIDGET(show_oclusion, builder),
+    INIT_WIDGET(show_trajectory, builder),
     INIT_WIDGET(show_bounding_box, builder),
     INIT_WIDGET(show_klt_points, builder),
     INIT_WIDGET(show_projections, builder),
@@ -171,6 +172,7 @@ namespace trafficmonitor {
     show_categories->set_active(cfg.showCategories);
     show_bounding_box->set_active(cfg.showBoundingBox);
     show_oclusion->set_active(cfg.showOclusion);
+    show_trajectory->set_active(cfg.showTrajectory);
     show_bg_mask->set_active(cfg.showBgMask);
     show_orig_bg_mask->set_active(cfg.showOrigBgMask);
     show_klt_points->set_active(cfg.showKltPoints);
@@ -206,6 +208,7 @@ namespace trafficmonitor {
     show_tracking_info->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
     show_categories->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
     show_oclusion->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
+    show_trajectory->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
     show_bounding_box->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
     show_klt_points->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
     show_projections->signal_toggled().connect(sigc::mem_fun(this, &ViewGtk::update_ctl));
@@ -966,6 +969,7 @@ namespace trafficmonitor {
     cfg.showCategories           = show_categories->get_active();
     cfg.showBoundingBox          = show_bounding_box->get_active();
     cfg.showOclusion             = show_oclusion->get_active();
+    cfg.showTrajectory           = show_trajectory->get_active();
     cfg.showBgMask               = show_bg_mask->get_active();
     cfg.showOrigBgMask           = show_orig_bg_mask->get_active();
     cfg.showKltPoints            = show_klt_points->get_active();

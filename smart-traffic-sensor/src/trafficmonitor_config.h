@@ -41,6 +41,7 @@ public:
   bool showCategories;
   bool showBoundingBox;
   bool showOclusion;
+  bool showTrajectory;
   bool showKltPoints;
   bool showBgMask;
   bool showOrigBgMask;

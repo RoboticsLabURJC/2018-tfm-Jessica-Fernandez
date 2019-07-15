@@ -357,11 +357,10 @@ bool TrafficMonitorAlgorithm::darknet_tracking()
 	boost::posix_time::time_duration duration_image = time_aux - this->Time_traffic;
         this->Time_traffic = time_aux;
 	std::cout <<"Elapsed time image(ms): "<<duration_image.total_milliseconds()<<std::endl;
-
+	durationVector.push_back(duration_image.total_milliseconds());
 	boost::posix_time::ptime startTime = boost::posix_time::microsec_clock::local_time();
 
-     
-	new_blobs_nb = darknet_model->find_blobs(_state.current_frame, _state.tmp_blobs);
+        new_blobs_nb = darknet_model->find_blobs(_state.current_frame, _state.tmp_blobs);
 	
         std::sort(_state.tmp_blobs.begin(), std::next(_state.tmp_blobs.begin(),new_blobs_nb), Blob::compare_size);
         deep_learning_tracker->track_blobs_deep_learning(_state.current_frame,
@@ -375,9 +374,10 @@ bool TrafficMonitorAlgorithm::darknet_tracking()
     	boost::posix_time::time_duration duration = endTime-startTime;
 	long elapsedTime = duration.total_milliseconds();
         std::cout <<"Elapsed time detection + track(ms): "<<elapsedTime<<std::endl;
-        durationVector.push_back(elapsedTime);
+        
 
 	std::cout <<"Mean inferece time (ms): "<<this->getMeanDurationTime()<<std::endl;
+	
   /* }else
    {
        new_blobs_nb = 0;

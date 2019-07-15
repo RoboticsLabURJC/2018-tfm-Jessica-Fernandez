@@ -5,7 +5,7 @@
 #include <boost/shared_ptr.hpp>
 #include <fstream>
 
-std::string NET_WEIGHTS = "../cfg/yolov3-voc_19000.weights";
+std::string NET_WEIGHTS = "../cfg/yolov3-voc_17000.weights";
 std::string NET_CONFIG = "../cfg/yolov3-voc.cfg";
 std::string TF_LABELLIST_PATH_DARKNET = "../names/label.names";
 float const TF_PREDICTION_THRESSHOLD_DARKNET = 0.5;

@@ -161,6 +161,8 @@ void DeepLearningTracker::init(){
          blob->set_indice_time(0);
 
       //printf("contador time %d , indice %d \n",blob->cont_time(),blob->get_indice_time());
+      //if(blob->cont_time() <1 && blob->get_2d_center().y > (size_image.height+ y_media)/2)
+      //if(blob->cont_time() <1 )
       if(blob->cont_time() <1 && blob->get_2d_center().y > (size_image.height+ y_media)/2)
       {
           Tvector tmp;

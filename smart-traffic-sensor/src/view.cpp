@@ -482,6 +482,7 @@ void View::draw_vehicles(Cairo::RefPtr<Cairo::Context> cr, const vector<Blob*>& 
    
 	 if(cfg.classify && (cfg.cnnTrackingActive || cfg.kerasTrackingActive || cfg.darknetTrackingActive))
 	 {
+	    
             fs <<vehicle->get_category()<<" "<< vehicle->get_left_corner().x<< " "<< vehicle->get_left_corner().y<<" "<< vehicle->get_right_corner().x-vehicle->get_left_corner().x<<" "<< vehicle->get_right_corner().y-vehicle->get_left_corner().y<<" "<<vehicle->get_probability()<<endl;
 
             string color_desc_box = cfg.classify ? models_colors[vehicle->get_matched_class()] : "Green";
@@ -495,11 +496,32 @@ void View::draw_vehicles(Cairo::RefPtr<Cairo::Context> cr, const vector<Blob*>& 
                           vehicle->get_left_corner().y,
                           vehicle->get_right_corner().x-vehicle->get_left_corner().x,
                           vehicle->get_right_corner().y-vehicle->get_left_corner().y);
-	    cr->stroke();
 
+	    cr->stroke();
+	
               
 	
          }
+
+	 if(cfg.showTrajectory)
+	 {
+
+	    string color_desc_box = cfg.classify ? models_colors[vehicle->get_matched_class()] : "Green";
+	    Gdk::Color color(color_desc_box);
+            cr->set_source_rgba(color.get_red_p(),
+                                color.get_green_p(),
+                                color.get_blue_p(),
+                                1.0);
+
+
+	    
+	    cr->move_to(vehicle->get_2d_center().x, vehicle->get_2d_center().y);
+	    cr->line_to(vehicle->get_first_2d_center().x, vehicle->get_first_2d_center().y);
+	
+	    
+	    cr->stroke();
+	
+	 }
          /** Draw the Vehicle rectangle. If the classification is active then we use a different
           *  color for each category.
           */
