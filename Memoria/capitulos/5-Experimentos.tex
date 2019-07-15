@@ -2,18 +2,17 @@
 
 A la hora de crear cualquier sistema es necesario hacer múltiples experimentos que nos permitan llegar a ciertas conclusiones que nos sean útiles a la hora de mejorar el diseño. Dichos experimentos deben ser evaluados de alguna forma para comprobar la calidad de los resultados que obtenemos. En este trabajo en concreto se ha recurrido a la herramienta \textit{DetectionSuite}~\cite{detectionsuite} para llevar a cabo dicha evaluación.
 
-Con \textit{DetectionSuite} se obtienen medidas de calidad tales como la precición y el recall medios (\acrshort{map} y \acrshort{mar}) de todas las clases en función de la \acrfull{iou}. En nuestro caso nos hemos quedado con las medidas que tienen un \acrshort{iou} como mínimo de 0.5, pues se ha considerado que es suficiente para medir la calidad.
+Con \textit{DetectionSuite} se obtienen medidas de calidad tales como la precición y el recall medios (\acrshort{map} y \acrshort{mar}) de todas las clases en función de la \textit{\acrfull{iou}}. En nuestro caso nos hemos quedado con las medidas que tienen un \acrshort{iou} como mínimo de 0.5, pues se ha considerado que es suficiente para medir la calidad.
 
-Este Capítulo vamos a dividirlo en cinco secciones en las cuales hablaremos de lo siguiente:
+Este Capítulo vamos a dividirlo en cuatro secciones en las cuales hablaremos de lo siguiente:
 \begin{itemize}
     \item Evaluación de diversas redes neuronales
-    \item Evaluación ampliando Dataset
-    \item Evaluación de Darknet con diferentes conjuntos  de imágenes
-    \item Evaluación de Smart-Traffic-Sensor
-    \item Evaluación de los tiempos de procesamiento
+    \item Análisis detallado de la red \acrshort{yolo}
+    \item Comparativa con \textit{Traffic-Sensor}
+    \item Comparativa con técnicas del estado del arte
 \end{itemize}
 
-A lo largo de este Capítulo se van a ver diferentes experimentos realizados y las medidas obtenidas con ellos en cuanto al \acrfull{map}, \acrfull{mar} con un mínimo de 0.5 \acrshort{iou}, y el tiempo de procesamiento que dedica al realizar las detecciones.
+A lo largo de este Capítulo se van a ver diferentes experimentos realizados y las medidas obtenidas con ellos en cuanto al \textit{\acrfull{map}} y \textit{\acrfull{mar}} con un mínimo de 0.5 \acrshort{iou}, y el tiempo de procesamiento que dedica al realizar las detecciones.
 
 Hay que decir que todos los experimentos realizados con \textit{DetectionSuite} se han hecho desde un ordenador sin GPU, por ello se verá que los tiempos medios de procesamiento son un poco elevados.
 
@@ -21,13 +20,13 @@ Hay que decir que todos los experimentos realizados con \textit{DetectionSuite} 
  
 Tal y como se ha comentado en el Capítulo~\ref{cap.diseno} se han realizado pruebas con diferentes \textit{frameworks}. En concreto con \textit{TensorFlow}, \textit{Keras}, y \textit{Darknet}. Para cada plataforma se empleó una red diferente. Con ello se pretendía ver cual era la red que mejores resultados obtenía, además de dotar a \textit{Smart-Traffic-Sensor} de la capacidad de admitir redes entrenadas con diversos \textit{frameworks}.
 
-Para evaluar las redes neuronales se creó una primera base de datos llamada \textit{Dataset STS}, del cual podemos ver información en el Capítulo~\ref{cap.diseno} en la sección~\ref{sec.base_datos}. Con dicho \textit{dataset} se evaluaron las tres redes empleadas.
+Para evaluar las redes neuronales se creó una primera base de datos llamada \textit{Dataset STS}, del cual podemos ver información en el Capítulo~\ref{cap.diseno} en la Sección~\ref{sec.base_datos}. Con dicho \textit{dataset} se evaluaron las tres redes empleadas.
 
 Tras realizar esta primera evaluación con el fin de determinar cual era la red neuronal que mejor se comportaba, se creó una base de datos de mayor tamaño, denominada \textit{Dataset STS Enriquecido}. Con dicha base de datos se volvió a evaluar la red neuronal que mejores resultados había obtenido en la evaluación inicial (en este caso la red de \acrshort{yolo}).
 
 \subsection{Resultado con Dataset STS}
 
-Tal y como ya se ha comentado, inicialmente se creó una primera base de datos (\textit{Dataset STS}) con el fin de evaluar las tres redes implementadas (cada una con un \textit{framework} diferente). En la Tabla~\ref{tabla_redes_plataformas} se muestra el nombre de cada una de estas redes, asi como la plataforma que se ha empleado en cada caso.
+Tal y como ya se ha comentado, inicialmente se creó una primera base de datos (\textit{Dataset STS}) con el fin de evaluar las tres redes implementadas (cada una con un \textit{framework} diferente). En la Tabla~\ref{tabla_redes_plataformas} se muestra el nombre de cada una de estas redes, así como la plataforma que se ha empleado en cada caso.
 
 \begin{table}[H] 
 \begin{center}
@@ -89,9 +88,9 @@ Viendo los tiempos de detección se puede ver que cuanto más tiempo tarda la re
 
 \subsection{Resultados Dataset STS Enriquecido}\label{sec.ampliado_dataset}
 
-Tras la evaluación incial, la primera cuestión que se nos plantea es el enriquecer nuestra base de datos con más imágenes para volver a entrenar la red y ver si sus resultados mejoran. 
+Tras la evaluación inicial, la primera cuestión que se nos plantea es el enriquecer nuestra base de datos con más imágenes para volver a entrenar la red y ver si sus resultados mejoran. 
 
-La base de datos empleada en este caso para realizar el entrenamiento se llama \textit{Dataset STS enriquecido} y consta de 9774 imágenes. Dicho \textit{dataset} contiene imágenes de buena calidad, de malas condiciones climatológicas y de mala calidad. En este caso para el entrenamiento solo se hizo uso de las imágenes de buena calidad (6717 imágenes de \textit{train}). En la Tabla~\ref{base_datos_final_train} se puede ver la cantidad de esas imágenes de entrenamiento que se emplearon para \textit{train}(5323) y para validación (1394). La Tabla~\ref{tabla_redes_database_mayor} indica la distribución de muestras de las 6717 imágenes de buena calidad.
+La base de datos empleada en este caso para realizar el entrenamiento se llama \textit{Dataset STS enriquecido} y consta de 9774 imágenes. Dicho \textit{dataset} contiene imágenes de buena calidad, de malas condiciones climatológicas y de mala calidad. En este caso para el entrenamiento solo se hizo uso de las imágenes de buena calidad (6717 imágenes de \textit{train}). En la Tabla~\ref{base_datos_final_train} se puede ver la cantidad de esas imágenes de entrenamiento que se emplearon para \textit{train} (5323) y para validación (1394). La Tabla~\ref{tabla_redes_database_mayor} indica la distribución de muestras de las 6717 imágenes de buena calidad.
 
 Con esta nueva base de datos se ha vuelto a realizar el entrenamiento para evaluar como afecta el enriquecimiento de los datos. Además se ha evaluado una red entrenada por Arvind Jayaraman~\cite{CarND_VehicleDetection} para la detección de vehículos con \textit{TensorFlow}. La evaluación se ha vuelto a realizar sobre el conjunto de datos de test de \textit{Database STS} (Tabla~\ref{tabla_datos_primera_evaluacion}). Todos estos datos quedan recogidos en la Tabla~\ref{tabla_redes_entrenadas_mayor_database}
 
@@ -138,12 +137,12 @@ En la Figura~\ref{fig.comparativa} se muestra una comparativa entre ambas tarjet
 \begin{figure}[H] 
 \begin{center}
 	\includegraphics[scale=0.4]{figures/Experimentos/comparativa.png}
-   \caption{Comparativa GeForce GTX 1080 y Intel HD Graphics 5500}
+   \caption{Comparativa GeForce GTX 1080 e Intel HD Graphics 5500}
 	\label{fig.comparativa}
 \end{center}
 \end{figure}
 
-Todos los experimentos realizados con \textit{DetectionSuite} se han hecho desde el ordenador con la tarjeta gráfica Intel HD 5500 (sin GPU). Para saber si estas redes neuronales tienen un tiempo de procesamiento que nos permita trabajar en tiempo real con un ordenador por supuesto con GPU hemos empleado un servidor. Del cual hemos extraido los resultados con el fin de saber que nuestras redes son capaces de trabajar rápidamente.
+Todos los experimentos realizados con \textit{DetectionSuite} se han hecho desde el ordenador con la tarjeta gráfica Intel HD 5500 (sin GPU). Para saber si estas redes neuronales tienen un tiempo de procesamiento que nos permita trabajar en tiempo real con un ordenador por supuesto con GPU hemos empleado un servidor. Del cual hemos extraído los resultados con el fin de saber que nuestras redes son capaces de trabajar rápidamente.
 
 
 En la Tabla~\ref{tiempos} se pueden ver los resultados obtenidos con el servidor y el ordenador sin GPU.
@@ -200,13 +199,13 @@ Para evaluar como afecta el hecho de incorporar imágenes con diferentes condici
 
 \begin{enumerate}
     \item En primer lugar se entrenó la red neuronal con imágenes de buena calidad y se evaluó dicha red con  conjuntos de test de imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
-    \item Entrenámos la red neuronal con imágenes de buena calidad y malas condiciones climatológicas. La red resultante la evaluámos con imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
+    \item Entrenamos la red neuronal con imágenes de buena calidad y malas condiciones climatológicas. La red resultante la evaluámos con imágenes de buena calidad, malas condiciones meteorológicas y mala calidad.
     \item Finalmente realizamos un entrenamiento con toda la base de datos y lo evaluámos con imágenes de todos los tipos.
 \end{enumerate}
 
 \subsection{Buena Calidad}
 
-En un primer lugar tal y como se contaba en la Sección~\ref{sec.ampliado_dataset} se entrenó nuestra red neuronal con un conjunto de un total de 6717 imágenes de buena calidad. Las imágenes de este conjunto incluían información acerca de las diferentes clases que contempla nuestro modelo. Se puede ver en la Tabla~\ref{tabla_redes_database_mayor} la cantidad de muestras de cada clase que contiene este conjunto.
+En primer lugar tal y como se contaba en la Sección~\ref{sec.ampliado_dataset} se entrenó nuestra red neuronal con un conjunto de un total de 6717 imágenes de buena calidad. Las imágenes de este conjunto incluían información acerca de las diferentes clases que contempla nuestro modelo. Se puede ver en la Tabla~\ref{tabla_redes_database_mayor} la cantidad de muestras de cada clase que contiene este conjunto.
 
 El objetivo de entrenar la red neuronal con solo imágenes de buena calidad es ver como se comporta frente a imágenes de diferentes condiciones. Para ello se ha evaluado este modelo con los 3 tipos de imágenes que tenemos (buena calidad, mala calidad y condiciones desfavorables) por separado y finalmente con un conjunto que incluía imágenes de todos los tipos.
 
@@ -297,23 +296,23 @@ Con esto se puede ver que cuanto más diversidad tenga la base de datos mayor ca
 
 \section{Comparativa con Traffic-Sensor}
 
-\textit{Smart-Traffic-Sensor} se basa principalmente en \textit{Deep Learning}, pero lo combina con \acrshort{klt} cuando las detecciones realizadas por \textit{Deep Learning} no son suficientes. Esto dota al sistema de mayor robustez. 
+\textit{Smart-Traffic-Sensor} se basa principalmente en \textit{Deep Learning}, pero lo combina con \acrshort{klt} cuando las detecciones realizadas por \textit{Deep Learning} son insuficientes. Esto dota al sistema de mayor robustez. 
 
 El objetivo de este punto es evaluar la calidad del sistema \textit{Smart-Traffic-Sensor} y compararla con el sistema inicial del que se partía (\textit{Traffic-Monitor}~\cite{redo_tesis}). En este sistema la carretera se dividía en una zona de entrada y otra de seguimiento. En la zona de entrada se confirmaba la detección de cada vehículo para posteriormente llevarle un seguimiento.  El sistema de detección que emplea se  basa en la detección del fondo para obtener las detecciones de los vehículos. Una vez pasan estos vehículos a la zona de seguimiento es cuando comienza a clasificarlos y emparejarlos. El seguimiento combina \acrshort{klt} con proximidad espacial al igual que se hace en \textit{Smart-Traffic-Sensor}.
 
-Para la evaluación hemos empleado tres videos con condiciones diferentes (uno con buena calida, otro de lluvia y por último uno de mala calidad). \textit{DetectionSuite} realiza evaluaciones de modelos entrenados sobre un conjunto de datos. En este caso no queremos evaluar el modelo sino el sistema global. Por ello se ha modificado \textit{DetectionSuite} para poder evaluar muestras que se almacenen en un \textit{.txt}. 
+Para la evaluación hemos empleado tres vídeos con condiciones diferentes (uno con buena calida, otro de lluvia y por último uno de mala calidad). \textit{DetectionSuite} realiza evaluaciones de modelos entrenados sobre un conjunto de datos. En este caso no queremos evaluar el modelo sino el sistema global. Por ello se ha modificado \textit{DetectionSuite} para poder evaluar muestras que se almacenen en un \textit{.txt}. 
 
 En resumen la evaluación del sistema \textit{Smart-Traffic-Sensor} se ha realizado siguiendo los siguientes pasos:
 
 \begin{enumerate}
-    \item Se ejecuta \textit{Smart-Traffic-Sensor} con un vídeo y se guardan sus detecciones finales en archivos \textit{.txt}, asi como sus respectivas imágenes.
+    \item Se ejecuta \textit{Smart-Traffic-Sensor} con un vídeo y se guardan sus detecciones finales en archivos \textit{.txt}, así como sus respectivas imágenes.
     \item Nos quedamos con una parte de las detecciones e imágenes obtenidas. Por ejemplo cada 6 imágenes nos quedamos con una. Esto se hace pues sino tendríamos que evaluar una cantidad excesiva de imágenes.
     \item Etiquetamos las imágenes almacenadas con \textit{labelImg}~\cite{labelimg}. Pues necesitamos comparar las detecciones realizadas por \textit{Smart-Traffic-Sensor} con alguna referencia.
     \item Comparamos las detecciones obtenidas por \textit{Smart-Traffic-Sensor} con las etiquetas. Para ello nos hemos apoyado en \textit{DetectionSuite}.
 \end{enumerate}
 
 
-A continuación se muestran los resultados obtenidos para cada video con \textit{Smart-Traffic-Sensor}, \textit{Traffic-Monitor}~\cite{redo_tesis} y empleando únicamente el modelo entrenado.
+A continuación se muestran los resultados obtenidos para cada vídeo con \textit{Smart-Traffic-Sensor}, \textit{Traffic-Monitor}~\cite{redo_tesis} y empleando únicamente el modelo entrenado.
 
 En primer lugar se evaluó un vídeo de buena calidad, del cual podemos ver en la Figura~\ref{fig.video_buena_calidad} una de las detecciones realizadas por \textit{Smart-Traffic-Sensor}.
 
@@ -362,7 +361,7 @@ Redes Neuronales & 0.8316 & 0.8966\\ \hline
 \end{center}
 \end{table}
 
-Observando los resultados en esta primera evaluación se puede verificar que el sistema que obtiene mejores resultados es el \textit{Smart-Traffic-Sensor}. El hecho de combinar \acrshort{klt} con las detecciones realizadas mediante \textit{Deep Learning} lo dota de mayor robustez. Esto se hace evidente si nos fijamos en los resultados que se obtienen mediante redes neuronales, con los cuales podemos ver que el hecho de complementarlo con \acrshort{klt} hace que el sistema mejore. No obstante los resultados que se obtienen mediante las redes neuronales son de muy buena calidad, demostrando su gran capacidad a la hora de detectar vehículos. El uso de \acrshort{klt} simplemente lo complementa en casos de oclusiones o vehículos que se vean muy pequeños debido a su lejanía. Por el contrario los resultados que da \textit{Traffic-Monitor} son un poco pobres si los comparamos con los conseguidos gracias a \textit{Smart-Traffic-Sensor}. En las sucesivas pruebas que se han hecho con \textit{Traffic-Monitor} se ha apreciado que no funciona bien con vehículos lejanos (en muchas ocasiones los coches los clasifica como motocicletas) y que en muchas ocasiones tiene dificultad para diferenciar entre coche y furgoneta. Cuando se trata de furgonetas pequeñas las confunde con coches. Esto se debe a que la clasificación se hace mediante modelos 3D, razón por la cual una furgoneta pequeña puede aproximarse más al modelo 3D de un coche que al de una furgoneta grande.
+Observando los resultados en esta primera evaluación se puede verificar que el sistema que obtiene mejores resultados es el \textit{Smart-Traffic-Sensor}. El hecho de combinar \acrshort{klt} con las detecciones realizadas mediante \textit{Deep Learning} lo dota de mayor robustez. Esto se hace evidente si nos fijamos en los resultados que se obtienen mediante redes neuronales, con los cuales podemos ver que el hecho de complementarlo con \acrshort{klt} hace que el sistema mejore. No obstante los resultados que se obtienen mediante las redes neuronales son de muy buena calidad, demostrando su gran capacidad a la hora de detectar vehículos. El uso de \acrshort{klt} simplemente lo complementa en casos de oclusiones o vehículos que se vean muy pequeños debido a su lejanía. Por el contrario los resultados que da \textit{Traffic-Monitor} son un poco pobres si los comparamos con los conseguidos gracias a \textit{Smart-Traffic-Sensor}. En las sucesivas pruebas que se han hecho con \textit{Traffic-Monitor} se ha apreciado que no funciona bien con vehículos lejanos (en muchas ocasiones los coches los clasifica como motocicletas) y en muchas ocasiones tiene dificultad para diferenciar entre coche y furgoneta. Cuando se trata de furgonetas pequeñas las confunde con coches. Esto se debe a que la clasificación se hace mediante modelos 3D, razón por la cual una furgoneta pequeña puede aproximarse más al modelo 3D de un coche que al de una furgoneta grande.
 
 
 El segundo vídeo que se ha evaluado es un vídeo con condiciones meteorológicas desfavorables. En concreto se trata de un vídeo en condiciones de lluvia. En la Figura~\ref{fig.video_malas_condiciones} se puede ver un ejemplo de \textit{Smart-Traffic-Sensor}.
@@ -523,7 +522,7 @@ Smart-Traffic-Sensor & 0.8926 \\  \hline
 \end{center}
 \end{table}
 
-L. Chen, F. Ye, Y. Ruan, H. Fan and Q. Chen~\cite{l_chen} usan \textit{k-means} para obtener características de las imágenes y emplearlas durante el entrenamiento. Además concatenan características de diferentes tamaños de imagen. Para realizar la detección emplean \acrshort{cnn}. En la Tabla~\ref{resultados_lchen} se puede ver el \acrshort{map} obtenido con su diseño, asi como los resultados que ha obtenido con otro tipo de redes neuronales.
+L. Chen, F. Ye, Y. Ruan, H. Fan and Q. Chen~\cite{l_chen} usan \textit{k-means} para obtener características de las imágenes y emplearlas durante el entrenamiento. Además concatenan características de diferentes tamaños de imagen. Para realizar la detección emplean \acrshort{cnn}. En la Tabla~\ref{resultados_lchen} se puede ver el \acrshort{map} obtenido con su diseño, así como los resultados que han obtenido con otro tipo de redes neuronales.
 
 \begin{table}[H] 
 \begin{center}
@@ -549,4 +548,5 @@ Ricardo Guerrero-Gómez-Olmedo, Roberto López-Sastre, Saturnino Maldonado-Basc�
 Albert Soto~\cite{albert_soto} propone el uso de \acrshort{yolo} para la detección de vehículos y llega a obtener una precisión de 0.5893 y un  \textit{recall} de 0.4092.
 
 
-Viendo todos estos resultados se puede observar que \textit{Smart-Traffic-Sensor} consigue superarlos.Gran parte de esta mejora se debe a la propia arquitectura de red Yolov3, pero otra parte se debe al entrenamiento con la base de datos propia que hemos realizado. En cualquier caso se ha integrado con éxito en la aplicación \textit{Smart-Traffic-Sensor}. Con ello podemos afirmar que hemos llegado a obtener un sistema muy robusto y que aparentemente su calidad es suficientemente buena. Además hemos cumplido con creces el objetivo de mejorar los resultados que ofrecía \textit{Traffic-Monitor}. 
+Viendo todos estos resultados se puede observar que \textit{Smart-Traffic-Sensor} consigue superarlos. Gran parte de esta mejora se debe a la propia arquitectura de la red Yolov3, pero otra parte se debe al entrenamiento con la base de datos propia que hemos realizado. Pues ha dado mayor versatilidad a nuestro sistema gracias a la diversidad de imágenes que contenía. 
+Con ello podemos afirmar que hemos llegado a obtener un sistema muy robusto y con una calidad aparentemente buena. Además hemos cumplido con creces el objetivo de mejorar los resultados que ofrecía \textit{Traffic-Monitor}. 

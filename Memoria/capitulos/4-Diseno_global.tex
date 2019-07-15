@@ -6,7 +6,7 @@ En este capítulo se hace una descripción del sistema desarrollado para llevar 
 
 Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y con diferentes iluminaciones, necesitaremos entrenar el modelo neuronal con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes \textit{datasets} públicos con el fin de permitir el entrenamiento de redes neuronales. Para el caso de la detección de vehículos hay pocos \textit{datasets}, por ello ha sido necesario crear una base de datos propia que tuviera un número suficiente de muestras y una variación amplia de tipos de escenarios, de vehículos, condiciones de luz, etc.
 
-Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset STS}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 son para el entrenamiento de la red neuronal y 303 para test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
+Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset STS}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 se asignaron al entrenamiento de la red neuronal y 303 a test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
 
 La distribución de las muestras que poseen las imágenes empleadas para el entrenamiento (3173 imágenes) se indica en la Tabla~\ref{tabla_database}.
 
@@ -30,7 +30,7 @@ Total & 18920 \\ \hline
 \end{center}
 \end{table}
 
-Tal y como ya se ha dicho de las 3476 imágenes de \textit{Dataset STS}, 303 eran de test. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver que clases de muestras contenían las imágenes de test.
+Tal y como ya se ha dicho, de las 3476 imágenes del \textit{Dataset STS}, 303 eran de test. En la Tabla~\ref{tabla_datos_primera_evaluacion} se puede ver qué clases de muestras contenían las imágenes de test.
 
 \begin{table}[H]
 \begin{center}
@@ -50,7 +50,7 @@ Total & 1260 \\ \hline
 \end{center}
 \end{table}
 
-Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una base de datos de mayor tamaño denominada \textit{Dataset STS Enriquecido}. Esta base de datos propia consta de:
+Para intentar conseguir un sistema robusto ante diferentes condiciones, se amplió la base de datos incluyendo imágenes en condiciones meteorológicas buenas, imágenes en condiciones meteorológicas malas (con niebla y lluvia) e imágenes de mala calidad. Al hacernos con más imágenes recopiladas de diferentes fuentes se creó una base de datos de mayor tamaño denominada \textit{Dataset STS Enriquecido}. Esta base de datos propia consta de:
 \begin{itemize}
     \item La base de datos recopilada por Redouane Kachach en su tesis doctoral, para la aplicación \textit{TrafficMonitor}, que es antecesor directo de este TFM~\cite{traffic_monitor_lab}. Dicha base de datos consta de 3460 imágenes de buena calidad.
     \item La base de datos \acrfull{gram} creada por R. Guerrero-Gomez-Olmedo, R. J. Lopez-Sastre, S. Maldonado-Bascon and A. Fernandez-Caballero~\cite{guerrero2013iwinac}. Esta base de datos está formada por imágenes extraídas de tres vídeos. El primer vídeo, llamado M-30 (7520 fotogramas), se grabó en un día soleado. El segundo, llamado M-30-HD (9390 fotogramas), se grabó en una ubicación similar pero durante un día nublado. El tercero, llamado Urban1 (23435 fotogramas) se grabó en una intersección concurrida. De esta gran base de datos se emplearon 3646 imágenes del vídeo M-30-HD y 1348 del vídeo M-30.
@@ -76,12 +76,13 @@ Truck & 963 \\ \hline
 Small-Truck & 938 \\ \hline
 Tank-Truck & 119 \\ \hline
 \end{tabular}
-\caption{Muestras de la Base de Datos}
+\caption{Muestras de la Base de Datos \textit{Dataset STS Enriquecido}}
 \label{tabla_muestras}
 \end{center}
 \end{table}
 
-Para intentar conseguir un sistema robusto ante diferentes condiciones, se ha han etiquetado en la base de datos imágenes en condiciones meteorológicas buenas, imágenes en condiciones meteorológicas malas (con niebla y lluvia) e imágenes de mala calidad. En la Tabla ~\ref{tabla_img_base_datos} se puede ver la cantidad de imágenes que hay para cada tipo.
+Tal y como se ha dicho anteriormente la base de datos \textit{Dataset STS Enriquecido} contiene imágenes de buena calidad, de condiciones climatológicas adversas y de mala calidad. En la Tabla ~\ref{tabla_img_base_datos} se puede ver la cantidad de imágenes que hay para cada tipo.
+
 \begin{table}[htb]
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -92,7 +93,7 @@ Buena calidad & 8406 \\ \hline
 Malas Condiciones Meteorológicas & 663\\ \hline
 Mala Calidad & 705\\ \hline
 \end{tabular}
-\caption{Imágenes de la Base de Datos}
+\caption{Imágenes de \textit{Dataset STS Enriquecido}}
 \label{tabla_img_base_datos}
 \end{center}
 \end{table}
@@ -102,7 +103,7 @@ En la Figura~\ref{fig.base_datos} se pueden ver algunas imágenes de nuestra bas
 \begin{figure}[H]
 \begin{center}
 	\includegraphics[width=0.6\textwidth]{figures/Diseno_global/base_datos.png}
-   \caption{Base de Datos}
+   \caption{\textit{Dataset STS Enriquecido}}
 	\label{fig.base_datos}
 \end{center}
 \end{figure}
@@ -120,7 +121,7 @@ Malas Condiciones Meteorológicas & 1892 & 71 \\ \hline
 Mala Calidad  & 637 & 68  \\ \hline
 Total & 9246 & 528 \\ \hline
 \end{tabular}
-\caption{Distribución Base de Datos}
+\caption{Distribución \textit{Dataset STS Enriquecido}}
 \label{tabla_distribucion_base_datos}
 \end{center}
 \end{table}
@@ -138,7 +139,7 @@ Condiciones Meteorológicas malas & 1568 & 324 & 1892 \\ \hline
 Mala Calidad & 510 & 127 & 637 \\ \hline
 Total & 7401 & 1845 & 9246 \\ \hline
 \end{tabular}
-\caption{Base de Datos del Entrenamiento}
+\caption{\textit{Dataset STS Enriquecido} de Entrenamiento}
 \label{base_datos_final_train}
 \end{center}
 \end{table}
@@ -160,7 +161,7 @@ Small-Truck & 663 \\ \hline
 Tank-Truck & 103 \\ \hline
 Total & 36762 \\ \hline
 \end{tabular}
-\caption{Características de la Base de Datos de Imágenes de Buena Calidad para el Entrenamiento}
+\caption{Características de las Imágenes de Buena Calidad del \textit{Dataset STS Enriquecido} para el Entrenamiento}
 \label{tabla_redes_database_mayor}
 \end{center}
 \end{table}
@@ -180,7 +181,7 @@ Bus & 100 \\ \hline
 Small-Truck & 183 \\ \hline
 Total & 8248 \\ \hline
 \end{tabular}
-\caption{Características de la Base de Datos con Condiciones Climatológicas Desfavorables para el Entrenamiento}
+\caption{Características de las Imágenes de Condiciones Climatológicas Desfavorables del \textit{Dataset STS Enriquecido} para el Entrenamiento}
 \label{tabla_redes_database_malas_condiciones}
 \end{center}
 \end{table}
@@ -200,7 +201,7 @@ Small-Truck & 60 \\ \hline
 Tank-truck & 16 \\ \hline
 Total & 1833 \\ \hline
 \end{tabular}
-\caption{Características de la Base de Datos de Mala Calidad para el Entrenamiento}
+\caption{Características de las Imágenes de Mala Calidad del \textit{Dataset STS Enriquecido} para el Entrenamiento}
 \label{tabla_redes_database_mala_calidad}
 \end{center}
 \end{table}
@@ -221,7 +222,7 @@ Nº Van & 155 \\ \hline
 Nº Truck & 8 \\ \hline
 Nº Small-Truck & 22 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test de Buena Calidad}
+\caption{Imágenes de Test de Buena Calidad de \textit{Dataset STS Enriquecido}}
 \label{tab_img_test_buenas}
 \end{center}
 \end{table}
@@ -238,7 +239,7 @@ Nº Car & 263 \\ \hline
 Nº Motorcycle & 1 \\ \hline
 Nº Van & 23 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test de Malas Condiciones Meteorológicas}
+\caption{Imágenes de Test de Malas Condiciones Meteorológicas de \textit{Dataset STS Enriquecido}}
 \label{tab_img_test_malas_condiciones}
 \end{center}
 \end{table}
@@ -257,17 +258,17 @@ Nº Motorcycle & 3 \\ \hline
 Nº Van & 11 \\ \hline
 Nº Small-Truck & 9 \\ \hline
 \end{tabular}
-\caption{Imágenes de Test de Mala Calidad}
+\caption{Imágenes de Test de Mala Calidad de \textit{Dataset STS Enriquecido}}
 \label{tab_img_test_mala_calidad}
 \end{center}
 \end{table}
 
 
-Hay que decir que todas las imágenes han sido etiquetadas a mano haciendo uso de la herramienta labelImg ~\cite{labelimg}, la cual permite guardar las etiquetas en archivos xml en formato PASCAL VOC (formato usado por ImageNet) o en formato \acrshort{yolo} en txt.
+Hay que decir que todas las imágenes han sido etiquetadas a mano haciendo uso de la herramienta labelImg~\cite{labelimg}, la cual permite guardar las etiquetas en archivos xml, en formato PASCAL VOC (formato usado por ImageNet) o en formato \acrshort{yolo} en txt.
 
 \section{Diseño de la Aplicación}
 
-Nuestra aplicación es una especie de caja negra donde entran fotogramas de una secuencia de video y salen dichas imágenes con los vehículos detectados e identificados en función del seguimiento y la clasificación. En la Figura~\ref{fig.caja_negra} se puede ver esta caja negra.
+Nuestra aplicación es una especie de caja negra donde entran fotogramas de una secuencia de vídeo y salen dichas imágenes con los vehículos detectados e identificados en función del seguimiento y la clasificación. En la Figura~\ref{fig.caja_negra} se puede ver esta caja negra.
 
 \begin{figure}[H] 
 \begin{center}
@@ -287,7 +288,7 @@ Nuestra aplicación es una especie de caja negra donde entran fotogramas de una 
 
 En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que indica los elementos principales de los que se compone \textit{Smart-Traffic-Sensor}, es decir, en que se fundamenta para funcionar.
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
 	\includegraphics[width=0.5\textwidth]{figures/Diseno_global/diagrama_bloques.PNG}
    \caption{Diagrama de Bloques}
@@ -295,8 +296,7 @@ En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que 
 \end{center}
 \end{figure}
 
-Las detecciones y la clasificación van de la mano, pues se realizan con \textit{Deep Learning}. En concreto con una red de \acrshort{yolo}. Los vehículos que detectemos los clasificaremos en función a 7 clases:  \textit{car, motorcycle, van, bus, truck, small-truck} y \textit{tank-truck}. 
-El seguimiento se centra en la proximidad espacial, y si esta falla se utIliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
+Las detecciones y la clasificación van de la mano, pues se realizan con \textit{Deep Learning}. En concreto con una red \acrshort{yolo}. Los vehículos que detectemos los clasificaremos en función a 7 clases:  \textit{car, motorcycle, van, bus, truck, small-truck} y \textit{tank-truck}. El seguimiento se centra en la proximidad espacial, y si ésta falla se utiliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
 
 El sistema del que partíamos (\textit{Traffic-Monitor}~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}.
 
@@ -329,12 +329,12 @@ A la hora de realizar el \textit{tracking} se hace uso de la proximidad espacial
 En resumen se puede decir que tenemos dos grandes bloques:
 \begin{itemize}
     \item Detección y Clasificación de vehículos: para llevarlo a cabo se invoca a una red \acrshort{yolo} sobre la imagen completa. Dicha red fue entrenada con una base de datos propia de 9246 imágenes, las cuales fueron etiquetadas a mano.   
-    \item Tracking de vehículos: se basa en la proximidad espacial para emparejar cada vehículo detectado con los vehículos detectados del instante anterior. Si un vehículo de los que está registrado no fuera detectado mediante \textit{Deep Learning} en el instante actual se haría uso de \acrshort{klt} para estimar su posición. \acrshort{klt} permite determinar el movimiento de un objeto dentro de una secuencia de imágenes.
+    \item Tracking de vehículos: se basa en la proximidad espacial para emparejar cada vehículo detectado con los vehículos detectados del instante anterior. Si un vehículo de los que está registrado no fuera detectado mediante \textit{Deep Learning} en el instante actual, se haría uso de \acrshort{klt} para estimar su posición. \acrshort{klt} permite determinar el movimiento de un objeto dentro de una secuencia de imágenes.
 \end{itemize}
 
-El conjunto total de detección, clasificación y seguimiento de vehículos tarda 50 ms, con lo cual se podría esperar que la aplicación funcione a unos 20 fotogramas por segundo. Las pruebas fueron realizadas mediante un servidor por lo que el tiempo de actualización de los gráficos es mayor, obteniendo con ello que \textit{Smart-Traffic-Sensor} funciona a 10 fotogramas por segundo. No obstante esto debería probarse con un ordenador con GPU propia para ver realmente la velocidad a la que funciona. Todo esto se comentará más a fondo en el Capítulo \ref{cap.experimentos}.
+El conjunto total de detección, clasificación y seguimiento de vehículos tarda 50 ms, con lo cual se podría esperar que la aplicación funcione a unos 20 fotogramas por segundo. Las pruebas fueron realizadas mediante un servidor, por lo que el tiempo de actualización de los gráficos es mayor, obteniendo con ello que \textit{Smart-Traffic-Sensor} funcione a 10 fotogramas por segundo. No obstante esto debería probarse con un ordenador con GPU propia para ver realmente la velocidad a la que funciona. Todo esto se comentará más a fondo en el Capítulo \ref{cap.experimentos}.
 
-A continuación se muestran dos diagramas de flujo, en los cuales se indica el planteamiento que se ha llevado a cabo en \textit{Smart-Traffic-Sensor}. En el primer diagrama~\ref{fig.diagrama_flujo_blob} se indica los pasos que se realizan una vez hemos detectado un blob en la imagen. En el segundo~\ref{fig.diagrama_flujo_vehiculos} se muestra que es lo que se hace con los vehículos ya registrados, es decir, con los que se les está llevando un seguimiento.
+A continuación se muestran dos diagramas de flujo, en los cuales se indica el planteamiento que se ha llevado a cabo en \textit{Smart-Traffic-Sensor}. En el primer diagrama~\ref{fig.diagrama_flujo_blob} se indica los pasos que se realizan una vez hemos detectado un \textit{blob} en la imagen. En el segundo~\ref{fig.diagrama_flujo_vehiculos} se muestra que es lo que se hace con los vehículos ya registrados, es decir, con los que se les está llevando un seguimiento.
 
 \begin{figure}[H] 
 \begin{center}
@@ -388,7 +388,7 @@ En los siguientes puntos se va a explicar el diseño que se ha llevado a cabo pa
 
 \subsection{Entorno TensorFlow y red SSD MobilenetV2}\label{sub.tensorflow}
 
-Para dar soporte dentro de la aplicación a redes de \textit{TensorFlow} se ha hecho uso del \textit{github models} de \textit{TensorFlow} ~\cite{tensorflow_models}, con el cual podemos entrenar una red pre-entrenada con nuestra propia base de datos. En este caso se ha empleado una red \acrfull{ssd} Mobilenet V2 entrenada con \acrshort{coco}, pues proporciona una buena relación entre la velocidad y la precisión. Para emplear dicha red se ha usado un archivo de configuración llamado \textit{ssd\_mobilenet\_v2\_coco.config}~\cite{ssd_mobilenetv2_config}.
+Para dar soporte dentro de la aplicación a redes de \textit{TensorFlow} se ha hecho uso del \textit{github models} de \textit{TensorFlow}~\cite{tensorflow_models}, con el cual podemos entrenar una red pre-entrenada con nuestra propia base de datos. En este caso se ha empleado una red \textit{\acrfull{ssd}} Mobilenet V2 entrenada con \acrshort{coco}, pues proporciona una buena relación entre la velocidad y la precisión. Para emplear dicha red se ha usado un archivo de configuración llamado \textit{ssd\_mobilenet\_v2\_coco.config}~\cite{ssd_mobilenetv2_config}.
 
 La red \acrshort{ssd} MobileNet V2 es una red \acrshort{ssd} que en lugar de tener una red VGG-16 de base, tiene una red MobileNet. En la Figura ~\ref{fig.ssd_mobilenet} se puede ver dicho diseño.
 
@@ -402,7 +402,7 @@ La red \acrshort{ssd} MobileNet V2 es una red \acrshort{ssd} que en lugar de ten
 
 La primera parte de la red es la Mobilenet V2, en la cual se obtienen los mapas de características para poder realizar la clasificación y detección en las capas posteriores. 
 
-\acrshort{ssd} ~\cite{ssd_article} es un método de detección de objetos en imágenes empleando una única red neuronal profunda. \acrshort{ssd} proporciona una gran ganancia de velocidad frente a Faster \acrshort{rcnn} \cite{rcnn_faster}, que funciona a una tasa de 7 fotogramas por segundo. El enfoque de \acrshort{ssd} se basa en una red convolucional \textit{feed-forward} que produce un conjunto de \textit{bounding boxes} de tamaño fijo y puntúa la presencia de instancias de clase de objeto en esos \textit{bounding boxes}. Tras esto realiza \textit{non-maximum suppression} para producir las detecciones finales. 
+\acrshort{ssd} ~\cite{ssd_article} es un método de detección de objetos en imágenes que emplea una única red neuronal profunda. \acrshort{ssd} proporciona una gran ganancia de velocidad frente a Faster \acrshort{rcnn} \cite{rcnn_faster}, que funciona a una tasa de 7 fotogramas por segundo. El enfoque de \acrshort{ssd} se basa en una red convolucional \textit{feed-forward} que produce un conjunto de \textit{bounding boxes} de tamaño fijo y puntúa la presencia de instancias de clase de objeto en esos \textit{bounding boxes}. Tras esto realiza \textit{non-maximum suppression} para producir las detecciones finales. 
 
 Dada una imagen de entrada y un conjunto de etiquetas de \textit{ground truth}, \acrshort{ssd} realiza el siguiente proceso:
 \begin{enumerate}
@@ -412,9 +412,9 @@ Dada una imagen de entrada y un conjunto de etiquetas de \textit{ground truth}, 
 \item Durante el entrenamiento hace que coincida el \textit{bounding box} del \textit{ground truth} con los \textit{bounding boxes} predichos según \textit{\acrfull{iou}}. El mejor \textit{bounding box} predicho se etiquetará como "positivo", junto con todos los demás \textit{bounding boxes} que tengan un ratio de \textit{Intersection over Union} con el \textit{ground truth} mayor de 0.5.
 \end{enumerate}
 
-\acrshort{ssd} parece sencillo, pero el entrenamiento tiene un desafío único. Clasificamos y estimamos \textit{bounding boxes} desde cada posición en la imagen, usando múltiples formas diferentes, en diferentes escalas. Como resultado, generamos un número mucho mayor de \textit{bounding boxes} que en otros modelos, y casi todos ellos son ejemplos negativos. Esto introduce un desequilibrio significativo entre los ejemplos de entrenamiento positivos y negativos.
+\acrshort{ssd} parece sencillo, pero el entrenamiento tiene un desafío único. Clasificamos y estimamos \textit{bounding boxes} desde cada posición en la imagen, usando múltiples formas diferentes, en diferentes escalas. Como resultado, generamos un número mucho mayor de \textit{bounding boxes} que en otros modelos, y casi todos ellos se corresponden con ejemplos negativos. Esto introduce un desequilibrio significativo entre los ejemplos de entrenamiento positivos y negativos.
 
-Para solucionar este desequilibrio \acrshort{ssd} hace dos cosas. En primer lugar, utiliza la \acrfull{nms} para agrupar \textit{bounding boxes} muy superpuestos en un solo \textit{bounding box}. En otras palabras, si cuatro \textit{bounding boxes} de formas, tamaños, etc. similares contienen el mismo objeto, el \acrshort{nms} conservará el que tenga la mayor confianza y descartará el resto. En segundo lugar, el modelo usa una técnica llamada minería negativa para equilibrar las clases durante el entrenamiento. En la minería negativa dura, solo se utiliza un subconjunto de los ejemplos negativos con la mayor pérdida de entrenamiento (es decir, falsos positivos) en cada iteración de entrenamiento. \acrshort{ssd} mantiene una relación de 3: 1 de negativos a positivos.
+Para solucionar este desequilibrio \acrshort{ssd} hace dos cosas. En primer lugar, utiliza la \textit{\acrfull{nms}} para agrupar \textit{bounding boxes} muy superpuestos en un solo \textit{bounding box}. En otras palabras, si cuatro \textit{bounding boxes} de formas, tamaños, etc, similares contienen el mismo objeto, el \acrshort{nms} conservará el que tenga la mayor confianza y descartará el resto. En segundo lugar, el modelo usa una técnica llamada minería negativa para equilibrar las clases durante el entrenamiento. En la minería negativa dura, solo se utiliza un subconjunto de los ejemplos negativos (es decir, falsos positivos) en cada iteración de entrenamiento. \acrshort{ssd} mantiene una relación de 3:1 de negativos a positivos.
 
 
 Mobilenet emplea unas capas llamadas \textit{depthwise separable convolutions} en lugar de capas convolucionales para la clasificación. En una capa convolucional se extrae información mediante \textit{kernels} que recorren toda la imagen. Estos \textit{kernels} necesitan tener la misma profundidad que la imagen para ser aplicados, es decir, si tenemos una imagen RGB necesitaremos 3 \textit{kernels}, uno por cada canal de color. Las capas \textit{depthwise separable convolutions} siguen un proceso diferente a las convolucionales: 
@@ -431,7 +431,7 @@ Si por ejemplo tenemos una imagen de 10x10x3 y se aplican capas convolucionales 
 N^{\circ} operaciones = 5x3x3x3x8x8 = 8640
 \end{equation}
 
-En el caso de \textit{depthwise separable convolutions} primero se realizará la operación \textit{depthwise convolution} con la cual obtendremos una imagen de 8x8x3 . Es decir, se emplearán 3 \textit{kernels}t de tamaño 3x3x1 para cada canal de color y estos \textit{kernels} se moveran 8x8 posiciones. Tras esto se aplicará la operación \textit{pointwise convolution}, en la cual se usará un \textit{kernel} de tamaño 1x1x3 para obtener finalmente una imagen de 8x8x1. Si tuvieramos 5 \textit{kernels} de tamaño 1x1x3 se moverán 8x8 posiciones.
+En el caso de \textit{depthwise separable convolutions} primero se realizará la operación \textit{depthwise convolution} con la cual obtendremos una imagen de 8x8x3 . Es decir, se emplearán 3 \textit{kernels} de tamaño 3x3x1 para cada canal de color y estos \textit{kernels} se moveran 8x8 posiciones. Tras esto se aplicará la operación \textit{pointwise convolution}, en la cual se usará un \textit{kernel} de tamaño 1x1x3 para obtener finalmente una imagen de 8x8x1. Si tuvieramos 5 \textit{kernels} de tamaño 1x1x3 se moverían 8x8 posiciones.
 
 \begin{equation}\label{mobilenet_formula}
 N^{\circ} operaciones = (3x3x3x1x8x8) + (5x1x1x3x8x8) = 2688
@@ -453,7 +453,7 @@ Con el diseño que se ha explicado se ha entrenado un total de 3173 imágenes, d
 \end{center}
 \end{figure}
 
-VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 2 capas totalmente conectadas y una capa de \textit{softmax} que se emplea para clasificar. En la Figura ~\ref{fig.vgg16} se puede ver cuál es la arquitectura de la red VGG.
+VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 2 capas totalmente conectadas y una capa de \textit{softmax} que se emplea para clasificar. En la Figura ~\ref{fig.vgg16} se puede ver cuál es la arquitectura de la red VGG-16.
 
  \begin{figure}[H] 
 \begin{center}
@@ -463,7 +463,7 @@ VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 
 \end{center}
 \end{figure}
 
-\subsubsection{Entorno Darknet y red YOLOv3}\label{sub.darknet}
+\subsection{Entorno Darknet y red YOLOv3}\label{sub.darknet}
 
 En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualmente. \acrshort{yolo} ~\cite{yolo_article1} es otro enfoque para la detección de objetos. El trabajo previo a \acrshort{yolo} emplea clasificadores para realizar la detección. En esta aproximación se enmarca la detección de objetos como un problema de regresión en \textit{bounding boxes} espacialmente separados y probabilidades de clase asociadas. En la evaluación, una red neuronal única predice \textit{bounding boxes} y probabilidades de clase directamente desde imágenes completas. 
 
@@ -471,7 +471,7 @@ En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualment
 
 El modelo implementado es una red neuronal convolucional, donde las capas convolucionales iniciales extraen características de la imagen, mientras que las capas \textit{fully connected} predicen las probabilidades y coordenadas de salida. La red tiene 24 capas convolucionales seguidas por 2 capas \textit{fully connected}. 
 
-La arquitectura unificada de \acrshort{yolo} (Figura~\ref{fig.yolov3}) es extremadamente rápida, procesando imágenes en tiempo real a 45 frames por segundo. Una versión más pequeña de la red, Fast \acrshort{yolo}, procesa 155 frames por segundo, logrando duplicar el \textit{\acrfull{map}} de otros detectores en tiempo real.
+La arquitectura unificada de \acrshort{yolo} (Figura~\ref{fig.yolov3}) es extremadamente rápida, procesando imágenes en tiempo real a 45 fotogramas por segundo. Una versión más pequeña de la red, Fast \acrshort{yolo}, procesa 155 fotogramas por segundo, logrando duplicar el \textit{\acrfull{map}} de otros detectores en tiempo real.
 
 \begin{figure}[H] 
 \begin{center}
@@ -481,7 +481,7 @@ La arquitectura unificada de \acrshort{yolo} (Figura~\ref{fig.yolov3}) es extrem
 \end{center}
 \end{figure}
 
-En comparación con los sistemas de detección más modernos, YOLO comete más errores de localización (especialmente con objetos pequeños), pero es menos probable que prediga falsos positivos en el fondo. Finalmente, \acrshort{yolo} aprende representaciones muy generales de objetos. Supera a otros métodos de detección, como DPM y \acrshort{rcnn}, en imágenes naturales y trabajos artísticos.
+En comparación con los sistemas de detección más modernos, YOLO comete más errores de localización (especialmente con objetos pequeños), pero es menos probable que prediga falsos positivos en el fondo. \acrshort{yolo} aprende representaciones muy generales de objetos y supera a otros métodos de detección, como DPM y \acrshort{rcnn}, en imágenes naturales y trabajos artísticos.
 
 
 \section{Seguimiento de Vehículos}\label{sec.seguimiento}
@@ -490,11 +490,11 @@ Una vez tenemos los vehículos detectados y clasificados debemos realizar su seg
 
 \subsection{Emparejamiento por proximidad}
 
-La diferencia de píxeles en la imagen entre la posición de un vehículo en \textit{t-1} y en \textit{t} es muy pequeña. Por tanto se puede decir que el blob de un vehículo en \textit{t} cae en una zona muy cercana al blob de ese mismo vehículo en \textit{t-1}. Esto se tendrá en cuenta a la hora de realizar el seguimiento, ya que cuando busquemos un vehículo en \textit{t} deberíamos enncontrarlo en un radio circular pequeño alrededor de la posición de ese mismo vehículo en \textit{t-1}. 
+La diferencia de píxeles en la imagen entre la posición de un vehículo en \textit{t-1} y en \textit{t} es muy pequeña. Por tanto se puede decir que el \textit{blob} de un vehículo en \textit{t} cae en una zona muy cercana al \textit{blob} de ese mismo vehículo en \textit{t-1}. Esto se tendrá en cuenta a la hora de realizar el seguimiento, ya que cuando busquemos un vehículo en \textit{t} deberíamos encontrarlo en un radio circular pequeño alrededor de la posición de ese mismo vehículo en \textit{t-1}. 
 
 El algoritmo que se plantea en cuanto a la proximidad espacial es el empleado por Redouane Kachach en la versión anterior de la aplicación~\cite{redo_tesis}. En él se estima el área donde debería localizarse un vehículo en función de su posición en \textit{t-1}. A medida que los vehículos vayan avanzando este área se irá actualizando.
 
-Al principio el área se toma como un círculo pues no tenemos suficientes datos acerca de su orientación. Pero a medida que el vehículo avanza y tenemos suficiente información para conocer su orientación tomaremos el área como una elipse con centro en el centro del vehículo en \textit{t-1}. 
+Al principio el área se toma como un círculo, pues no tenemos suficientes datos acerca de su orientación. Pero a medida que el vehículo avanza y tenemos suficiente información para conocer su orientación tomaremos el área como una elipse cuyo centro se corresponde con el centro del vehículo en \textit{t-1}. 
 
 Consideraremos que tenemos suficiente información para estimar su orientación cuando tengamos 6 posiciones de un vehículo. Se emplea regresión lineal para calcular la orientación del vehículo basándonos en la posición que va tomando el vehículo a medida que va avanzando. 
 
@@ -504,9 +504,9 @@ La regresión lineal consiste en minimizar $\sum_{i}\rho(r_i)$ , donde $r_i$  es
    \rho(r_i) = 2(\sqrt{1 +\frac{r^2}{2}} - 1) 
 \end{equation}
 
-Una vez tenemos información acerca de la orientación definiremos el área de búsqueda como una elipse que tiene como centro el mismo que el vehículo en \textit{t-1} y dirección la calculada con la Fórmula (~\ref{ec.regresion_lineal}).
+Una vez tenemos información acerca de la orientación definiremos el área de búsqueda como una elipse que tiene como centro el mismo que el vehículo en \textit{t-1} y dirección la calculada con la Fórmula (\ref{ec.regresion_lineal}).
 
-Los emparejamientos entre los vehículos detectados en el instante \textit{t} y los blobs almacenados del instante \textit{t-1} se limita a los vehículos que caen dentro del área del círculo o la elipse que se obtiene en función de la posición del vehículo en el instante \textit{t-1}. En la Figura ~\ref{fig.area_vehiculo} se puede ver la evolución que sufre el área alrededor del vehículo a medida que avanza.
+Los emparejamientos entre los vehículos detectados en el instante \textit{t} y los \textit{blobs} almacenados del instante \textit{t-1} se limitan a los vehículos que caen dentro del área del círculo o la elipse que se obtiene en función de la posición del vehículo en el instante \textit{t-1}. En la Figura~\ref{fig.area_vehiculo} se puede ver la evolución que sufre el área alrededor del vehículo a medida que avanza.
 
  \begin{figure}[H] 
 \begin{center}
@@ -558,8 +558,7 @@ En la Figura~\ref{fig.proximidad_espacial} se muestra un ejemplo de \textit{Smar
 \end{center}
 \end{figure}
 
-En resumen, una detección deberá encontrarse dentro de un cierto área alrededor del \textit{blob} detectado en \textit{t-1} para poder ser identificado como el mismo vehículo. Podría darse el caso de que dos vehículos cayeran en dicho área. Por ello es necesario tener en cuenta la distancia euclídea entre el centro del blob del instante \textit{t-1} y el centro de los \textit{blob} en \textit{t}. Aquel \textit{blob} del instante \textit{t} que se encuentre a menor distancia del \textit{blob} del instante \textit{t-1} y por supuesto esté dentro del área alrededor del \textit{blob} \textit{t-1} será considerado como el mismo vehículo que el de \textit{
-t-1}. Es decir si esto se cumple el \textit{blob} de \textit{t-1} y \textit{t} corresponden al  mismo vehículo pero en instantes consecutivos.
+En resumen, una detección deberá encontrarse dentro de un cierto área alrededor del \textit{blob} detectado en \textit{t-1} para poder ser identificado como el mismo vehículo. Podría darse el caso de que dos vehículos cayeran en dicho área. Por ello es necesario tener en cuenta la distancia euclídea entre el centro del \textit{blob} del instante \textit{t-1} y el centro de los \textit{blob} en \textit{t}. Aquel \textit{blob} del instante \textit{t} que se encuentre a menor distancia del \textit{blob} del instante \textit{t-1} y por supuesto esté dentro del área alrededor del \textit{blob} \textit{t-1} será considerado como el mismo vehículo que el de \textit{t-1}. Es decir si esto se cumple el \textit{blob} de \textit{t-1} y \textit{t} corresponden al  mismo vehículo pero en instantes consecutivos.
 
 \subsection{Seguimiento por KLT}
 
@@ -567,7 +566,7 @@ El seguimiento se centra en asociar las detecciones actuales con los \textit{blo
 
 \begin{itemize}
     \item Si un \textit{blob} llega al final de la zona de evaluación se eliminará del seguimiento.
-    \item Se recorrerán los \textit{blob} del instante \textit{t-1} almacenados con el fin de emparejarlos con los \textit{blob} detectados en el instante \textit{t}. Este emparejamiento se establecerá entre los \textit{blob} \textit{t} y \textit{t-1} que tengan menor distancia euclídea entre sus centros.
+    \item Se recorrerán los \textit{blob} del instante \textit{t-1} almacenados con el fin de emparejarlos con los \textit{blob} detectados en el instante \textit{t}. Este emparejamiento se establecerá entre los \textit{blobs} en \textit{t} y \textit{t-1} que tengan menor distancia euclídea entre sus centros.
     \item Si el \textit{blob} \textit{t} asociado al \textit{blob} \textit{t-1} no cae dentro del área circular o elíptica que se genera alrededor del centro del  \textit{blob} \textit{t-1} no quedará emparejado a éste. 
     \item Si mediante proximidad espacial no somos capaces de emparejar un \textit{blob} \textit{t-1} emplearemos \acrshort{klt}.
 \end{itemize}
@@ -576,7 +575,7 @@ El seguimiento se basa principalmente en la proximidad espacial pero se hará us
 
 Si no se detecta un vehículo ya sea porque haya alguna oclusión o se encuentre muy lejos, se empleará \acrshort{klt}, pues se ha visto que funciona incluso ante oclusiones durante un pequeño número de fotogramas consecutivos.
 
-Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1} , \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. 
+Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1}, \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. 
 
 Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver como a pesar de haber una oclusión se sigue detectando el vehículo. En este caso \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
 
@@ -641,15 +640,15 @@ Gracias al empleo de \acrshort{klt} piramidal se pueden estimar grandes desplaza
 
 \section{Estimación de la Velocidad}
 
-Derivado del seguimiento de vehículos \textit{Smart-Traffic-Sensor} ofrece la funcionalidad de estimar la velocidad media que tienen estos vehículos durante su seguimiento.
+Gracias al seguimiento de vehículos, \textit{Smart-Traffic-Sensor} ofrece la funcionalidad de estimar la velocidad media que tienen estos vehículos durante su seguimiento.
 
 \textit{Smart-Traffic-Sensor} tiene opciones para configurar la cámara, es decir para realizar su calibración. Al tener información de la cámara empleada tendremos información 3D de la imagen. Es decir podemos realizar una proyección al mundo 3D de nuestros puntos en la imagen.
 
-Para calcular la velocidad sólo necesitamos conocer la distancia que ha recorrido el vehículo y el tiempo que ha tardado en hacerlo. Disponemos de una zona de evaluación por la cual discurren los vehículos, por tanto podemos saber cuánta distancia recorre por dicha zona de evaluación, y el tiempo que tarda en hacerlo. Para calcular la distancia tenemos que calcular la posición 3D de los vehículos y con ella hacer su diferencia. Esto se puede llevar a cabo haciendo uso de su homografía, la cual podemos estimar gracias a que conocemos los parámetros de la cámara.
+Para calcular la velocidad sólo necesitamos conocer la distancia que ha recorrido el vehículo y el tiempo que ha tardado en hacerlo. Disponemos de una zona de evaluación por la cual discurren los vehículos, por tanto podemos saber cuánta distancia recorren por dicha zona de evaluación, y el tiempo que tardan en hacerlo. Para calcular la distancia tenemos que calcular la posición 3D de los vehículos y con ella hacer su diferencia. Esto se puede llevar a cabo haciendo uso de su homografía, la cual podemos estimar gracias a que conocemos los parámetros de la cámara.
 
 \section{Interfaz Gráfica de la Aplicación}
 
-La interfaz gráfica del proyecto nos da información acerca de lo que sucede en el vídeo que estamos monitorizando, además de mostrarnos en todo momento una ventana en la que se ve el vídeo que estamos monitorizando.
+La interfaz gráfica del proyecto nos da información en todo momento acerca de lo que sucede en el vídeo que estamos monitorizando, además de mostrarnos un histórico de la cantidad de vehículos que hemos procesado.
 
 Esta interfaz gráfica tiene dos partes principales:
 \begin{itemize}
@@ -674,13 +673,13 @@ Esta interfaz gráfica tiene dos partes principales:
 
 La interfaz \textit{Smart-Traffic-Sensor} nos ofrece diversas funcionalidades para modificar lo que se muestra en la ventana \textit{Input Video}, nos permite cambiar el método de detección, clasificación y seguimiento, además de mostrarnos información acerca de los vehículos que se están monitorizando.
 
-A contiuación se va a explicar brevemente la funcionalidad de los botones que aplican en nuestro método, pues algunos solo aplican al funcionamiento del antiguo \textit{Traffic-Monitor}:
+A continuación se va a explicar brevemente la funcionalidad de los botones que aplican en nuestro método, pues algunos solo aplican al funcionamiento del antiguo \textit{Traffic-Monitor}:
 \begin{itemize}
     \item \textit{Play} permite detener y poner en marcha la ejecución del vídeo.
     \item \textit{Save} nos ofrece la posibilidad de guardar información acerca de la zona de evaluación, es decir, guardar información acerca del tamaño y los puntos en los que se encuentra la zona de evaluación.
-    \item \textit{Classify} muestra los blobs y su clase (siempre que esté también activo \textit{Show Categories}).
-    \item \textit{Proximity Tracking}, \textit{KLT tracking}, \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} permiten cambiar de método para la detección, clasificación y seguimiento. \textit{Proximity Tracking}, \textit{KLT tracking} pertenecen al algoritmo que desarrollo Redouane en su tesis~\cite{redo_tesis}. Con \textit{Proximity Tracking} se emplea únicamente proximidad espacial para el seguimiento y en \textit{KLT tracking} se incluye \acrshort{klt} para los casos en los que la detección es insuficiente. Con \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} se activa el método desarrollado en este trabajo. La única diferencia entre ellos es la plataforma de detección y clasificación.
-    \item \textit{Show box} muestra el blob completamente pintado de verde. Solo aplicará si no está activo \textit{Classify}. En la Figura~\ref{fig.show_box} se puede ver un ejemplo.
+    \item \textit{Classify} muestra los \textit{blobs} y su clase (siempre que esté también activo \textit{Show Categories}).
+    \item \textit{Proximity Tracking}, \textit{KLT tracking}, \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} permiten cambiar de método para la detección, clasificación y seguimiento. \textit{Proximity Tracking} y \textit{KLT tracking} pertenecen al algoritmo que desarrolló Redouane en su tesis~\cite{redo_tesis}. Con \textit{Proximity Tracking} se emplea únicamente proximidad espacial para el seguimiento y en \textit{KLT tracking} se incluye \acrshort{klt} para los casos en los que la detección es insuficiente. Con \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} se activa el método desarrollado en este trabajo. La única diferencia entre ellos es la plataforma de detección y clasificación que se emplea.
+    \item \textit{Show box} muestra el \textit{blob} completamente pintado de verde. Solo aplicará si no está activo \textit{Classify}. En la Figura~\ref{fig.show_box} se puede ver un ejemplo.
         \begin{figure}[H] 
     \begin{center}
     	\includegraphics[scale=0.35]{figures/Diseno_global/show_box.png}

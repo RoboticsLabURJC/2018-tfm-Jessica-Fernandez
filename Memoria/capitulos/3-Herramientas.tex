@@ -1,10 +1,10 @@
 \chapter{Herramientas utilizadas}\label{cap.herramientas}
-En este capítulo se van a explicar las diferentes bibliotecas software y entornos que se van a emplear, así como los lenguajes de programación de los que haremos uso.
+En este capítulo se van a explicar las diferentes bibliotecas software y entornos que se van a emplear.
 
-Como lenguajes de programación se ha hecho uso de \textit{Python} y \textit{C++}. La aplicación se ha desarrollado casi en su totalidad en \textit{C++}, Aunque la integración de \textit{TensorFlow} y \textit{Keras} se ha realizado con la versión 2.7.12 de \textit{Python}.
+Como lenguajes de programación se ha hecho uso de \textit{Python} y \textit{C++}. La aplicación se ha desarrollado casi en su totalidad en \textit{C++}, aunque la integración de \textit{TensorFlow} y \textit{Keras} se ha realizado con la versión 2.7.12 de \textit{Python}.
 Para el desarrollo del modelo de \textit{Deep Learning} que se empleará para la detección, se han realizado pruebas con \textit{TensorFlow}, \textit{Keras} y \textit{Darknet}. \textit{OpenCV} se ha usado para todo lo relacionado con el tratamiento de imágenes. Finalmente la evaluación experimental de la eficacia de la aplicación desarrollada se ha realizado con la herramienta \textit{DetectionSuite}.
 
-La interfaz gráfica de la aplicación desarrollada se ha hecho con \textit{gtkmm} en \textit{C++}, herramienta que permite crear interfaces de usuario con múltiples funcionalidades.
+La interfaz gráfica de la aplicación implementada se ha hecho con \textit{gtkmm} en \textit{C++}, herramienta que permite crear interfaces de usuario con múltiples funcionalidades.
 
 
 
@@ -66,7 +66,7 @@ El \textit{recall} es la cantidad de detecciones correctas entre la cantidad de 
 Precision = \frac{TP}{TP + FN}
 \end{equation}
 
-Volviendo a \textit{DetectionSuite}, es una herramienta que puede emplearse tanto en Linux como en MacOS. Permite evaluar modelos entrenados en \textit{Tensorflow}, \textit{Keras}, \textit{Caffe} y \textit{Darknet}. Los formatos de dataset que admite son:  \acrshort{yolo}, \acrshort{coco}, \textit{ImageNet Pascal VOC}, etc. A continuación se enumeran las entradas de imágenes soportadas:
+Volviendo a \textit{DetectionSuite}, es una herramienta que puede emplearse tanto en Linux como en MacOS. Permite evaluar modelos entrenados en \textit{Tensorflow}, \textit{Keras}, \textit{Caffe} y \textit{Darknet}. Los formatos de \textit{dataset} que admite son:  \acrshort{yolo}, \acrshort{coco}, \textit{ImageNet Pascal VOC}, etc. A continuación se enumeran las entradas de imágenes soportadas:
 
 \begin{itemize}
     \item WebCamera/ USB Camera
@@ -79,13 +79,13 @@ Volviendo a \textit{DetectionSuite}, es una herramienta que puede emplearse tant
 En este \acrshort{tfm} en concreto se va a hacer uso de la herramienta \textit{AutoEvaluator} de \textit{DetectionSuite}, la cual es capaz de evaluar múltiples redes en un solo conjunto de datos o múltiples conjuntos de datos en una sola ejecución. Todo lo que necesita es un archivo de configuración que contenga detalles sobre los conjuntos de datos y las redes. Los resultados se escriben en archivos CSV en el directorio de salida especificado.
 
 \section{Entorno TensorFlow}
-Para el desarrollo de la red neuronal que queremos aplicar en nuestra aplicación \textit{Smart-Traffic-Sensor} se  han probado diferentes plataformas de desarrollo de \textit{Deep Learning}, entre ellas \textit{TensorFlow} \footnote{https://www.tensorflow.org/}. Es una plataforma de código abierto \textit{end-to-end} para el \textit{Machine Learning} que fue liberada bajo licencia de \textit{Apache} 2 a finales de 2015 y que está disponible en github~\cite{github_tensorflow}. Fue desarrollada por el equipo de investigación en \textit{Machine Learning “Google Brain”}  en \textit{C++} y \textit{Python}, y es usado en multitud de productos y servicios de Google como Gmail o \textit{Google Translation}. Google ofrece en su plataforma \textit{Cloud} ejecutar \textit{Tensorflow} en \textit{Tensor Processing Unit} (TPU), un nuevo tipo de procesadores en \textit{Cloud} optimizados para ejecutar \acrfull{ia}.  \textit{TensorFlow} está orientado a problemas de \textit{Deep Learning} y permite entrenar y construir redes neuronales. 
+Para el desarrollo de la red neuronal que queremos aplicar en nuestra aplicación \textit{Smart-Traffic-Sensor} se  han probado diferentes plataformas de desarrollo de \textit{Deep Learning}, entre ellas \textit{TensorFlow} \footnote{https://www.tensorflow.org/}. Es una plataforma de código abierto \textit{end-to-end} para el \textit{Machine Learning} que fue liberada bajo licencia de \textit{Apache} 2 a finales de 2015 y que está disponible en github~\cite{github_tensorflow}. Fue desarrollada por el equipo de investigación en \textit{Machine Learning “Google Brain”}  en \textit{C++} y \textit{Python}, y es usada en multitud de productos y servicios de Google como Gmail o \textit{Google Translation}. Google ofrece en su plataforma \textit{Cloud} ejecutar \textit{Tensorflow} en \textit{Tensor Processing Unit} (TPU), un nuevo tipo de procesadores en \textit{Cloud} optimizados para ejecutar \acrfull{ia}.  \textit{TensorFlow} está orientado a problemas de \textit{Deep Learning} y permite entrenar y construir redes neuronales. 
 
-\textit{TensorFlow} puede correr tanto en CPUs como en GPUs (haciendo uso de \acrfull{cuda}). Está disponible en \textit{Linux} de 64 bits, \textit{MacOS}, y plataformas móviles que incluyen \textit{Android} e \textit{iOS}. Actualmente es el entorno más popular en \textit{Deep Learning}.
+\textit{TensorFlow} puede correr tanto en CPUs como en GPUs (haciendo uso de \textit{\acrfull{cuda}}). Está disponible en \textit{Linux} de 64 bits, \textit{MacOS}, y plataformas móviles que incluyen \textit{Android} e \textit{iOS}. Actualmente es el entorno más popular en \textit{Deep Learning}.
 
 Puede ejecutar de forma rápida y eficiente gráficos de flujo. Un gráfico de flujo está formado por operaciones matemáticas representadas sobre nodos, y cuya entrada y salida es un vector multidimensional o tensor de datos, por este motivo recibe el nombre de \textit{TensorFlow}.
 
-Las ventajas de este software se extienden a muchas disciplinas a parte de la tecnología TIC. Se emplea en medicina en imágenes médicas para la detección de tumores por ejemplo, también se usa en la detección y combinación de estilos artísticos en la pintura, etc.
+Las ventajas de este software se extienden a muchas disciplinas a parte de la tecnología TIC. Se emplea en imágenes médicas para la detección de tumores por ejemplo, también se usa en la detección y combinación de estilos artísticos en la pintura, etc.
 
 En este \acrshort{tfm} se emplea la versión 1.12.0 de \textit{Tensorflow}.
 
@@ -94,7 +94,7 @@ En este \acrshort{tfm} se emplea la versión 1.12.0 de \textit{Tensorflow}.
 Al igual que se ha empleado \textit{TensorFlow} como plataforma de desarrollo de la red neuronal, se ha hecho uso de \textit{Keras} \footnote{https://keras.io/}. Es un entorno de alto nivel para el aprendizaje, escrito en \textit{Python} y capaz de correr sobre \textit{TensorFlow}, \acrshort{cntk}, o \textit{Theano}. Fue desarrollado con el objetivo de facilitar el proceso de experimentación en redes neuronales de forma rápida y eficiente. Puede correr tanto en CPU como en GPU. Permite crear de forma sencilla y rápida los modelos de las redes neuronales (a través de su facilidad de uso, su modularidad y su extensibilidad). Admite redes convolucionales y redes recurrentes, así como combinaciones de las dos.
 
 Inicialmente fue desarrollada en el proyecto de investigación ONEIROS (Open--ended Neuro--Electronic Intelligent Robot Operating System). Su creador es Fran\c{c}ois Chollet, ingeniero de \textit{Google}.
-En 2017, el equipo de TensorFlow de Google decidió dar soporte a Keras en la biblioteca de core de TensorFlow.
+En 2017, el equipo de \textit{TensorFlow} de Google decidió dar soporte a \textit{Keras} en la biblioteca de core de \textit{TensorFlow}.
 
 Al igual que \textit{TensorFlow}, \textit{Keras} se encuentra en github~\cite{keras_github}, pues es de código abierto. 
 
@@ -125,9 +125,9 @@ En este \acrshort{tfm} se ha usado \textit{Darknet} para el desarrollo de una re
 
 \section{Biblioteca OpenCV}
 
-\textit{OpenCV} \footnote{https://opencv.org/} es una librería de código abierto desarrollada por \textit{Intel} y publicada  bajo licenciade BSD. Esta librería implementa gran variedad de herramientas para la interpretación de la imagen. Sus  siglas  provienen  de  los  términos anglosajones ``\textit{Open Source Computer  Vision Library}", y tal y como se puede deducir es una librería destinada a aplicaciones de visión por computador en tiempo real. Puede ser empleada en MacOS, Windows y Linux,y existen versiones para \textit{C\#}, \textit{Python} y \textit{Java}, a pesar de que originalmente era una librería en \textit{C/C++}. Además hay interfaces para \textit{Ruby}, \textit{Python}, \textit{Matlab} y otros lenguajes. 
+\textit{OpenCV} \footnote{https://opencv.org/} es una librería de código abierto desarrollada por \textit{Intel} y publicada  bajo licenciade BSD. Esta librería implementa gran variedad de herramientas para la interpretación de la imagen. Sus  siglas  provienen  de  los  términos anglosajones ``\textit{Open Source Computer  Vision Library}", y tal y como se puede deducir es una librería destinada a aplicaciones de visión por computador en tiempo real. Puede ser empleada en MacOS, Windows y Linux, y existen versiones para \textit{C\#}, \textit{Python} y \textit{Java}, a pesar de que originalmente era una librería en \textit{C/C++}. Además hay interfaces para \textit{Ruby}, \textit{Python}, \textit{Matlab} y otros lenguajes. 
 
-\textit{OpenCV} implementa algoritmos para técnicas de calibración, detección de rasgos, rastreo, análisis de la forma, análisis del movimiento, reconstrucción 3D, segmentación de objetos y reconocimiento, etc. Los algoritmos se basan  en  estructuras de datos flexibles acopladas con estructuras IPL (\textit{Intel  Image Processing Library}), aprovechándose de la arquitectura de Intel en la optimización de más de las mitad de las funciones. Incorpora funciones básicas para modelar el fondo, sustraer dicho  fondo y generar imágenes de movimiento MHI  (\textit{Motion  History  Images}).  Además  incluye  funciones para determinar dónde hubo movimiento y en qué dirección. 
+\textit{OpenCV} implementa algoritmos para técnicas de calibración, detección de rasgos, rastreo, análisis de la forma, análisis del movimiento, reconstrucción 3D, segmentación de objetos y reconocimiento, etc. Los algoritmos se basan  en  estructuras de datos flexibles acopladas con estructuras IPL (\textit{Intel  Image Processing Library}), aprovechándose de la arquitectura de Intel en la optimización de más de la mitad de las funciones. Incorpora funciones básicas para modelar el fondo, sustraer dicho  fondo y generar imágenes de movimiento MHI  (\textit{Motion  History  Images}).  Además  incluye  funciones para determinar dónde hubo movimiento y en qué dirección. 
 
 \begin{figure}[H]
   \begin{center}
@@ -139,7 +139,7 @@ En este \acrshort{tfm} se ha usado \textit{Darknet} para el desarrollo de una re
 
 Fue diseñado para tener una alta eficiencia computacional, está escrito en C y puede aprovechar las ventajas de los procesadores multinúcleo. Contiene más  de  2500  funciones  que  abarcan  muchas  áreas  de  la  visión  artificial.  También  tiene  una librería   de   aprendizaje   automático   (MLL,  \textit{Machine   Learning   Library})   destinada   al reconocimiento  y agrupación de patrones estadísticos.
 
-Desde su aparición OpenCV ha sido usado en numerosas aplicaciones. Entre las cuales se encuentran la unión de imágenes de satélites y mapas web, la reducción de ruido en imágenes  médicas,  los  sistemas  de  detección  de movimiento,  la  calibración  de  cámaras,  el manejo  de  vehículos  no  tripulados, el  reconocimiento  de  gestos, etc. OpenCV  es  empleado también  en  reconocimiento  de  música  y  sonido,  mediante  la  aplicación  de  técnicas  de reconocimiento de visión en imágenes de espectrogramas del sonido.
+Desde su aparición \textit{OpenCV} ha sido usado en numerosas aplicaciones. Entre las cuales se encuentra la unión de imágenes de satélites y mapas web, la reducción de ruido en imágenes  médicas,  los  sistemas  de  detección  de movimiento,  la  calibración  de  cámaras,  el manejo  de  vehículos  no  tripulados, el  reconocimiento  de  gestos, etc. \textit{OpenCV} es empleado también en reconocimiento de música y sonido, mediante la aplicación de técnicas de reconocimiento de visión en imágenes de espectrogramas del sonido.
 
 Hay  una  gran  cantidad  de  empresas    y  centros  de  investigación  que  emplean  estas técnicas como IBM, Microsoft, Intel, SONY, Siemens, Google, Stanford, MIT, CMU, Cambridge e INRIA.
 
@@ -152,7 +152,7 @@ En este proyecto se hace uso de la versión \textit{OpenCV} 3.2.
 
 Se trata de un \textit{toolkit} para desarrollar interfaces gráficas de usuario. Es un software libre distribuido bajo la Licencia Pública General Reducida de GNU (LGPL).
 
-\textit{Gtkmm} se organiza por medio de ventanas, las cuales contienen \textit{widgets}, como por ejemplo botones etiquetas, cuadros de texto, etc.  Para cada \textit{widget} debemos tener un objeto C++ con el cual controlar su funcionamiento, es decir si por ejemplo nuestro \textit{widget} es un botón, necesitaremos funciones para saber si se ha pulsado o no, y acerca de que realizar si se hubiera pulsado, para todo ello se emplea un objeto de C++. 
+\textit{Gtkmm} se organiza por medio de ventanas, las cuales contienen \textit{widgets}, como por ejemplo botones, etiquetas, cuadros de texto, etc.  Para cada \textit{widget} debemos tener un objeto C++ con el cual controlar su funcionamiento, es decir si por ejemplo nuestro \textit{widget} es un botón, necesitaremos funciones para saber si se ha pulsado o no, y acerca de que realizar si se hubiera pulsado. Para todo ello se emplea un objeto de C++. 
 
 Aunque se puede especificar el diseño y apariencia de las ventanas y \textit{widgets} con C++, resulta más conveniente usar \textit{Glade} para el diseño de la interfaz de usuario y cargarlos en tiempo de ejecución con \textit{Gtk::Builder}. Con  \textit{Glade} podemos desarrollar las interfaces de usuario, guardarlas en formato .glade y luego cargarlas desde \textit{gtkmm} empleando \textit{ Gtk::Builder}.
 
