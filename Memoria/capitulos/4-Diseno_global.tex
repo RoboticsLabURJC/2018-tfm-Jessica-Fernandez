@@ -469,14 +469,29 @@ En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualment
 
 \acrshort{yolo} impone fuertes restricciones espaciales en las predicciones de los \textit{bounding boxes}, ya que cada celda de la cuadrícula solo predice dos \textit{bounding boxes} y solo puede tener una clase. Esta restricción espacial limita el número de objetos cercanos que nuestro modelo puede predecir. 
 
-El modelo implementado es una red neuronal convolucional, donde las capas convolucionales iniciales extraen características de la imagen, mientras que las capas \textit{fully connected} predicen las probabilidades y coordenadas de salida. La red tiene 24 capas convolucionales seguidas por 2 capas \textit{fully connected}. 
+La red Yolov3 está formada por un total de 106 capas,  las cuales se pueden agrupar en dos grupos, uno encargado de la extracción de características y otro de la detección de objetos:
 
-La arquitectura unificada de \acrshort{yolo} (Figura~\ref{fig.yolov3}) es extremadamente rápida, procesando imágenes en tiempo real a 45 fotogramas por segundo. Una versión más pequeña de la red, Fast \acrshort{yolo}, procesa 155 fotogramas por segundo, logrando duplicar el \textit{\acrfull{map}} de otros detectores en tiempo real.
+\begin{itemize}
+    \item Extracción de características (de la capa 1 a la 74): se trata de la red Darknet-53 entrenada con ImageNet, la cual se compone de 53 capas convolucionales (Figura~\ref{fig.darknet53}).
+    \begin{figure}[H] 
+\begin{center}
+	\includegraphics[scale=1]{figures/Diseno_global/darket53.png}
+   \caption{Arquitectura Darknet-53}
+	\label{fig.darknet53}
+\end{center}
+\end{figure}
+	Esta red tiene como entrada imágenes de 416x416x3 y como salida características 3D de 13x13x1024, e incorpora 23 capas residuales. Cuando una red neuronal aumenta de profundidad su precisión a la hora de propagar las características tiende a degradarse llevándonos a un mayor error en el entrenamiento. Para solucionar este problema se hace uso de las capas residuales.
+    \item Detección de Objetos (de la capa 75 a la 106): toma como entrada las características 3D (13x13x1024) y realiza con ello la detección de objetos. La singularidad de esta red reside en su capacidad para lograr detectar objetos en tres escalas diferentes, haciendo de ella una red muy potente ante el cambio de escala. Para ello extrae características en tres escalas diferentes (13x13x42, 26x26x42 y 52x52x42). Estas características pasan a la capa final YOLO, que clasifica la etiqueta del objeto con regresiones logísticas de clase y localiza los objetos con regresores de \textit{bounding boxes}.
+
+\end{itemize}
+
+
+La arquitectura unificada de \acrshort{yolo}v3 (Figura~\ref{fig.yolov3}) es extremadamente rápida, procesando imágenes en tiempo real a 30 fotogramas por segundo. Una versión más pequeña de la red, Fast \acrshort{yolo}, procesa 155 fotogramas por segundo, logrando duplicar el \textit{\acrfull{map}} de otros detectores en tiempo real.
 
 \begin{figure}[H] 
 \begin{center}
-	\includegraphics[width=0.9\textwidth]{figures/Diseno_global/yolov3.png}
-   \caption{Arquitectura YOLO}
+	\includegraphics[scale=0.7]{figures/Diseno_global/yolov3.png}
+   \caption{Arquitectura YOLOv3}
 	\label{fig.yolov3}
 \end{center}
 \end{figure}
@@ -708,3 +723,5 @@ Con todo ello tenemos una interfaz que nos muestra información acerca de los ve
     \end{center}
     \end{figure}
     
+
+
