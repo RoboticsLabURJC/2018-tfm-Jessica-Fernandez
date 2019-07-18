@@ -467,7 +467,7 @@ VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 
 
 En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualmente. \acrshort{yolo} ~\cite{yolo_article1} es otro enfoque para la detección de objetos. El trabajo previo a \acrshort{yolo} emplea clasificadores para realizar la detección. En esta aproximación se enmarca la detección de objetos como un problema de regresión en \textit{bounding boxes} espacialmente separados y probabilidades de clase asociadas. En la evaluación, una red neuronal única predice \textit{bounding boxes} y probabilidades de clase directamente desde imágenes completas. 
 
-\acrshort{yolo} impone fuertes restricciones espaciales en las predicciones de los \textit{bounding boxes}, ya que cada celda de la cuadrícula solo predice dos \textit{bounding boxes} y solo puede tener una clase. Esta restricción espacial limita el número de objetos cercanos que nuestro modelo puede predecir. 
+\acrshort{yolo} impone fuertes restricciones espaciales en las predicciones de los \textit{bounding boxes}, ya que cada celda de la cuadrícula solo predice N \textit{bounding boxes} (siendo N un parámetro fijo) y solo puede tener una clase. Esta restricción espacial limita el número de objetos cercanos que nuestro modelo puede predecir. En la Sección~\ref{sec.yolo} del Capítulo~\ref{cap.herramientas} se explica un poco \acrshort{yolo}.
 
 La red Yolov3 está formada por un total de 107 capas,  las cuales se pueden agrupar en dos grupos, uno encargado de la extracción de características y otro de la detección de objetos:
 
