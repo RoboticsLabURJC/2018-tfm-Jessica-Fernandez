@@ -1,10 +1,10 @@
 \chapter{Aplicación Smart-Traffic-Sensor para Monitorización de Tráfico Rodado}\label{cap.diseno}
 
-En este capítulo se hace una descripción del sistema desarrollado para llevar a cabo la monitorización visual de vehículos.
+En este capítulo se hace una descripción del sistema desarrollado para llevar a cabo la monitorización visual de vehículos usando tecnologías de \textit{Deep Learning}. También se presenta una base de datos propia que se ha construido para entrenar las redes neuronales que esta aplicación incorpora.
 
 \section{Bases de Datos de Entrenamiento}\label{sec.base_datos}
 
-Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y con diferentes iluminaciones, necesitaremos entrenar el modelo neuronal con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes \textit{datasets} públicos con el fin de permitir el entrenamiento de redes neuronales. Para el caso de la detección de vehículos hay pocos \textit{datasets}, por ello ha sido necesario crear una base de datos propia que tuviera un número suficiente de muestras y una variación amplia de tipos de escenarios, de vehículos, condiciones de luz, etc.
+Dado que queremos encontrar los vehículos en cuestión bajo diferentes circunstancias, es decir, en diferentes entornos y con diferentes iluminaciones, necesitaremos entrenar el modelo neuronal con un conjunto de imágenes representativo. Por este motivo, a lo largo de los últimos años han surgido diferentes \textit{datasets} públicos con el fin de permitir el entrenamiento de redes neuronales. Para el caso de la detección de vehículos hay pocos \textit{datasets} públicos, por ello ha sido necesario crear una base de datos propia que tuviera un número suficiente de muestras y una variación amplia de tipos de escenarios, de vehículos, condiciones de luz, etc.
 
 Inicialmente se creó una base de datos de menor tamaño, denominada \textit{Dataset STS}. Este \textit{dataset} incluía 3476 imágenes todas ellas de buena calidad y en buenas condiciones meteorológicas, las cuales se obtuvieron en su mayoría de la base de datos recopilada por Redouane Kachach en su tesis doctoral~\cite{traffic_monitor_lab}. De las 3476, 3173 se asignaron al entrenamiento de la red neuronal y 303 a test. Además, esas 3173 imágenes, contienen 2700 de \textit{train} y 473 de validación.
 
@@ -206,16 +206,14 @@ Total & 1833 \\ \hline
 \end{center}
 \end{table}
 
-Las imágenes de test incluyen muestras de buena calidad, de malas condiciones climatológicas y de mala calidad. A continuación se muestra información acerca de cada tipo de conjunto.
-
-En la Tabla~\ref{tab_img_test_buenas} se muestra información acerca de las imágenes de test de buena calidad.
+Las imágenes de test incluyen muestras de buena calidad, de malas condiciones climatológicas y de mala calidad. A continuación se muestra información acerca de cada tipo de conjunto. En la Tabla~\ref{tab_img_test_buenas} se muestra información acerca de las imágenes de test de buena calidad.
 \begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
 Nº de Imágenes  & 389 \\
 \hline \hline
-Nº de Muestras Totales & 1657\\ \hline
+Nº de Vehículos Totales & 1657\\ \hline
 Nº Car & 1463 \\ \hline
 Nº Motorcycle & 9 \\ \hline
 Nº Van & 155 \\ \hline
@@ -286,7 +284,7 @@ Nuestra aplicación es una especie de caja negra donde entran fotogramas de una 
     \item Seguimiento de vehículos
 \end{itemize}
 
-En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que indica los elementos principales de los que se compone \textit{Smart-Traffic-Sensor}, es decir, en que se fundamenta para funcionar.
+En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que indica los elementos principales de los que se compone \textit{Smart-Traffic-Sensor}. Las detecciones y la clasificación van de la mano, pues se realizan con \textit{Deep Learning}. En concreto con una red \acrshort{yolo}. Los vehículos que detectemos los clasificaremos en función a 7 clases:  \textit{car, motorcycle, van, bus, truck, small-truck} y \textit{tank-truck}. El seguimiento se centra en la proximidad espacial, y si ésta falla se utiliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
 
 \begin{figure}
 \begin{center}
@@ -296,9 +294,7 @@ En la Figura~\ref{fig.diagrama_bloques} se puede ver un diagrama de bloques que 
 \end{center}
 \end{figure}
 
-Las detecciones y la clasificación van de la mano, pues se realizan con \textit{Deep Learning}. En concreto con una red \acrshort{yolo}. Los vehículos que detectemos los clasificaremos en función a 7 clases:  \textit{car, motorcycle, van, bus, truck, small-truck} y \textit{tank-truck}. El seguimiento se centra en la proximidad espacial, y si ésta falla se utiliza \acrshort{klt}. A todos los \textit{blob} detectados se les realizará un seguimiento a lo largo del tiempo. 
-
-El sistema del que partíamos (\textit{Traffic-Monitor}~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}.
+El sistema del que partíamos (\textit{Traffic-Monitor}~\cite{traffic_monitor_redo}) definía en la imagen una zona de entrada y otra de seguimiento. Esto puede verse en la Figura ~\ref{fig.zonas}. En la zona de entrada se realizan las detecciones y en la de seguimiento es donde se lleva a cabo la clasificación y el tracking de los vehículos.
 
 \begin{figure}[H] 
 \begin{center}
@@ -307,8 +303,6 @@ El sistema del que partíamos (\textit{Traffic-Monitor}~\cite{traffic_monitor_re
 	\label{fig.zonas}
 \end{center}
 \end{figure}
-
-En la zona de entrada se realizan las detecciones y en la de seguimiento es donde se lleva a cabo la clasificación y el tracking de los vehículos.
 
 Este concepto de separar zona de entrada y seguimiento va a perder relevancia en nuestro sistema, pues ya no va a ser necesario hacer esta distinción. Tendremos una única zona en la que se lleve a cabo la detección, la clasificación y el \textit{tracking}. Vamos a continuar teniendo una zona marcada en la imagen para identificar en qué parte de la carretera queremos centrar nuestras detecciones (por si existiesen carriles de diferente sentido). A esta zona de detección, clasificación y seguimiento vamos a llamarle zona de evaluación. En la Figura ~\ref{fig.nueva_zona} se puede ver la zona  de evaluación.
 
@@ -321,20 +315,18 @@ Este concepto de separar zona de entrada y seguimiento va a perder relevancia en
 \end{figure}
 
 
-Este trabajo se ha basado principalmente en el uso de \textit{Deep Learning} para la clasificación y detección de vehículos. Además se ha apoyado en \acrfull{klt}, en los casos que pudiera haber pérdidas en la detección debido a oclusiones, o cuando los vehículos se encontraban muy alejados. Es decir, se ha apoyado en \acrshort{klt} cuando las condiciones a la hora de detectar eran algo complejas y por tanto el \textit{Deep Lerning} no era capaz de realizar correctamente la detección.
-
-A la hora de realizar el \textit{tracking} se hace uso de la proximidad espacial, pero esto se explicará con más detalle en las siguientes secciones.
+Este trabajo se ha basado principalmente en el uso de \textit{Deep Learning} para la clasificación y detección de vehículos. Además para el \textit{tracking} se ha apoyado en \acrfull{klt}, en los casos que pudiera haber pérdidas en la detección debido a oclusiones, o cuando los vehículos se encontraban muy alejados. Es decir, se ha apoyado en \acrshort{klt} cuando las condiciones a la hora de detectar eran complejas y por tanto el \textit{Deep Lerning} no era capaz de realizar correctamente la detección. A la hora de realizar el \textit{tracking} también se hace uso de la proximidad espacial.
 
 
-En resumen se puede decir que tenemos dos grandes bloques:
+En resumen tenemos dos grandes bloques:
 \begin{itemize}
     \item Detección y Clasificación de vehículos: para llevarlo a cabo se invoca a una red \acrshort{yolo} sobre la imagen completa. Dicha red fue entrenada con una base de datos propia de 9246 imágenes, las cuales fueron etiquetadas a mano.   
-    \item Tracking de vehículos: se basa en la proximidad espacial para emparejar cada vehículo detectado con los vehículos detectados del instante anterior. Si un vehículo de los que está registrado no fuera detectado mediante \textit{Deep Learning} en el instante actual, se haría uso de \acrshort{klt} para estimar su posición. \acrshort{klt} permite determinar el movimiento de un objeto dentro de una secuencia de imágenes.
+    \item Seguimiento de vehículos: se basa en la proximidad espacial para emparejar cada vehículo detectado con los vehículos detectados del instante anterior. Si un vehículo de los que está registrado no fuera detectado mediante \textit{Deep Learning} en el instante actual, se haría uso de \acrshort{klt} para estimar su posición. \acrshort{klt} permite determinar el movimiento de un objeto dentro de una secuencia de imágenes.
 \end{itemize}
 
-El conjunto total de detección, clasificación y seguimiento de vehículos tarda 50 ms, con lo cual se podría esperar que la aplicación funcione a unos 20 fotogramas por segundo. Las pruebas fueron realizadas mediante un servidor, por lo que el tiempo de actualización de los gráficos es mayor, obteniendo con ello que \textit{Smart-Traffic-Sensor} funcione a 10 fotogramas por segundo. No obstante esto debería probarse con un ordenador con GPU propia para ver realmente la velocidad a la que funciona. Todo esto se comentará más a fondo en el Capítulo \ref{cap.experimentos}.
+El conjunto total de detección, clasificación y seguimiento de vehículos tarda 50 ms, con lo cual se podría esperar que la aplicación funcione a unos 20 fotogramas por segundo. Las pruebas fueron realizadas mediante un servidor remoto, por lo que el tiempo de actualización de los gráficos es mayor, obteniendo con ello que en ese escenario \textit{Smart-Traffic-Sensor} funcione a 10 fotogramas por segundo. 
 
-A continuación se muestran dos diagramas de flujo, en los cuales se indica el planteamiento que se ha llevado a cabo en \textit{Smart-Traffic-Sensor}. En el primer diagrama~\ref{fig.diagrama_flujo_blob} se indica los pasos que se realizan una vez hemos detectado un \textit{blob} en la imagen. En el segundo~\ref{fig.diagrama_flujo_vehiculos} se muestra que es lo que se hace con los vehículos ya registrados, es decir, con los que se les está llevando un seguimiento.
+A continuación se muestran dos diagramas de flujo en los cuales se indica el planteamiento que se ha llevado a cabo en \textit{Smart-Traffic-Sensor}. En el primer diagrama~\ref{fig.diagrama_flujo_blob} se indica los pasos que se realizan una vez hemos detectado un \textit{blob} en la imagen. En el segundo~\ref{fig.diagrama_flujo_vehiculos} se muestra qué es lo que se hace con los vehículos ya registrados, es decir, con los que se les está llevando un seguimiento.
 
 \begin{figure}[H] 
 \begin{center}
@@ -356,15 +348,14 @@ A continuación se muestran dos diagramas de flujo, en los cuales se indica el p
 
 Nuestro sistema toma como imágenes de entrada las adquiridas del vídeo que se esté monitorizando. Dichas imágenes pasan como entrada a la red neuronal, donde se detecta y clasifican los diversos vehículos. Toda la información se almacena en cada instante, para así poder realizar el tracking en función de la información registrada del instante anterior.
 
-Tal y como ya se ha comentado anteriormente se ha hecho uso de \textit{Deep Learning}. En concreto se ha diseñado un sistema capaz de soportar redes neuronales entrenadas con diferentes \textit{frameworks} (\textit{TensorFlow}, \textit{Darknet} y \textit{Keras}) con el objetivo de detectar y clasificar los diferentes vehículos que aparezcan en la imagen. Con ello se ha pretendido realizar un sistema multiplataforma, el cual pueda adaptarse a los avances futuros de los diferentes entornos de \textit{Deep Learning}. Esto hace que nuestra aplicación no quede limitada ante la evolución de las redes neuronales.
+Se ha diseñado un sistema capaz de soportar redes neuronales entrenadas con diferentes \textit{frameworks} (\textit{TensorFlow}, \textit{Darknet} y \textit{Keras}) con el objetivo de detectar y clasificar los diferentes vehículos que aparezcan en la imagen. Se ha pretendido realizar un sistema multiplataforma, el cual pueda adaptarse a los avances futuros de los diferentes entornos de \textit{Deep Learning}. 
 
-En vídeos en carretera es muy probable que tengamos oclusiones y por supuesto vehículos que se vayan alejando, los cuales son bastante complejos de detectar. Para solventar esto nos hemos apoyado en \acrfull{klt}. Por tanto tenemos un sistema que complementa \textit{Deep Learning} con \acrshort{klt}. 
+En vídeos en carretera es muy probable que tengamos oclusiones y los vehículos que se van alejando sean bastante complejos de detectar. Para solventar esto nos hemos apoyado en \acrfull{klt}. Por tanto tenemos un sistema que complementa \textit{Deep Learning} con \acrshort{klt}. 
 
 Para tener un sistema lo más robusto posible se han tenido en cuenta varios detalles:
 
 \begin{itemize}
-    \item Dentro de la zona de evaluación tenemos dos zonas. En la
-     Figura ~\ref{fig.zona_evaluacion} quedan identificadas esas dos zonas.
+    \item Dentro de la zona de evaluación tenemos dos zonas (Figura~\ref{fig.zona_evaluacion}). La zona 1 se corresponde con la mitad de la zona de evaluación por donde entran los vehículos. En esta zona es más sencillo detectar y clasificar los vehículos pues tienen mayor tamaño. La zona 2 hace referencia a la mitad por la que salen los vehículos, la cual es más compleja, pues los vehículos tendrán menor tamaño.
     \begin{figure}[H] 
 \begin{center}
 	\includegraphics[width=0.7\textwidth]{figures/Diseno_global/zonas_evaluacion.png}
@@ -373,7 +364,7 @@ Para tener un sistema lo más robusto posible se han tenido en cuenta varios det
 \end{center}
 
 \end{figure}
-    La zona 1 se corresponde con la mitad de la zona de evaluación por donde entran los vehículos. En esta zona es más sencillo detectar y clasificar los vehículos pues tienen mayor tamaño. La zona 2 hace referencia a la mitad por la que salen los vehículos, la cual es más compleja, pues los vehículos tendrán menor tamaño.
+    
     \item Un vehículo siempre va a entrar a la zona de evaluación por la parte de entrada. Nunca puede aparecer de repente. Por ello no puede aparecer ningún vehículo nuevo en el medio de la carretera, es decir nunca se podrá estimar que se ha detectado un vehículo nuevo en la zona 2.
     \item Si en la zona 1 un vehículo no es detectado durante 5 secuencias seguidas se dará por hecho que ha sido un falso positivo y por tanto quedará descartado.
     \item Todo vehículo que se encuentre en la zona 2 se considerará que es un vehículo correcto. Si mediante \textit{Deep Learning} no somos capaces de detectar dicho vehículo, emplearemos \acrshort{klt} para localizarlo. 
@@ -381,10 +372,10 @@ Para tener un sistema lo más robusto posible se han tenido en cuenta varios det
 
 En resumen, hay que tener en cuenta que no pueden aparecer vehículos nuevos en medio de la imagen, por tanto si esto sucede se considerará un falso positivo y se descartará. Otro aspecto que hay que tener en cuenta es que se podría dar una detección errónea, por ello si durante 5 secuencias seguidas un vehículo no ha sido detectado en la zona 1 se considerará como que era un falso positivo y se dejará de hacer su seguimiento.
 
-Se han probado tres entornos diferentes para evaluar cual era el que mejores resultados obtenía. Para ello se hizo un primer entrenamiento con imágenes únicamente de buena calidad con el fin de determinar cual era el \textit{frameworks} que mejor funcionaba.
+Se han probado tres entornos y redes neuronales diferentes para evaluar cuál era el que mejores resultados obtenía. Para ello se hizo un primer entrenamiento con imágenes únicamente de buena calidad con el fin de determinar cuál era el entorno que mejor funcionaba.
 
 
-En los siguientes puntos se va a explicar el diseño que se ha llevado a cabo para integrar cada plataforma, en la aplicación \textit{Smart-Traffic-Sensor}.
+En los siguientes puntos se va a explicar el diseño que se ha llevado a cabo para integrar cada plataforma en la aplicación \textit{Smart-Traffic-Sensor}.
 
 \subsection{Entorno TensorFlow y red SSD MobilenetV2}\label{sub.tensorflow}
 
@@ -467,7 +458,7 @@ VGG-16  está formada por 16 capas, de las cuales 13 son capas convolucionales, 
 
 En este sistema se ha incluido \acrfull{yolo} debido a su gran éxito actualmente. \acrshort{yolo} ~\cite{yolo_article1} es otro enfoque para la detección de objetos. El trabajo previo a \acrshort{yolo} emplea clasificadores para realizar la detección. En esta aproximación se enmarca la detección de objetos como un problema de regresión en \textit{bounding boxes} espacialmente separados y probabilidades de clase asociadas. En la evaluación, una red neuronal única predice \textit{bounding boxes} y probabilidades de clase directamente desde imágenes completas. 
 
-\acrshort{yolo} impone fuertes restricciones espaciales en las predicciones de los \textit{bounding boxes}, ya que cada celda de la cuadrícula solo predice N \textit{bounding boxes} (siendo N un parámetro fijo) y solo puede tener una clase. Esta restricción espacial limita el número de objetos cercanos que nuestro modelo puede predecir. En la Sección~\ref{sec.yolo} del Capítulo~\ref{cap.herramientas} se explica un poco \acrshort{yolo}.
+\acrshort{yolo} impone fuertes restricciones espaciales en las predicciones de los \textit{bounding boxes}, ya que cada celda de la cuadrícula solo predice N \textit{bounding boxes} (siendo N un parámetro fijo) y solo puede tener una clase. Esta restricción espacial limita el número de objetos cercanos que nuestro modelo puede predecir. En la Sección~\ref{sec.yolo} del Capítulo~\ref{cap.herramientas} se explica una introducción a \acrshort{yolo}.
 
 La red Yolov3 está formada por un total de 107 capas,  las cuales se pueden agrupar en dos grupos, uno encargado de la extracción de características y otro de la detección de objetos:
 
@@ -502,6 +493,15 @@ En comparación con los sistemas de detección más modernos, YOLO comete más e
 \section{Seguimiento de Vehículos}\label{sec.seguimiento}
 
 Una vez tenemos los vehículos detectados y clasificados debemos realizar su seguimiento a lo largo de la carretera. Es decir, tenemos que asociar cada \textit{blob} detectado a los \textit{blob} anteriores de los que ya se llevaba un seguimiento. El algoritmo empleado para realizar este \textit{tracking} está basado en la proximidad espacial y \acrshort{klt}. 
+
+El seguimiento se centra en asociar las detecciones actuales con los \textit{blobs} almacenados del instante anterior. En el seguimiento se tendrán ciertos aspectos en cuenta:
+
+\begin{itemize}
+    \item Si un \textit{blob} llega al final de la zona de evaluación se eliminará del seguimiento.
+    \item Se recorrerán los \textit{blob} del instante \textit{t-1} almacenados con el fin de emparejarlos con los \textit{blob} detectados en el instante \textit{t}. Este emparejamiento se establecerá entre los \textit{blobs} en \textit{t} y \textit{t-1} que tengan menor distancia euclídea entre sus centros.
+    \item Si el \textit{blob} \textit{t} asociado al \textit{blob} \textit{t-1} no cae dentro del área circular o elíptica que se genera alrededor del centro del  \textit{blob} \textit{t-1} no quedará emparejado a éste. 
+    \item Si mediante proximidad espacial no somos capaces de emparejar un \textit{blob} \textit{t-1} emplearemos \acrshort{klt}.
+\end{itemize}
 
 \subsection{Emparejamiento por proximidad}
 
@@ -563,7 +563,7 @@ $a_x$ y $a_y$ son los componentes del vector de orientación. En la Figura ~\ref
 \end{figure}
 
 
-En la Figura~\ref{fig.proximidad_espacial} se muestra un ejemplo de \textit{Smart-Traffic-Sensor} donde se ve como se realiza el seguimiento de dos vehículos con proximidad espacial. El vehículo identificado como 2 en la imagen del instante t-1 se asocia al vehículo que se encuentra más cercano a su posición en la imagen del instante t. Lo mismo ocurre con el vehículo 3.
+En la Figura~\ref{fig.proximidad_espacial} se muestra un ejemplo de \textit{Smart-Traffic-Sensor} donde se ve cómo se realiza el seguimiento de dos vehículos con proximidad espacial. El vehículo identificado como 2 en la imagen del instante t-1 se asocia al vehículo que se encuentra más cercano a su posición en la imagen del instante t. Lo mismo ocurre con el vehículo 3.
 
  \begin{figure}[H] 
 \begin{center}
@@ -577,22 +577,13 @@ En resumen, una detección deberá encontrarse dentro de un cierto área alreded
 
 \subsection{Seguimiento por KLT}
 
-El seguimiento se centra en asociar las detecciones actuales con los \textit{blobs} almacenados del instante anterior. En el seguimiento se tendrán ciertos aspectos en cuenta:
-
-\begin{itemize}
-    \item Si un \textit{blob} llega al final de la zona de evaluación se eliminará del seguimiento.
-    \item Se recorrerán los \textit{blob} del instante \textit{t-1} almacenados con el fin de emparejarlos con los \textit{blob} detectados en el instante \textit{t}. Este emparejamiento se establecerá entre los \textit{blobs} en \textit{t} y \textit{t-1} que tengan menor distancia euclídea entre sus centros.
-    \item Si el \textit{blob} \textit{t} asociado al \textit{blob} \textit{t-1} no cae dentro del área circular o elíptica que se genera alrededor del centro del  \textit{blob} \textit{t-1} no quedará emparejado a éste. 
-    \item Si mediante proximidad espacial no somos capaces de emparejar un \textit{blob} \textit{t-1} emplearemos \acrshort{klt}.
-\end{itemize}
-
 El seguimiento se basa principalmente en la proximidad espacial pero se hará uso de \acrshort{klt} en casos problemáticos, haciendo asi más robusto nuestro sistema. \acrshort{klt} se calculará en todas las secuencias para ir actualizando los puntos característicos.
 
 Si no se detecta un vehículo ya sea porque haya alguna oclusión o se encuentre muy lejos, se empleará \acrshort{klt}, pues se ha visto que funciona incluso ante oclusiones durante un pequeño número de fotogramas consecutivos.
 
 Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1}, \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. 
 
-Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver como a pesar de haber una oclusión se sigue detectando el vehículo. En este caso \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
+Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver cómo a pesar de haber una oclusión se sigue detectando el vehículo. En este caso \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
 
  \begin{figure}[H] 
 \begin{center}
@@ -675,7 +666,7 @@ Esta interfaz gráfica tiene dos partes principales:
     	\label{fig.input_video}
     \end{center}
     \end{figure}
-    \item La interfaz llamada \textit{Smart-Traffic-Sensor}, la cual controla toda nuestra aplicación y nos muestra información acerca de lo que se va registrando de la monitorización. Dicha ventana se puede ver en la Figura~\ref{fig.interfaz_sts}.
+    \item La ventana llamada \textit{Smart-Traffic-Sensor}, la cual controla toda nuestra aplicación y nos muestra información acerca de lo que se va registrando de la monitorización. Dicha ventana se puede ver en la Figura~\ref{fig.interfaz_sts}.
      \begin{figure}[H] 
     \begin{center}
     	\includegraphics[scale=0.5]{figures/Diseno_global/interfaz_grafica.png}
@@ -688,10 +679,10 @@ Esta interfaz gráfica tiene dos partes principales:
 
 La interfaz \textit{Smart-Traffic-Sensor} nos ofrece diversas funcionalidades para modificar lo que se muestra en la ventana \textit{Input Video}, nos permite cambiar el método de detección, clasificación y seguimiento, además de mostrarnos información acerca de los vehículos que se están monitorizando.
 
-A continuación se va a explicar brevemente la funcionalidad de los botones que aplican en nuestro método, pues algunos solo aplican al funcionamiento del antiguo \textit{Traffic-Monitor}:
+A continuación se va a explicar brevemente la funcionalidad de los botones que aplican en nuestro método:
 \begin{itemize}
     \item \textit{Play} permite detener y poner en marcha la ejecución del vídeo.
-    \item \textit{Save} nos ofrece la posibilidad de guardar información acerca de la zona de evaluación, es decir, guardar información acerca del tamaño y los puntos en los que se encuentra la zona de evaluación.
+    \item \textit{Save} ofrece la posibilidad de guardar información acerca de la zona de evaluación, es decir, guardar información acerca del tamaño y los puntos en los que se encuentra la zona de evaluación.
     \item \textit{Classify} muestra los \textit{blobs} y su clase (siempre que esté también activo \textit{Show Categories}).
     \item \textit{Proximity Tracking}, \textit{KLT tracking}, \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} permiten cambiar de método para la detección, clasificación y seguimiento. \textit{Proximity Tracking} y \textit{KLT tracking} pertenecen al algoritmo que desarrolló Redouane en su tesis~\cite{redo_tesis}. Con \textit{Proximity Tracking} se emplea únicamente proximidad espacial para el seguimiento y en \textit{KLT tracking} se incluye \acrshort{klt} para los casos en los que la detección es insuficiente. Con \textit{TensorFlow Tracking}, \textit{Keras Tracking} y \textit{Darknet Tracking} se activa el método desarrollado en este trabajo. La única diferencia entre ellos es la plataforma de detección y clasificación que se emplea.
     \item \textit{Show box} muestra el \textit{blob} completamente pintado de verde. Solo aplicará si no está activo \textit{Classify}. En la Figura~\ref{fig.show_box} se puede ver un ejemplo.
@@ -702,7 +693,7 @@ A continuación se va a explicar brevemente la funcionalidad de los botones que 
     	\label{fig.show_box}
     \end{center}
     \end{figure}
-    \item \textit{Show Categories} nos muestra la clase del vehículo monitorizado. Para que muestre la clase debe estar también activado \textit{Classify}.
+    \item \textit{Show Categories} muestra la clase del vehículo monitorizado. Para que muestre la clase debe estar también activado \textit{Classify}.
     \item \textit{Show tracking zone} oculta o muestra la zona de evaluación.
     \textit{Show tracking info} nos permite ver en \textit{Input Video} toda la información de los vehículos monitorizados.
     \item \textit{Reset} inicializa todo el seguimiento de vehículos.
@@ -710,9 +701,6 @@ A continuación se va a explicar brevemente la funcionalidad de los botones que 
 \end{itemize}
 
 La interfaz también muestra un histórico de los vehículos monitorizados y una estadística total de la cantidad de vehículos de cada clase que han sido registrados. Esto puede verse en la Figura~\ref{fig.info_vehicles}.
-
-    
-Con todo ello tenemos una interfaz que nos muestra información acerca de los vehículos monitorizados muy completa.
 
 
     \begin{figure}[H] 
