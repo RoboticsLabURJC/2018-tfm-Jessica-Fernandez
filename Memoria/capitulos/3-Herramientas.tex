@@ -111,7 +111,7 @@ En este proyecto se hace uso de la versión 2.2.4 de \textit{Keras}.
 
 En nuestro proyecto haremos uso de \acrfull{yolo}, que es un sistema de detección de objetos que funciona sobre \textit{Darknet}. \acrshort{yolo} utiliza \textit{Deep Learning} y \acrshort{cnn} para detectar objetos, y se distingue de sus competidores porque requiere de ver la imagen una sola vez, permitiéndole ser mucho más rápido que el resto de algoritmos. Gracias a su gran rapidez es capaz de detectar objetos en tiempo real en vídeos (hasta 30 \textit{\acrshort{fps}}).
 
-A la hora de realizar la detección, \acrshort{yolo} en primer lugar divide la imagen en una cuadrícula de SxS. En cada una de sus celdas se estiman sus N posibles \textit{bounding boxes}  con sus respectivas probabilidades de acierto. Teniendo así SxSxN \textit{bounding boxes}. Aquellas predicciones que tengan una probabilidad por debajo de un umbral quedarán eliminadas. A las que superen dicho umbral se les aplicará \textit{non--max suppression}, lo cual sirve para eliminar objetos detectados por duplicado. Este proceso puede verse en la  Figura \ref{fig.yolo}.
+A la hora de realizar la detección, \acrshort{yolo} en primer lugar divide la imagen en una cuadrícula de SxS. En cada una de sus celdas se estiman sus N posibles \textit{bounding boxes} con sus respectivas probabilidades de acierto. Teniendo así SxSxN \textit{bounding boxes}. Aquellas predicciones que tengan una probabilidad por debajo de un umbral quedarán eliminadas. A las que superen dicho umbral se les aplicará \textit{non--max suppression}, lo cual sirve para eliminar objetos detectados por duplicado. Este proceso puede verse en la  Figura \ref{fig.yolo}.
 
 \begin{figure}[H]
   \begin{center}

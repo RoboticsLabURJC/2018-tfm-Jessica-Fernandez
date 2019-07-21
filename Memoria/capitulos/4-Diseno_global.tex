@@ -108,13 +108,13 @@ En la Figura~\ref{fig.base_datos} se pueden ver algunas imágenes de nuestra bas
 \end{center}
 \end{figure}
 
-De estas 9774 imágenes una parte se empleó en el entrenamiento y otra en el test. En la Tabla~\ref{tabla_distribucion_base_datos} se muestra la distribución de imágenes en función de \textit{train} y test.
+De estas 9774 imágenes una parte se empleó en el entrenamiento y otra en el test. En la Tabla~\ref{tabla_distribucion_base_datos} se muestra la distribución de imágenes en función de entrenamiento y test.
 
 \begin{table}[H] 
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-Tipo & Imágenes de Train & Imágenes de Test  \\ 
+Tipo & Imágenes de Entrenamiento & Imágenes de Test  \\ 
 \hline \hline
 Buena Calidad & 6717 & 389  \\ \hline
 Malas Condiciones Meteorológicas & 1892 & 71 \\ \hline
@@ -583,7 +583,7 @@ Si no se detecta un vehículo ya sea porque haya alguna oclusión o se encuentre
 
 Para poder realizar \acrshort{klt} necesitamos conocer el centro de masas de los vehículos y sus características visuales. En función de los puntos característicos del vehículo en \textit{t-1}, \acrshort{klt} calcula el emparejamiento para cada punto característico y como resultado genera un nuevo conjunto de puntos característicos correspondientes al vehículo en cuestión. Para llegar a conseguir un emparejamiento correcto el sistema se basa en votos de los puntos característicos que un objeto tiene asociado. 
 
-Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver cómo a pesar de haber una oclusión se sigue detectando el vehículo. En este caso \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
+Un ejemplo del seguimiento mediante \acrshort{klt} se puede ver en la Figura~\ref{fig.klt_deteccion}. En ella se puede ver cómo a pesar de haber una oclusión se sigue detectando el vehículo. En este caso el \textit{Deep Learning} no era capaz de detectarlo, pero gracias al uso de \acrshort{klt} no llegamos a perderlo.
 
  \begin{figure}[H] 
 \begin{center}
